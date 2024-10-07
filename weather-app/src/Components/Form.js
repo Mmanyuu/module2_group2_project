@@ -8,7 +8,7 @@ const EditForm = () => {
     return (
         <>
         <h1>Edit Details</h1>
-
+        <h2>Edit Details</h2>
         </>
     )
 }
