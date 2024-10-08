@@ -11,6 +11,7 @@ function ViewList({ list }) {
               <th>Location</th>
               <th>Time</th>
               <th>Comment</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -20,6 +21,7 @@ function ViewList({ list }) {
                 <td>{item.location}</td>
                 <td>{item.time}</td>
                 <td>{item.comment}</td>
+                <td>Edit</td>
               </tr>
             ))}
           </tbody>

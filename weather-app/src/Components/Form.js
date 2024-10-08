@@ -33,10 +33,10 @@ function AddForm() {
   const handlerChangeComment = (value) => {
     setComment(value);
   };
-  
+
   // Create Submit when Add button click
   const handlerAddDetail = () => {
-    console.log("handlerAddProduct: activity, location: ", activity, location);
+    console.log("handlerAddDetail: activity, location: ", activity, location);
     // Create new list item
     const newItem = {
       activity: activity,
