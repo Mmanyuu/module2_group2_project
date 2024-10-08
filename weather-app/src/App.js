@@ -35,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <ViewMainPage />
       <Introduction />
       <EditForm />
       {/* <div>
