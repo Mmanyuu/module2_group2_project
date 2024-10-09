@@ -1,14 +1,23 @@
 .headerContainer {
-  padding: 20px;
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 3em;
+  text-align: center;
+  font-family: "Asap Condensed", sans-serif;
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 20%;
+  left: 50%;
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }
 
 .headerTitle h2 {
+  font-weight: 500;
+  color: #000000;
   font-size: 24px;
-  color: #333;
   margin: 0;
 }
 
@@ -26,9 +35,10 @@
   padding: 5px;
   width: 150px;
   font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 2px solid rgba(69, 65, 65, 0.3);
+  border-radius: 5px;
   margin-right: 8px;
+
 }
 
 .searchButton {
@@ -37,7 +47,7 @@
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -48,4 +58,5 @@
 .clockContainer {
   margin-left: 10px;
   font-size: 16px;
+  position:relative;
 }
