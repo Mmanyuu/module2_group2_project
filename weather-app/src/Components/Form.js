@@ -8,9 +8,10 @@ import { v4 as uuid } from "uuid";
 import { useState } from "react";
 import Card from "./Card";
 import ViewList from "./ViewList";
+import { dummyData } from "./UsersData";
+import ViewListDummy from "./ViewListDummy";
 
 function AddForm() {
-
   // Create a Empty Form
   const blankForm = {
     index: 0,
@@ -24,6 +25,8 @@ function AddForm() {
   const [list, setList] = useState([]);
   // Check the Form Status
   const [form, setForm] = useState(blankForm);
+  // Create New List from dummy Data
+  const [dummylist, setDummylist] = useState(dummyData);
 
   // Create Default State for Input Field
   const [activity, setActivity] = useState("");
@@ -92,17 +95,17 @@ function AddForm() {
   // Before the Submit Button Clicked
   const handlerUpdateForm = (event, key) => {
     const value = event.target.value;
-    const updatedForm = {...form, [key]: value};
+    const updatedForm = { ...form, [key]: value };
     setForm(updatedForm);
     console.log("value:", updatedForm);
-  }
+  };
 
   // Last HandlerSubmitForm Button Clicked
   const handlerSubmitForm = (event) => {
     event.preventDefault();
 
     // Create new item and copy values from form
-    const newItem = {...list[form.index]};
+    const newItem = { ...list[form.index] };
     console.log(newItem);
     newItem.activity = form.activity;
     newItem.location = form.location;
@@ -113,7 +116,7 @@ function AddForm() {
     const newList = [...list];
     newList[form.index] = newItem;
     setList(newList);
-  }
+  };
 
   return (
     <div>
@@ -135,39 +138,57 @@ function AddForm() {
         handlerEditItem={handlerEditForm}
       />
 
+      <ViewListDummy
+        dummylist={dummylist}
+        handlerDeleteItem={handlerDeleteItem}
+        handlerEditItem={handlerEditForm}
+      />
+
       {/* This will call the Form with the item of the ID with Update and Cancel Button */}
       <form>
-          <table>
-            <thead>
-              <tr>
-                <th>Activity</th>
-                <th>Location</th>
-                <th>Time</th>
-                <th>Comment</th>
-              </tr>
-            </thead>
-            <tbody>
+        <table>
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>Location</th>
+              <th>Time</th>
+              <th>Comment</th>
+            </tr>
+          </thead>
+          <tbody>
             <tr>
               <td>
-                <input value={form.activity} type='text'
-                  onChange={(event) => handlerUpdateForm(event, 'activity')} />
+                <input
+                  value={form.activity}
+                  type="text"
+                  onChange={(event) => handlerUpdateForm(event, "activity")}
+                />
               </td>
               <td>
-                <input value={form.location} type='text'
-                  onChange={(event) => handlerUpdateForm(event, 'location')} />
+                <input
+                  value={form.location}
+                  type="text"
+                  onChange={(event) => handlerUpdateForm(event, "location")}
+                />
               </td>
               <td>
-                <input value={form.time} type='text'
-                  onChange={(event) => handlerUpdateForm(event, 'time')} />
+                <input
+                  value={form.time}
+                  type="text"
+                  onChange={(event) => handlerUpdateForm(event, "time")}
+                />
               </td>
               <td>
-                <input value={form.comment} type='text'
-                  onChange={(event) => handlerUpdateForm(event, 'comment')} />
+                <input
+                  value={form.comment}
+                  type="text"
+                  onChange={(event) => handlerUpdateForm(event, "comment")}
+                />
               </td>
             </tr>
           </tbody>
         </table>
-        <input type='submit' onClick={handlerSubmitForm} />
+        <input type="submit" onClick={handlerSubmitForm} />
         {/* <button label='Cancel' onClick={() => setIsEditing(false)} /> */}
       </form>
     </div>
