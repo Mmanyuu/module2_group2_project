@@ -1,8 +1,8 @@
 import "./App.css";
-import Introduction from "./Components/Introduction";
-import EditForm from "./Components/Form";
-import { useState } from "react";
-import Header from "./Components/Header";
+// import Introduction from "./Components/Introduction";
+import Form from "./Components/Form";
+// import { useState } from "react";
+// import Header from "./Components/Header";
 // import GeoCoordinates from "./Components/GeoCoordinates";
 // import WeatherData from "./Components/WeatherData";
 // import NextDayForecast from "./Components/NextDayForecast";
@@ -10,8 +10,8 @@ import Header from "./Components/Header";
 // import AirQuality from "./Components/AirQuality";
 
 function App() {
-  const [coords, setCoords] = useState({ lon: null, lat: null });
-  const [location, setLocation] = useState("");
+  // const [coords, setCoords] = useState({ lon: null, lat: null });
+  // const [location, setLocation] = useState("");
 
   // This asynchronous function is called when a user submits a location from the Header component.
 
@@ -35,8 +35,8 @@ function App() {
 
   return (
     <div className="App">
-      <Introduction />
-      <EditForm />
+      {/* <Introduction /> */}
+      <Form />
       {/* <div>
         <Header onSearch={handleSearch} />
         {coords.lon && coords.lat && (

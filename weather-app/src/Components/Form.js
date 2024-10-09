@@ -94,10 +94,10 @@ function AddForm() {
     const value = event.target.value;
     const updatedForm = {...form, [key]: value};
     setForm(updatedForm);
-    // console.log(value);
+    console.log("value:", updatedForm);
   }
 
-  // Last HandlerUpdateForm
+  // Last HandlerSubmitForm Button Clicked
   const handlerSubmitForm = (event) => {
     event.preventDefault();
 
@@ -107,7 +107,7 @@ function AddForm() {
     newItem.activity = form.activity;
     newItem.location = form.location;
     newItem.time = form.time;
-    newItem.location = form.comment;
+    newItem.comment = form.comment;
 
     // Copy current list and replace edited item
     const newList = [...list];
@@ -136,7 +136,7 @@ function AddForm() {
       />
 
       {/* This will call the Form with the item of the ID with Update and Cancel Button */}
-      <form onSubmit={handlerSubmitForm}>
+      <form>
           <table>
             <thead>
               <tr>
@@ -167,7 +167,7 @@ function AddForm() {
             </tr>
           </tbody>
         </table>
-        <input type='submit' />
+        <input type='submit' onClick={handlerSubmitForm} />
         {/* <button label='Cancel' onClick={() => setIsEditing(false)} /> */}
       </form>
     </div>
