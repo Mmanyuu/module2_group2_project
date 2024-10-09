@@ -1,0 +1,102 @@
+/* Introduction.module.css or Questionnaire.css 
+@Manyu I just tried the basic styles  from our old projects.
+You can delete it and do your kind of styling which looked pretty 
+*/
+.title {
+    background-color: #007bff; /* Main color for the title bar */
+    color: white; /* Text color */
+    padding: 15px; /* Padding around the text */
+    text-align: center; /* Center the text */
+    font-size: 1.5em; /* Font size */
+    border-radius: 5px 5px 0 0; /* Rounded corners at the top */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    margin-bottom: 20px; /* Space below the title bar */
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: blue;
+  }
+  .container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .questionnaireContainer {
+  
+    margin: 0 auto;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background-color: #f0f1f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    margin-right: 20px;
+    font-size: 1.2em;
+    color: #555;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    padding: 10px;
+    margin-top: 5px;
+    margin-left:5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  button {
+    min-width: 3rem;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .thank-you {
+    text-align: center;
+    background-color: #0056b3;
+    font-size: 1.3em;
+    color: #0056b3;
+  }
+  
+  .answers {
+    /* white-space: pre-wrap; Preserve whitespace for better readability */
+    background-color: #0056b3;
+    padding: 20px;
+    border-radius: 5px;
+    border: 5px solid #e0e0e0;
+  }
