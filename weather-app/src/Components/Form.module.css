@@ -1,11 +1,11 @@
-.container {
+.formContainer {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 50%;
+  top: 67%;
   left: 50%;
 }
 
-form {
+.form {
   background: rgba(255, 255, 255, 0.3);
   padding: 3em;
   height: 320px;
@@ -17,88 +17,87 @@ form {
   text-align: center;
   position: relative;
   transition: all 0.2s ease-in-out;
+}
 
-  p {
-    font-weight: 500;
-    color: #000000;
-    opacity: 0.7;
-    font-size: 1.4rem;
-    margin-top: 0;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    position: relative;
+h3 {
+  font-weight: 500;
+  color: #000000;
+  opacity: 0.7;
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.button {
+  background: rgba(121, 138, 121, 0.825);
+  width: 150px;
+  padding: 1em;
+  margin: 0.7em;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
+  color: black;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.button:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.formInput {
+  background: transparent;
+  width: 200px;
+  padding: 1em;
+  margin-bottom: 2em;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5000px;
+  backdrop-filter: blur(5px);
+  box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
+  color: black;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
   }
 
-  .button {
-    background: rgba(121, 138, 121, 0.825);
+  &[type="email"],
+  &[type="password"] {
+    &:focus {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &[type="button"] {
+    margin-top: 10px;
     width: 150px;
-    padding: 1em;
-    margin: 0.7em;
-    border: none;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
-    box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
-    color: black;
-    font-family: Montserrat, sans-serif;
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
       cursor: pointer;
     }
 
     &:active {
       background: rgba(255, 255, 255, 0.2);
-    }
-  }
-
-  input {
-    background: transparent;
-    width: 200px;
-    padding: 1em;
-    margin-bottom: 2em;
-    border: none;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5000px;
-    backdrop-filter: blur(5px);
-    box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
-    color: black;
-    font-family: Montserrat, sans-serif;
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    &[type="email"],
-    &[type="password"] {
-      &:focus {
-        background: rgba(255, 255, 255, 0.2);
-        box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
-      }
-    }
-
-    &[type="button"] {
-      margin-top: 10px;
-      width: 150px;
-      font-size: 1rem;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &:active {
-        background: rgba(255, 255, 255, 0.2);
-      }
     }
   }
 
@@ -114,7 +113,6 @@ form {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-a,
 input:focus,
 select:focus,
 textarea:focus,
