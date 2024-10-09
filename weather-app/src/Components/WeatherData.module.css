@@ -1,0 +1,68 @@
+.container {
+  padding: 3em;
+  text-align: center;
+  font-family: "Asap Condensed", sans-serif;
+  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 65%;
+  left: 50%;
+  border-radius: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+
+  /* display: flex;
+    flex-direction: row;
+    padding: 3em;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2); */
+}
+
+header {
+  margin: 0px;
+  font-size: 25px;
+  padding: 0 25px;
+}
+
+h1 {
+  margin: 10px 20px;
+  font-size: 54px;
+  padding: 0 25px;
+}
+
+.degreeCelcius {
+  font-size: 20px;
+  vertical-align: 80%;
+}
+
+.flexContainerRow {
+display: flex;
+flex-direction: row;
+}
+
+.tempDescription {
+  float: left;
+  width: 50%;
+  text-align: left;
+  font-size: 18px;
+  font-weight: normal;
+  padding: 15px 0;
+  padding-left: 12px;
+}
+
+.flexRow {
+display: flex;
+justify-content: space-around;
+}
