@@ -1,54 +1,62 @@
 .headerContainer {
-  padding: 3em;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2em;
   font-family: "Asap Condensed", sans-serif;
   background: rgba(255, 255, 255, 0.3);
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 20%;
-  left: 50%;
+  position: relative;
+  margin-left: 12px;
   border-radius: 20px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  width:1300px;
 }
 
-.headerTitle h2 {
-  font-weight: 500;
+.headerTitle h2{
+  display: flex;
+  flex-direction: row;
+  width:180px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
   color: #000000;
-  font-size: 24px;
-  margin: 0;
+  font-size: 25px;
 }
 
 .rightSideContainer {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .searchBox {
-  display: flex;
-  align-items: center;
+  flex-direction: row;
+  flex-basis: 100px;
+  margin:15px;
 }
 
 .searchInput {
   padding: 5px;
-  width: 150px;
-  font-size: 14px;
+  margin-left: 10px;
+  font-size: 18px;
   border: 2px solid rgba(69, 65, 65, 0.3);
   border-radius: 5px;
-  margin-right: 8px;
-
+  width: 890px;
 }
 
 .searchButton {
-  padding: 5px 10px;
+  padding: 10px;
   font-size: 14px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: auto;
+  height: auto;
+  margin: 5px 15px;
 }
 
 .searchButton:hover {
@@ -56,7 +64,7 @@
 }
 
 .clockContainer {
-  margin-left: 10px;
-  font-size: 16px;
-  position:relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  margin-top: 10px;
 }
