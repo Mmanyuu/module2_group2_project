@@ -10,7 +10,8 @@ root.render(
 
     {/* This is coded for testing purpose of the introduction page */}
     {/* { Once we  merge the code in the Appcopy.js to App.jsthen for the introduction ques this can be reverted back to <APP />} */}
-    <Appcopy />
+    {/* <Appcopy /> */}
+    <App />
   </React.StrictMode>
 );
 

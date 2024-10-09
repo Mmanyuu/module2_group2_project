@@ -1,8 +1,9 @@
 import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ResponsesProvider } from "./Context/ResponsesContext"; // Import the ResponsesProvider
 import Introduction from "./Components/Introduction";
-import EditForm from "./Components/Form";
-import { useState } from "react";
-import Header from "./Components/Header";
+import MainPage from "./Components/MainPage";
 // import GeoCoordinates from "./Components/GeoCoordinates";
 // import WeatherData from "./Components/WeatherData";
 // import NextDayForecast from "./Components/NextDayForecast";
@@ -10,9 +11,6 @@ import Header from "./Components/Header";
 // import AirQuality from "./Components/AirQuality";
 
 function App() {
-  const [coords, setCoords] = useState({ lon: null, lat: null });
-  const [location, setLocation] = useState("");
-
   // This asynchronous function is called when a user submits a location from the Header component.
 
   // 1) It first updates the location state with the locationInput provided.
@@ -35,9 +33,18 @@ function App() {
 
   return (
     <div className="App">
-      <Introduction />
-      <EditForm />
-      {/* <div>
+      <ResponsesProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Introduction />} />
+            <Route path="/MainPage" element={<MainPage />} />
+          </Routes>
+        </Router>
+      </ResponsesProvider>
+      {/* <ViewMainPage /> */}
+      {/* <Introduction /> */}
+      {/* <EditForm /> */}
+            {/* <div>
         <Header onSearch={handleSearch} />
         {coords.lon && coords.lat && (
           <>
