@@ -2,101 +2,123 @@
 @Manyu I just tried the basic styles  from our old projects.
 You can delete it and do your kind of styling which looked pretty 
 */
+
 .title {
-    background-color: #007bff; /* Main color for the title bar */
-    color: white; /* Text color */
-    padding: 15px; /* Padding around the text */
-    text-align: center; /* Center the text */
-    font-size: 1.5em; /* Font size */
-    border-radius: 5px 5px 0 0; /* Rounded corners at the top */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    margin-bottom: 20px; /* Space below the title bar */
-  }
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    color: blue;
-  }
-  .container {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-  }
-  .questionnaireContainer {
-  
-    margin: 0 auto;
-    padding: 20px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    background-color: #f0f1f5;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    margin-bottom: 10px;
-    margin-right: 20px;
-    font-size: 1.2em;
-    color: #555;
-  }
-  
-  input[type="text"],
-  input[type="number"] {
-    padding: 10px;
-    margin-top: 5px;
-    margin-left:5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
-  }
-  
-  input[type="text"]:focus,
-  input[type="number"]:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  button {
-    min-width: 3rem;
-    padding: 10px;
-    margin-top: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .thank-you {
-    text-align: center;
-    background-color: #0056b3;
-    font-size: 1.3em;
-    color: #0056b3;
-  }
-  
-  .answers {
-    /* white-space: pre-wrap; Preserve whitespace for better readability */
-    background-color: #0056b3;
-    padding: 20px;
-    border-radius: 5px;
-    border: 5px solid #e0e0e0;
-  }
+  /* background-color: rgba(255, 255, 255, 0.548); Main color for the title bar */
+  color: white; /* Text color */
+  padding: 25px; /* Padding around the text */
+  text-align: center; /* Center the text */
+  font-size: 30px; /* Font size */
+  /* border-radius: 5px 5px 0 0; Rounded corners at the top */
+  /* box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2); Subtle shadow */
+  margin-top: 12%; /* position in the center of the page */
+  margin-left: 12%; /* position in the center of the page */
+  margin-bottom: 20px; /* Space below the title bar */
+  color: #000000; /* Color of the text*/
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  width: 1000px;
+  height: 70px;
+  align-content: center;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: blue;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.questionnaireContainer {
+  margin: 0 auto;
+  padding: 50px 25px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 1000px;
+  height: 70px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.589
+  ); /* Main color for the title bar */
+  border-radius: 5px 5px 0 0; /* Rounded corners at the top */
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+  margin-right: 20px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  margin-top: 5px;
+  margin-left: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.nextButton {
+  min-width: 3rem;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 45%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  width: 100px;
+}
+
+.nextButton:hover {
+  background-color: #0056b3;
+}
+
+.thank-you {
+  text-align: center;
+  background-color: #0056b3;
+  font-size: 1.3em;
+  color: #0056b3;
+}
+
+.answers {
+  /* white-space: pre-wrap; Preserve whitespace for better readability */
+  background-color: #0056b3;
+  padding: 20px;
+  border-radius: 5px;
+  border: 5px solid #e0e0e0;
+}

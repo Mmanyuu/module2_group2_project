@@ -78,7 +78,7 @@ const Introduction = () => {
             </label>
             {/* Display error message */}
             {error && <div style={{ color: 'red' }}>{error}</div>} 
-            <button type="submit">Next</button>
+            <button type="submit" className={styles.nextButton}>Next</button>
           </form>
         ) : (
           <Navigate to="/MainPage" />
