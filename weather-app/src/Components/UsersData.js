@@ -8,7 +8,7 @@ export const dummyData = [
     },
     {
         id: '2',
-        name: 'Johny',
+        name: 'Johnny',
         homeLocation: 'Bedok',
         workLocation: 'Yishun',
         addedLocation: '' ,
@@ -34,20 +34,20 @@ export const dummyData = [
       }, {
         id: '6',
         name: 'Sanya',
-        homeLocation:'' ,
-        workLocation: '',
+        homeLocation:'Jurong West' ,
+        workLocation: 'Ubi',
         addedLocation: '',
       }, {
         id: '7',
         name: 'Francis',
-        homeLocation: '',
-        workLocation: '',
+        homeLocation: 'Tampines',
+        workLocation: 'Bugis',
         addedLocation: '',
       }, {
         id: '8',
-        name: 'Ong Chin',
-        homeLocation: '',
-        workLocation: '',
+        name: 'Wee Chin',
+        homeLocation: 'Orchard',
+        workLocation: 'Redhill',
         addedLocation: '',
       }, {
         id: '9',
