@@ -1,10 +1,13 @@
 import "./App.css";
-// import Introduction from "./Components/Introduction";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ResponsesProvider } from "./Context/ResponsesContext";
+import Introduction from "./Components/Introduction";
+import MainPage from "./Components/MainPage";
 import Form from "./Components/Form";
-import { useState } from "react";
-import Header from "./Components/Header";
-import GeoCoordinates from "./Components/GeoCoordinates";
-import WeatherData from "./Components/WeatherData";
+// import { useState } from "react";
+// import Header from "./Components/Header";
+// import GeoCoordinates from "./Components/GeoCoordinates";
+// import WeatherData from "./Components/WeatherData";
 // import NextDayForecast from "./Components/NextDayForecast";
 // import FourDayForecast from "./Components/FourDayForecast";
 // import AirQuality from "./Components/AirQuality";
@@ -32,8 +35,16 @@ function App() {
 
   return (
     <div className="App">
+      <ResponsesProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Introduction />} />
+            <Route path="/MainPage" element={<MainPage />} />
+          </Routes>
+        </Router>
+      </ResponsesProvider>
       {/* <Introduction /> */}
-      <Form />
+      {/* <Form /> */}
       {/* <div>
         <Header onSearch={handleSearch} />
         {coords.lon && coords.lat && (
@@ -43,10 +54,10 @@ function App() {
               lat={coords.lat}
               location={location}
             /> */}
-            {/* <AirQuality lat={coords.lat} long={coords.lon} />
+      {/* <AirQuality lat={coords.lat} long={coords.lon} />
             <NextDayForecast />
             <FourDayForecast /> */}
-          {/* </>
+      {/* </>
         )}
       </div> */}
     </div>
