@@ -5,6 +5,7 @@ import AirQuality from "./AirQuality";
 import NextDayForecast from "./NextDayForecast";
 import FourDayForecast from "./FourDayForecast";
 import GeoCoordinates from "./GeoCoordinates";
+import PersonalisedInfo from "./PersonalisedInfo";
 
 const MainPage = () => {
   const [coords, setCoords] = useState({ lon: null, lat: null });
@@ -33,6 +34,7 @@ const MainPage = () => {
   return (
     <div>
       <Header onSearch={handleSearch} />
+      <PersonalisedInfo />
       {coords.lon && coords.lat && (
         <>
           <WeatherData lon={coords.lon} lat={coords.lat} location={location} />
