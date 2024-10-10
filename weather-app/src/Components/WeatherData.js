@@ -1,3 +1,4 @@
+import styles from "./WeatherData.module.css"
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -51,7 +52,7 @@ const WeatherData = ({ lon, lat, location }) => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h3>Weather in {capitalizeFirstLetter(location)}</h3>
       <p>Weather: {weatherData.weather[0].description}</p>
       <p>Temperature: {Math.round(weatherData.main.temp)}°C</p>
