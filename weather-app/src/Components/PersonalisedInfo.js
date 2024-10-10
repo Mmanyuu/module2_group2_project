@@ -3,12 +3,25 @@ import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
 import axios from "axios";
+import AddForm from "./Form";
+import FormTwo from "./FormTwo";
+
+function Button({ label, onClick }) {
+  return (
+    <button className={styles.button} onClick={onClick}>
+      {label}
+    </button>
+  );
+}
 
 function PersonalisedInfo() {
   const [loading, setLoading] = useState(false);
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
+  const [isListVisible, setIsListVisible] = useState(true);
+  // Create a use State for Show / Hide FormButton
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (usersData.length > 0) {
@@ -49,6 +62,10 @@ function PersonalisedInfo() {
       fetchPersonaliseData(user.workLocation, "workWeather");
     }
   }, [usersData]);
+
+  const handleShowList = () => {
+    setIsListVisible((isListVisible) => !isListVisible);
+  };
 
   return (
     <div className={styles.personaliseBox}>
@@ -129,7 +146,41 @@ function PersonalisedInfo() {
           <p>No users added yet</p>
         )}
       </div>
-        <button className={styles.updateButton}>Update Information</button>
+      <Button label={isListVisible ? "Hide Information" : "Show Information"} onClick={handleShowList} />
+      {isListVisible && <AddForm />}
+      {!isListVisible && <p>Click 'Update Information' to display the Form.</p>}
+      {isEditing &&
+        <form>
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Disc %</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <input type='number'/>
+              </td>
+              <td>
+                <input type='number'/>  
+              </td>
+              <td>
+                <input type='number'/>
+              </td>
+              <td>
+                <input type='number' />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <input type='submit' />
+        <Button label='Cancel' onClick={() => setIsEditing(false)} />
+      </form>
+      }
     </div>
   );
 }

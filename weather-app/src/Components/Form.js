@@ -12,6 +12,7 @@ import { dummyData } from "./UsersData";
 import ViewListDummy from "./ViewListDummy";
 
 function AddForm() {
+  // console.log(latestUser.homeLocation);
   // Create a Empty Form
   const blankForm = {
     index: 0,
@@ -120,8 +121,8 @@ function AddForm() {
 
   return (
     <div>
-      <h1>Enter New Actitity:</h1>
-      <Card
+      <h2>Current Personal Detail:</h2>
+      {/* <Card
         activity={activity}
         location={location}
         time={time}
@@ -131,21 +132,15 @@ function AddForm() {
         handleChangeTime={handleChangeTime}
         handlerChangeComment={handlerChangeComment}
         handlerAddDetail={handlerAddDetail}
-      />
-      <ViewList
+      /> */}
+      {/* <ViewList
         list={list}
         handlerDeleteItem={handlerDeleteItem}
         handlerEditItem={handlerEditForm}
-      />
-
-      <ViewListDummy
-        dummylist={dummylist}
-        handlerDeleteItem={handlerDeleteItem}
-        handlerEditItem={handlerEditForm}
-      />
+      /> */}
 
       {/* This will call the Form with the item of the ID with Update and Cancel Button */}
-      <form>
+      {/* <form>
         <table>
           <thead>
             <tr>
@@ -189,8 +184,16 @@ function AddForm() {
           </tbody>
         </table>
         <input type="submit" onClick={handlerSubmitForm} />
-        {/* <button label='Cancel' onClick={() => setIsEditing(false)} /> */}
-      </form>
+        <button label='Cancel' onClick={() => setIsEditing(false)} />
+      </form> */}
+
+      {/* Work with Dummy Data */}
+      <ViewListDummy
+        dummylist={dummylist}
+        handlerDeleteItem={handlerDeleteItem}
+        handlerEditItem={handlerEditForm}
+      />
+      
     </div>
   );
 }
