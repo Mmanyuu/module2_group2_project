@@ -19,7 +19,7 @@ function PersonalisedInfo() {
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
-  const [isListVisible, setIsListVisible] = useState(true);
+  const [isListVisible, setIsListVisible] = useState(false);
   // Create a use State for Show / Hide FormButton
   const [isEditing, setIsEditing] = useState(false);
 
@@ -149,38 +149,7 @@ function PersonalisedInfo() {
       <Button label={isListVisible ? "Hide Information" : "Show Information"} onClick={handleShowList} />
       {isListVisible && <AddForm />}
       {!isListVisible && <p>Click 'Update Information' to display the Form.</p>}
-      {isEditing &&
-        <form>
-          <table>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Disc %</th>
-              </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>
-                <input type='number'/>
-              </td>
-              <td>
-                <input type='number'/>  
-              </td>
-              <td>
-                <input type='number'/>
-              </td>
-              <td>
-                <input type='number' />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <input type='submit' />
-        <Button label='Cancel' onClick={() => setIsEditing(false)} />
-      </form>
-      }
+      {isEditing && <FormTwo />}
     </div>
   );
 }

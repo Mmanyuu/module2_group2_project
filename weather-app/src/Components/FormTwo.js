@@ -1,58 +1,45 @@
-import styles from "./PersonalisedInfo.module.css";
+// import styles from "./PersonalisedInfo.module.css";
+
+// function Button({ label, onClick }) {
+//   return (
+//     <button className={styles.button} onClick={onClick}>
+//       {label}
+//     </button>
+//   );
+// }
 
 function FormTwo () {
   return (
-    <div className={styles.personaliseBox}>
-      <div className={styles.personaliseContainer}>
-        <form>
+    <form>
           <table>
             <thead>
               <tr>
-                <th>Home</th>
-                <th>Weather</th>
-                <th>Work</th>
-                <th>Weather</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Disc %</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  <input
-                    //   value={form.activity}
-                    type="text"
-                    //   onChange={(event) => handlerUpdateForm(event, "activity")}
-                  />
-                </td>
-                <td>
-                  <input
-                    //   value={form.location}
-                    type="text"
-                    //   onChange={(event) => handlerUpdateForm(event, "location")}
-                  />
-                </td>
-                <td>
-                  <input
-                    //   value={form.time}
-                    type="text"
-                    //   onChange={(event) => handlerUpdateForm(event, "time")}
-                  />
-                </td>
-                <td>
-                  <input
-                    //   value={form.comment}
-                    type="text"
-                    //   onChange={(event) => handlerUpdateForm(event, "comment")}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <input type="submit" />
-          {/* onClick={handlerSubmitForm} /> */}
-          {/* <button label='Cancel' onClick={() => setIsEditing(false)} /> */}
-        </form>
-      </div>
-    </div>
+            <tr>
+              <td>
+                <input type='number'/>
+              </td>
+              <td>
+                <input type='number'/>  
+              </td>
+              <td>
+                <input type='number'/>
+              </td>
+              <td>
+                <input type='number' />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <input type='submit' />
+        {/* <Button label='Cancel' onClick={() => setIsEditing(false)} /> */}
+      </form>
   );
 };
 
