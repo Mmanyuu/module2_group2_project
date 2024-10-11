@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ResponsesProvider } from "./Context/ResponsesContext";
 import Introduction from "./Components/Introduction";
 import MainPage from "./Components/MainPage";
-import Form from "./Components/Form";
+// import Form from "./Components/Form";
 // import { useState } from "react";
 // import Header from "./Components/Header";
 // import GeoCoordinates from "./Components/GeoCoordinates";
