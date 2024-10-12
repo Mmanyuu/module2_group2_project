@@ -1,11 +1,9 @@
-//
 // PersonalisedInfo.js - component to show personalised weather info using initial user inputs
 import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
 import axios from "axios";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
-import AddForm from "./Form";
 import FormTwo from "./FormTwo";
 
 function Button({ label, onClick }) {
@@ -23,7 +21,7 @@ function PersonalisedInfo() {
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
   const [isListVisible, setIsListVisible] = useState(false);
   // Create a use State for Show / Hide FormButton
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (usersData.length > 0) {
@@ -177,13 +175,13 @@ function PersonalisedInfo() {
           <p>No users added yet</p>
         )}
       </div>
-      <Button label={isListVisible ? "Hide Information" : "Show Information"} onClick={handleShowList} />
-      {isListVisible && <AddForm />}
-      {!isListVisible && <p>Click 'Update Information' to display the Form.</p>}
-      {isEditing && <FormTwo />}
-      <button className={styles.updateButton}>
+      <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
+      {isListVisible && <FormTwo />}
+      {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>}
+      {/* {isEditing && <FormTwo />} */}
+      {/* <button className={styles.updateButton}>
         Update Information
-      </button>
+      </button> */}
     </div>
   );
 }

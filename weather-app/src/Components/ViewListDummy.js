@@ -7,12 +7,12 @@ function ViewListDummy({ dummylist, handlerDeleteItem, handlerEditItem }) {
           <table>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Home</th>
-                <th>Weather</th>
+                <th>Location</th>
+                <th>Time</th>
+                {/* <th>Weather</th>
                 <th>Work</th>
                 <th>Weather</th>
-                <th>Add Location</th>
+                <th>Add Location</th> */}
                 <th>Delete</th>
                 <th>Edit</th>
               </tr>
@@ -20,12 +20,10 @@ function ViewListDummy({ dummylist, handlerDeleteItem, handlerEditItem }) {
             <tbody>
               {dummylist.map((item) => (
                 <tr key={item.id}>
-                  <td>{item.name}</td>
                   <td>{item.homeLocation}</td>
-                  <td>Hello</td>
-                  <td>{item.workLocation}</td>
-                  <td>Hello</td>
-                  <td>{item.addedLocation}</td>
+                  <td>{item.time}</td>
+                  {/* <td>{item.workLocation}</td>
+                  <td>{item.homeLocation}</td> */}
                   <td onClick={() => handlerDeleteItem(item.id)}>❌</td>
                   <td onClick={() => handlerEditItem(item.id)}>📃</td>
                 </tr>
