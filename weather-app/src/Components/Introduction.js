@@ -1,5 +1,3 @@
-// src/Components/Introduction.js
-
 import React, { useState, useContext } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
 import { Navigate } from "react-router-dom";
@@ -7,9 +5,19 @@ import styles from "./Introduction.module.css";
 
 const questions = [
   { question: "What's your name?", type: "text" },
-  { question: "Where do you live?", type: "text" },
+  { question: "Where do you stay?", type: "text" },
   { question: "Where do you work?", type: "text" },
-  { question: "Any planned activity for the next 24 hours?", type: "text" },
+  {
+    question: "Any Outdoor activity planned for the next 24 hrs? (yes/no)",
+    type: "text",
+  },
+  {
+    question:
+      "What's the  activity planned?",
+    type: "text",
+  },
+  { question: "At which Location?", type: "text" },
+  // { question: "On which day?", type: "text" },
 ];
 
 const Introduction = () => {
@@ -21,28 +29,51 @@ const Introduction = () => {
 
   const handleNext = (event) => {
     event.preventDefault();
-    const answer = event.target.elements.answer.value;
-    //Validate if the field is not empty
-    if (!answer.trim()) {
-      setError("This field is required."); // Set error message
+    const answer = event.target.elements.answer.value.trim();
+
+    if (!answer) {
+      setError("This field is required.");
       return;
     }
 
-    setError(""); // Clear error message
-    // Update answers state
+    setError("");
     setAnswers((prev) => ({
       ...prev,
       [questions[currentQuestion].question]: answer,
     }));
 
-    if (currentQuestion + 1 === questions.length) {
-      // Create a new user with the collected responses
+    if (currentQuestion === 3) {
+      //Any  Outdoor activity planned for the next 24 hrs? (yes/no)
+      if (answer.toLowerCase() === "yes") {
+        setCurrentQuestion(4); // Move to activity details// setting to next ques Q.No:5
+        // setCurrentQuestion((prev) => prev + 1); // Move to the next question
+      } else if (answer.toLowerCase() === "no") {
+        // If "no", create the user and submit
+        console.log("Answers for no:", answers);
+        createNewUser();
+        // setSubmitted(true);
+      } else {
+        setError("Please answer with 'yes' or 'no'.");
+        return;
+      }
+    } 
+    else if (currentQuestion + 1 === questions.length) {
+      console.log("Entering the last question:", usersData);
       const newUser = {
         id: usersData.length + 1, // Simple ID assignment
         name: answers["What's your name?"] || answer,
-        homeLocation: answers["Where do you live?"] || answer,
+        homeLocation: answers["Where do you stay?"] || answer,
         workLocation: answers["Where do you work?"] || answer,
-        addedLocation: '',
+        plannedActivity:
+          answers[
+            "Any Outdoor activity planned for the next 24 hrs? (yes/no)"
+          ] || answer,
+        activityDetails:
+          answers[
+            "What's the  activity planned?"
+          ] || answer,
+        activityLocation: answers["At which Location?"] || answer,
+        // activityDay: answers["On which day"] || answer,
         responses: {
           ...answers,
           [questions[currentQuestion].question]: answer,
@@ -52,13 +83,41 @@ const Introduction = () => {
       // Add the new user to the context's usersData
       setUsersData((prevUsers) => [...prevUsers, newUser]);
       setSubmitted(true);
-    } else {
-      setCurrentQuestion((prev) => prev + 1);
+      console.log("Current users details:", usersData);
+    } 
+    else {
+      // setCurrentQuestion((prev) => prev + 1);
+      setCurrentQuestion(currentQuestion + 1);
     }
-    event.target.reset();
+
+    event.target.reset(); // Reset form fields after submission
+  };
+  const createNewUser = () => {
+    console.log("Creating answers:", answers);
+    const newUser = {
+      id: usersData.length + 1,
+      name: answers["What's your name?"] || "",
+      homeLocation: answers["Where do you stay?"] || "",
+      workLocation: answers["Where do you work?"] || "",
+      plannedActivity:
+        answers["Any Outdoor activity planned for the next 24 hrs? (yes/no)"] ||
+        "NO",
+      activityDetails:
+        answers[
+          "What's the  activity that you have planned? (running/Swimming/jogging or any..)"
+        ] || "",
+      activityLocation: answers["At which location?"] || "",
+      // activityDay: answers["On which day?"] || "",
+      responses: { ...answers },
+    };
+    // Log user details for debugging
+    console.log("Creating new user:", newUser);
+    setUsersData((prevUsers) => [...prevUsers, newUser]);
+    setSubmitted(true);
   };
 
   if (submitted) {
+    console.log("Current users details:", usersData);
     return <Navigate to="/MainPage" />;
   }
 
@@ -66,23 +125,16 @@ const Introduction = () => {
     <>
       <div className={styles.title}>Accu Weather App</div>
       <div className={styles.questionnaireContainer}>
-        {currentQuestion < questions.length ? (
-          <form onSubmit={handleNext}>
-            <label>
-              {questions[currentQuestion].question}
-              <input
-                name="answer"
-                type={questions[currentQuestion].type}
-                required
-              />
-            </label>
-            {/* Display error message */}
-            {error && <div style={{ color: 'red' }}>{error}</div>} 
-            <button type="submit" className={styles.nextButton}>Next</button>
-          </form>
-        ) : (
-          <Navigate to="/MainPage" />
-        )}
+        <form onSubmit={handleNext}>
+          <label>
+            {questions[currentQuestion].question}
+            <input name="answer" type="text" required />
+          </label>
+          {error && <div style={{ color: "red" }}>{error}</div>}
+          <button type="submit" className={styles.nextButton}>
+            Next
+          </button>
+        </form>
       </div>
     </>
   );
