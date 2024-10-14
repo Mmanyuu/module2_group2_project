@@ -1,90 +1,124 @@
-// src/Components/Introduction.js
-
-import React, { useState, useContext } from "react";
-import { ResponsesContext } from "../Context/ResponsesContext";
-import { Navigate } from "react-router-dom";
-import styles from "./Introduction.module.css";
-
-const questions = [
-  { question: "What's your name?", type: "text" },
-  { question: "Where do you live?", type: "text" },
-  { question: "Where do you work?", type: "text" },
-  { question: "Any planned activity for the next 24 hours?", type: "text" },
-];
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ResponsesContext } from '../Context/ResponsesContext';
 
 const Introduction = () => {
-  const { setUsersData, usersData } = useContext(ResponsesContext);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { setUsersData } = useContext(ResponsesContext);
+  
+  const [name, setName] = useState('');
+  const [homeLocation, setHomeLocation] = useState('');
+  const [workLocation, setWorkLocation] = useState('');
+  const [hasActivity, setHasActivity] = useState('');
+  const [activityDetails, setActivityDetails] = useState('');
+  const [activityLocation, setActivityLocation] = useState('');
+  
 
-  const handleNext = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const answer = event.target.elements.answer.value;
-    //Validate if the field is not empty
-    if (!answer.trim()) {
-      setError("This field is required."); // Set error message
-      return;
-    }
 
-    setError(""); // Clear error message
-    // Update answers state
-    setAnswers((prev) => ({
-      ...prev,
-      [questions[currentQuestion].question]: answer,
-    }));
+    const newUser = {
+      id: Date.now().toString(), // Generate a unique ID
+      name,
+      homeLocation,
+      workLocation,
+      plannedActivity: hasActivity,
+      activityDetails: hasActivity === 'yes' ? activityDetails : '',
+      activityLocation: hasActivity === 'yes' ? activityLocation : '',
+    };
 
-    if (currentQuestion + 1 === questions.length) {
-      // Create a new user with the collected responses
-      const newUser = {
-        id: usersData.length + 1, // Simple ID assignment
-        name: answers["What's your name?"] || answer,
-        homeLocation: answers["Where do you live?"] || answer,
-        workLocation: answers["Where do you work?"] || answer,
-        addedLocation: '',
-        responses: {
-          ...answers,
-          [questions[currentQuestion].question]: answer,
-        },
-      };
+    setUsersData((prevUsers) => [...prevUsers, newUser]);
 
-      // Add the new user to the context's usersData
-      setUsersData((prevUsers) => [...prevUsers, newUser]);
-      setSubmitted(true);
-    } else {
-      setCurrentQuestion((prev) => prev + 1);
-    }
-    event.target.reset();
+    // Navigate to MainPage with user data
+    navigate('/MainPage', { state: { user: newUser } });
   };
 
-  if (submitted) {
-    return <Navigate to="/MainPage" />;
-  }
-
   return (
-    <>
-      <div className={styles.title}>Accu Weather App</div>
-      <div className={styles.questionnaireContainer}>
-        {currentQuestion < questions.length ? (
-          <form onSubmit={handleNext}>
-            <label>
-              {questions[currentQuestion].question}
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <h1>Welcome to the  Accu Weather App</h1>
+      <p>
+        Ah, so you stumble upon this random weather app, well, since you are here,
+        why don't you tell us a bit about yourself.
+      </p>
+
+      <form onSubmit={handleSubmit}>
+        <p>
+          How should we address you?{' '}
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => { setName(e.target.value) }}
+            placeholder="Your Name"
+            required
+          />
+        </p>
+        <p>
+          Area of residence?{' '}
+          <input
+            type="text"
+            value={homeLocation}
+            onChange={(e) => { setHomeLocation(e.target.value) }}
+            placeholder="Your Area"
+            required
+          />
+        </p>
+        <p>
+          How about your school or work location?{' '}
+          <input
+            type="text"
+            value={workLocation}
+            onChange={(e) => { setWorkLocation(e.target.value) }}
+            placeholder="Your School/Work Location"
+            required
+          />
+        </p>
+        <p>
+          Do you have any activities planned tomorrow that rely on the weather, like a picnic or sports?
+        </p>
+        <label>
+          <input
+            type="radio"
+            value="yes"
+            checked={hasActivity === 'yes'}
+            onChange={(e) => { setHasActivity(e.target.value)}}
+          /> Yes
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="no"
+            checked={hasActivity === 'no'}
+            onChange={(e) => { setHasActivity(e.target.value) }}
+          /> No
+        </label>
+        {hasActivity === 'yes' && (
+          <>
+            <p>
+              If yes, tell us what activity you have planned: 
               <input
-                name="answer"
-                type={questions[currentQuestion].type}
+                type="text"
+                value={activityDetails}
+                onChange={(e) => { setActivityDetails(e.target.value) }}
+                placeholder="Activity"
                 required
               />
-            </label>
-            {/* Display error message */}
-            {error && <div style={{ color: 'red' }}>{error}</div>} 
-            <button type="submit" className={styles.nextButton}>Next</button>
-          </form>
-        ) : (
-          <Navigate to="/MainPage" />
+            </p>
+            <p>
+              Where will this activity take place? 
+              <input
+                type="text"
+                value={activityLocation}
+                onChange={(e) => { setActivityLocation(e.target.value) }}
+                placeholder="Location"
+                required
+              />
+            </p>
+          </>
         )}
-      </div>
-    </>
+         <p>Alright, all set. Let’s get something just for you on the click of Submit.</p>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 };
 

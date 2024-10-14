@@ -82,6 +82,12 @@ function PersonalisedInfo() {
           <>
             <div>
               <h2>Hi! {latestUser.name}</h2>
+              {/* -------------------------------------------------------------------------------------------------------------- */}
+              {/* this is added for integrate testing purpose. CAn rephrase and render it based on the plannedActivity values 'yes' or 'no'*/}
+              <h4>{latestUser.plannedActivity} , there is a planned activity </h4>
+              <label> '{latestUser.activityDetails}'  at '{latestUser.activityLocation}' today</label>
+              
+              {/* ------------------------------------------------------------------------------------------------------------------ */}
             </div>
 
             {loading ? (
