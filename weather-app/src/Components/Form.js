@@ -8,8 +8,9 @@ import { v4 as uuid } from "uuid";
 import { useState } from "react";
 import Card from "./Card";
 import ViewList from "./ViewList";
-import { dummyData } from "./UsersData";
-import ViewListDummy from "./ViewListDummy";
+// import { dummyData } from "./UsersData";
+// import ViewListDummy from "./ViewListDummy";
+import Calendar from "./Calendar";
 
 function AddForm() {
   // console.log(latestUser.homeLocation);
@@ -27,7 +28,7 @@ function AddForm() {
   // Check the Form Status
   const [form, setForm] = useState(blankForm);
   // Create New List from dummy Data
-  const [dummylist, setDummylist] = useState(dummyData);
+  // const [dummylist, setDummylist] = useState(dummyData);
 
   // Create Default State for Input Field
   const [activity, setActivity] = useState("");
@@ -188,11 +189,13 @@ function AddForm() {
       </form>
 
       {/* Work with Dummy Data */}
-      <ViewListDummy
+      {/* <ViewListDummy
         dummylist={dummylist}
         handlerDeleteItem={handlerDeleteItem}
         handlerEditItem={handlerEditForm}
-      />
+      /> */}
+
+      <Calendar />
       
     </div>
   );
