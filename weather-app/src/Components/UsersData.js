@@ -5,6 +5,9 @@ export const dummyData = [
     homeLocation: "Jurong",
     workLocation: "Tampines",
     addedLocation: "",
+    plannedActivity: "yes",
+    activityDetails: "Badminton",
+    activityLocation:"Bedok",
   },
   {
     id: "2",
@@ -12,6 +15,10 @@ export const dummyData = [
     homeLocation: "Bedok",
     workLocation: "Yishun",
     addedLocation: "",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation:"",
+
   },
   {
     id: "3",
@@ -19,6 +26,9 @@ export const dummyData = [
     homeLocation: "Jurong",
     workLocation: "Tuas",
     addedLocation: "BukitTimah",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation:"",
   },
   {
     id: "4",
@@ -26,6 +36,9 @@ export const dummyData = [
     homeLocation: "Punggol",
     workLocation: "PayaLebar",
     addedLocation: "PasirRis",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation: "",
   },
   {
     id: "5",
@@ -33,6 +46,9 @@ export const dummyData = [
     homeLocation: "Bishan",
     workLocation: "Yishun",
     addedLocation: "",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation:"",
   },
   {
     id: "6",
@@ -40,6 +56,9 @@ export const dummyData = [
     homeLocation: "Jurong West",
     workLocation: "Ubi",
     addedLocation: "",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation:"",
   },
   {
     id: "7",
@@ -47,6 +66,10 @@ export const dummyData = [
     homeLocation: "Tampines",
     workLocation: "Bugis",
     addedLocation: "",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation:"",
+
   },
   {
     id: "8",
@@ -54,6 +77,9 @@ export const dummyData = [
     homeLocation: "Orchard",
     workLocation: "Redhill",
     addedLocation: "",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation:"",
   },
   {
     id: "9",
@@ -61,6 +87,9 @@ export const dummyData = [
     homeLocation: "Sengkang",
     workLocation: "Tampines",
     addedLocation: "Changi",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation: "",
   },
   {
     id: "10",
@@ -68,5 +97,8 @@ export const dummyData = [
     homeLocation: "Joo Seng",
     workLocation: "Chinatown",
     addedLocation: "",
+    plannedActivity: "",
+    activityDetails: "",
+    activityLocation:"",
   },
 ];
