@@ -70,16 +70,16 @@ function AirQuality({ lat, long }) {
   return (
     <div>
       <h3>Air Quality</h3>
-      <p>{getAQIDescription(aqi)} </p>
+      <h2>{getAQIDescription(aqi)} </h2>
       <div>
         <div>
           <strong>O₃ (Ozone):</strong> {o3} µg/m³
         </div>
         <div>
-          <strong>PM₂.₅:</strong> {pm2_5} µg/m³
+          <strong>PM2.5 :</strong> {pm2_5} µg/m³
         </div>
         <div>
-          <strong>PM₁₀:</strong> {pm10} µg/m³
+          <strong>PM10 :</strong> {pm10} µg/m³
         </div>
       </div>
     </div>

@@ -28,9 +28,9 @@ function Header({ onSearch }) {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.rightSideContainer}>
-      <div className={styles.headerTitle}>
-        <h2>Weather App</h2>
-      </div>
+        <div className={styles.headerTitle}>
+          <h2>Weather App</h2>
+        </div>
         <form
           className={styles.searchBox}
           onSubmit={handlerSearchSubmit}
