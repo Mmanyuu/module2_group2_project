@@ -1,6 +1,8 @@
-import styles from "./WeatherData.module.css"
+import styles from "./WeatherData.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
+import { fetchRandomQuoteForWeather } from "./RandomQuotes";
 
 // The WeatherData component fetches current weather data for a specified location based on geographical coordinates (longitude and latitude) from openweathermap.org API.
 
@@ -8,6 +10,8 @@ const WeatherData = ({ lon, lat, location }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [randomQuote, setRandomQuote] = useState("");
 
   // The useEffect hook is used to perform the side effect of fetching weather data when the component mounts or when the lon or lat props change
   useEffect(() => {
@@ -22,6 +26,10 @@ const WeatherData = ({ lon, lat, location }) => {
         const response = await axios.get(weatherUrl);
         console.log("Weather Data:", response.data);
         setWeatherData(response.data);
+
+        // Fetch a random quote based on the weather data
+        const quote = fetchRandomQuoteForWeather(response.data);
+        setRandomQuote(quote);
       } catch (err) {
         console.error("Error fetching weather data:", err);
         setError("Could not fetch weather data. Please try again.");
@@ -54,10 +62,12 @@ const WeatherData = ({ lon, lat, location }) => {
   return (
     <div className={styles.container}>
       <h3>Weather in {capitalizeFirstLetter(location)}</h3>
+      <h3>{randomQuote}</h3>
       <p>Weather: {weatherData.weather[0].description}</p>
       <p>Temperature: {Math.round(weatherData.main.temp)}°C</p>
       <p>Feels like: {Math.round(weatherData.main.feels_like)}°C</p>
       <p>Humidity: {weatherData.main.humidity}%</p>
+      <p>Visibility: {weatherData.visibility / 1000}km</p>
       <p>Wind Speed: {weatherData.wind.speed} m/s</p>
       <p>
         Rainfall in last hour:{" "}
