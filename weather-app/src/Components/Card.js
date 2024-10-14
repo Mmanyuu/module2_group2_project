@@ -5,7 +5,7 @@
 // Sliding card from left side when clicked on button in react
 // https://codesandbox.io/p/sandbox/cocky-snow-jezquu?file=%2Fsrc%2FApp.js
 
-import { useState } from "react";
+// import { useState } from "react";
 
 // Create Input Function
 function Input({ value, label, onChange, type }) {
@@ -113,7 +113,7 @@ function Card({
           onChange={handleChangeTime}
         /> */}
         <Button label="Add Detail" onClick={handlerAddDetail} />
-        <Calendar />
+        {/* <Calendar /> */}
       </div>
     </>
   );

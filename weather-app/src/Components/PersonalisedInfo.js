@@ -4,22 +4,25 @@ import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
 import axios from "axios";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
-import FormTwo from "./FormTwo";
+// import FormThree from "./FormThree";
+// import FormTwo from "./FormTwo";
+import Form from "./Form";
+// import ViewList from "./ViewList";
 
-function Button({ label, onClick }) {
-  return (
-    <button className={styles.button} onClick={onClick}>
-      {label}
-    </button>
-  );
-}
+// function Button({ label, onClick }) {
+//   return (
+//     <button className={styles.button} onClick={onClick}>
+//       {label}
+//     </button>
+//   );
+// }
 
 function PersonalisedInfo() {
   const [loading, setLoading] = useState(false);
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
-  const [isListVisible, setIsListVisible] = useState(false);
+  // const [isListVisible, setIsListVisible] = useState(false);
 
   // Create a use State for Show / Hide FormButton
   // const [isEditing, setIsEditing] = useState(false);
@@ -182,9 +185,14 @@ function PersonalisedInfo() {
           <p>No users added yet</p>
         )}
       </div>
-      <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
+      {/* <h2>Your Activity Forecast:</h2> */}
+      {/* <FormThree /> */}
+      {/* <ViewList /> */}
+      {/* <FormTwo /> */}
+      <Form />
+      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
       {isListVisible && <FormTwo />}
-      {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>}
+      {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>} */}
       {/* {isEditing && <FormTwo />} */}
       {/* <button className={styles.updateButton}>
         Update Information
