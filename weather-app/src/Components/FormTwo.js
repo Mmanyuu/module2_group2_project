@@ -10,6 +10,8 @@ import Card from "./Card";
 import ViewList from "./ViewList";
 // import { dummyData } from "./UsersData";
 // import ViewListDummy from "./ViewListDummy";
+// import { Calendar } from "./Card";
+// https://react.dev/learn/rendering-lists#rules-of-keys
 
 function AddForm() {
   // console.log(latestUser.homeLocation);
@@ -18,8 +20,8 @@ function AddForm() {
     index: 0,
     activity: "",
     location: "",
-    time: "",
-    comment: "",
+    // time: "",
+    // comment: "",
   };
 
   // Create List when Add Button is click
@@ -32,7 +34,7 @@ function AddForm() {
   // Create Default State for Input Field
   const [activity, setActivity] = useState("");
   const [location, setLocation] = useState("");
-  const [time, setTime] = useState("");
+  // const [time, setTime] = useState("");
 
   const handleChangeActivity = (value) => {
     setActivity(value);
@@ -42,9 +44,9 @@ function AddForm() {
     setLocation(value);
   };
 
-  const handleChangeTime = (value) => {
-    setTime(value);
-  };
+  // const handleChangeTime = (value) => {
+  //   setTime(value);
+  // };
 
   // Create Submit when Add button click
   const handlerAddDetail = () => {
@@ -54,7 +56,7 @@ function AddForm() {
       id: uuid(),
       activity: activity,
       location: location,
-      time: time,
+      // time: time,
     };
 
     // Copy previous list and append new item to its end
@@ -79,7 +81,7 @@ function AddForm() {
       index: findItem,
       activity: list[findItem].activity,
       location: list[findItem].location,
-      time: list[findItem].time,
+      // time: list[findItem].time,
     };
     console.log(editValues);
     setForm(editValues);
@@ -103,7 +105,7 @@ function AddForm() {
     console.log(newItem);
     newItem.activity = form.activity;
     newItem.location = form.location;
-    newItem.time = form.time;
+    // newItem.time = form.time;
 
     // Copy current list and replace edited item
     const newList = [...list];
@@ -112,31 +114,16 @@ function AddForm() {
   };
 
   return (
-    <div>
-      <h2>Your Activity Forecast:</h2>
-      <Card
-        activity={activity}
-        location={location}
-        time={time}
-        handleChangeActivity={handleChangeActivity}
-        handleChangeLocation={handleChangeLocation}
-        handleChangeTime={handleChangeTime}
-        handlerAddDetail={handlerAddDetail}
-      />
-      <ViewList
-        list={list}
-        handlerDeleteItem={handlerDeleteItem}
-        handlerEditItem={handlerEditForm}
-      />
-
-      {/* This will call the Form with the item of the ID with Update and Cancel Button */}
-      <form>
+    <>
+    <h2>Your Activity Forecast:</h2>
+    <form>
         <table>
           <thead>
             <tr>
               <th>Activity</th>
+              <th>   </th>
               <th>Location</th>
-              <th>Time</th>
+              {/* <th>Time</th> */}
             </tr>
           </thead>
           <tbody>
@@ -148,6 +135,7 @@ function AddForm() {
                   onChange={(event) => handlerUpdateForm(event, "activity")}
                 />
               </td>
+              <td> at </td>
               <td>
                 <input
                   value={form.location}
@@ -155,21 +143,34 @@ function AddForm() {
                   onChange={(event) => handlerUpdateForm(event, "location")}
                 />
               </td>
-              <td>
-                <input
-                  value={form.time}
-                  type="time"
-                  onChange={(event) => handlerUpdateForm(event, "time")}
-                />
-              </td>
             </tr>
           </tbody>
         </table>
-        <button label="Update Detail" onClick={handlerSubmitForm} > Update Detail </button>
-        {/* <button label='Update' onClick={handlerSubmitForm} /> */}
-        {/* <button label='Cancel' onClick={() => setIsEditing(false)} /> */}
+        {/* <button label="Update Detail" onClick={handlerSubmitForm}> */}
+        <button label="Update Detail" onClick={handlerEditForm}>
+          Edit
+        </button>
       </form>
+
+    <div>
+      {/* <Card
+        activity={activity}
+        location={location}
+        // time={time}
+        handleChangeActivity={handleChangeActivity}
+        handleChangeLocation={handleChangeLocation}
+        // handleChangeTime={handleChangeTime}
+        handlerAddDetail={handlerAddDetail}
+      /> */}
+      <ViewList
+        list={list}
+        handlerDeleteItem={handlerDeleteItem}
+        handlerAddItem={handlerAddDetail}
+      />
+
+      {/* This will call the Form with the item of the ID with Update and Cancel Button */}
     </div>
+    </>
   );
 }
 

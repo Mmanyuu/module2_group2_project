@@ -1,6 +1,6 @@
 // Call List from Form.JS when Add Button Triggered
 
-function ViewList({ list, handlerDeleteItem, handlerEditItem }) {
+function ViewList({ list, handlerDeleteItem, handlerEditItem, handlerAddItem }) {
   return (
     <>
       <div>
@@ -9,7 +9,6 @@ function ViewList({ list, handlerDeleteItem, handlerEditItem }) {
             <tr>
               <th>Actitity</th>
               <th>Location</th>
-              <th>Time</th>
               <th>Delete</th>
               <th>Edit</th>
             </tr>
@@ -19,9 +18,9 @@ function ViewList({ list, handlerDeleteItem, handlerEditItem }) {
               <tr key={item.id}>
                 <td>{item.activity}</td>
                 <td>{item.location}</td>
-                <td>{item.time}</td>
                 <td onClick={() => handlerDeleteItem(item.id)}>❌</td>
-                <td onClick={() => handlerEditItem(item.id)}>📃</td>
+                {/* <td onClick={() => handlerEditItem(item.id)}>📃</td> */}
+                <td onClick={() => handlerAddItem(item.id)}>➕</td>
               </tr>
             ))}
           </tbody>
