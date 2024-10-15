@@ -6,7 +6,7 @@
 // Import Library
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
-import Card from "./Card";
+// import Card from "./Card";
 import ViewList from "./ViewList";
 // import { dummyData } from "./UsersData";
 // import ViewListDummy from "./ViewListDummy";
