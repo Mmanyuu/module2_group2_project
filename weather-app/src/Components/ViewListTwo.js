@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 function ViewList({ list, handlerDeleteItem, handlerEditItem }) {
-  const [form, setForm] = useState();
+  // const [form, setForm] = useState();
 
   return (
     <>
