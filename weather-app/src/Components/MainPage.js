@@ -3,18 +3,17 @@ import Header from "./Header";
 import WeatherData from "./WeatherData";
 import AirQuality from "./AirQuality";
 import NextDayForecastNew from "./NextDayForecastNew";
-import FourDayForecastNew from "./FourDayForecastNew";
 import GeoCoordinates from "./GeoCoordinates";
 import PersonalisedInfo from "./PersonalisedInfo";
 import styles from "./MainPage.module.css";
-
-import { Link, Outlet } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import FourDayForecastNew from "./FourDayForecastNew";
 
 const MainPage = () => {
   const [coords, setCoords] = useState({ lon: null, lat: null });
   const [location, setLocation] = useState("");
   const [showFourDayForecast, setShowFourDayForecast] = useState(false);
+  const navigate = useNavigate();
 
   // This asynchronous function is called when a user submits a location from the Header component.
 
@@ -37,7 +36,6 @@ const MainPage = () => {
   };
 
   const handleForecastToggle = () => {
-    console.log("clicked!");
     setShowFourDayForecast((prev) => !prev);
   };
 
@@ -50,7 +48,7 @@ const MainPage = () => {
 
       {/*Weather Data and Search Header - grid 2 [column]*/}
       <div className={styles.header}>
-        <Header />
+        <Header onSearch={handleSearch}/>
         {coords.lon && coords.lat && (
           <>
             <WeatherData
@@ -65,11 +63,7 @@ const MainPage = () => {
 
         {/* Using react link and outlet to displayfour day forecast */}
         <div>
-          <Link
-            to="/MainPage/FourDayForecastNew"
-            onClick={handleForecastToggle}
-          >
-            {" "}
+          <Link to="#" onClick={handleForecastToggle}>
             {showFourDayForecast
               ? "- Hide 4-Day Forecast"
               : "+ View 4-Day Forecast"}
@@ -79,7 +73,7 @@ const MainPage = () => {
         {/* Conditionally Render Four-Day Forecast */}
         {showFourDayForecast && (
           <div className={styles.forecastOutlet}>
-            <Outlet />
+            <FourDayForecastNew />
           </div>
         )}
       </div>
