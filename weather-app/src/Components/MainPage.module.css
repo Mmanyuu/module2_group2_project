@@ -1,0 +1,23 @@
+.dashboardContainer {
+  display: grid;
+  grid-template-columns: 1300px auto;
+  grid-template-rows: auto auto;
+  grid-gap: 20px; /* Space between grid items */
+  padding: 20px;
+  margin: 10px;
+}
+
+.personaliseBox {
+  width: 1300px;
+}
+
+.header {
+  border: 1px solid black;
+}
+
+.forecast {
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

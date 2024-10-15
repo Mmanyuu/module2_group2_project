@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Clock from "./Clock";
 import styles from "./Header.module.css"; // Import CSS module
 
 // Header consits of app title, an input form and a real time clock.
@@ -28,27 +27,21 @@ function Header({ onSearch }) {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.rightSideContainer}>
-        <div className={styles.headerTitle}>
+        <div>
           <h2>Weather App</h2>
         </div>
-        <form
-          className={styles.searchBox}
-          onSubmit={handlerSearchSubmit}
-        >
-          <input
-            type="text"
-            placeholder="Enter Location"
-            value={location}
-            onChange={handlerInputChange}
-            className={styles.searchInput}
-          />
-          <button type="submit" className={styles.searchButton}>
-            Search
-          </button>
-        </form>
-        <div className={styles.clockContainer}>
-          <Clock />
-        </div>
+          <form className={styles.searchBox} onSubmit={handlerSearchSubmit}>
+            <input
+              type="text"
+              placeholder="Enter Location"
+              value={location}
+              onChange={handlerInputChange}
+              className={styles.searchInput}
+            />
+            <button type="submit" className={styles.searchButton}>
+              Search
+            </button>
+          </form>
       </div>
     </header>
   );
