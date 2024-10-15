@@ -1,8 +1,11 @@
 // PersonalisedInfo.js - component to show personalised weather info using initial user inputs
-import styles from "./PersonalisedInfo.module.css";
+
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
+import styles from "./PersonalisedInfo.module.css";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
 // import FormThree from "./FormThree";
 // import FormTwo from "./FormTwo";
@@ -22,7 +25,10 @@ function PersonalisedInfo() {
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
+
   // const [isListVisible, setIsListVisible] = useState(false);
+  const [isListVisible, setIsListVisible] = useState(false);
+  const navigate = useNavigate();
 
   // Create a use State for Show / Hide FormButton
   // const [isEditing, setIsEditing] = useState(false);
@@ -32,9 +38,6 @@ function PersonalisedInfo() {
       // Set latest user whenever usersData is updated
       const user = usersData[usersData.length - 1];
       setLatestUser(user);
-
-      // we can do refractor on tge following to use data from WeatherData.js for nowi only know how to use the exact same info from andrew. :(
-      // encodeURIComponent to ensure location by the user input are passed safely and correctly fomated
 
       const fetchPersonaliseData = async (location, key) => {
         try {
@@ -76,6 +79,12 @@ function PersonalisedInfo() {
 
   const handleShowList = () => {
     setIsListVisible((isListVisible) => !isListVisible);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("userData"); // Clear user data from sessionStorage
+    setLatestUser([]); // Clear context data if necessary
+    navigate("/"); // Redirect to the Introduction page
   };
 
   return (
@@ -197,6 +206,8 @@ function PersonalisedInfo() {
       {/* <button className={styles.updateButton}>
         Update Information
       </button> */}
+      {/* Logout Button */}
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
