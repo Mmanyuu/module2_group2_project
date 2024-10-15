@@ -9,10 +9,11 @@ import { fetchRandomQuoteForWeather } from "./RandomQuotes";
 import axios from "axios";
 import styles from "./PersonalisedInfo.module.css";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
-// import FormThree from "./FormThree";
+import FormThree from "./FormThree";
 // import FormTwo from "./FormTwo";
 import Form from "./Form";
 import Clock from "./Clock";
+// import Form from "./Form";
 // import ViewList from "./ViewList";
 
 // function Button({ label, onClick }) {
@@ -83,9 +84,9 @@ function PersonalisedInfo() {
     }
   }, [usersData]);
 
-  const handleShowList = () => {
-    setIsListVisible((isListVisible) => !isListVisible);
-  };
+  // const handleShowList = () => {
+  //   setIsListVisible((isListVisible) => !isListVisible);
+  // };
 
   const handleLogout = () => {
     sessionStorage.removeItem("userData"); // Clear user data from sessionStorage
@@ -202,6 +203,7 @@ function PersonalisedInfo() {
           <p>No users added yet</p>
         )}
       </div>
+
       <Form />
       {/* Logout Button */}
       <button onClick={handleLogout}>Logout</button>
@@ -212,6 +214,14 @@ function PersonalisedInfo() {
         {/* <ViewList /> */}
         {/* <FormTwo /> */}
         {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
+
+      {/* <h2>Your Activity Forecast:</h2> */}
+      <FormThree />
+      {/* <ViewList /> */}
+      {/* <FormTwo /> */}
+      {/* <Form /> */}
+      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
+
       {isListVisible && <FormTwo />}
       {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>} */}
         {/* {isEditing && <FormTwo />} */}

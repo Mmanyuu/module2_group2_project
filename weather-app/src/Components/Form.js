@@ -3,6 +3,7 @@
 // https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow
 // https://github.com/joshnh/Git-Commands
 // https://www.geeksforgeeks.org/how-to-create-an-editable-table-with-add-delete-and-search-filter-using-reactjs/
+// https://codesandbox.io/p/sandbox/react-table-add-edit-delete-v2-gmhuc?file=%2Fsrc%2Fcomponents%2Ftables%2FAddEditDelete%2Fthead.js
 
 // Import Library
 import { v4 as uuid } from "uuid";
