@@ -5,14 +5,7 @@ import { v4 as uuid } from "uuid";
 
 function FormAddEdit() {
   const [rows, setRows] = useState([
-    { activity: "Alice", location: "alice@example.com", editing: false },
-    { activity: "Michael", location: "michael@example.com", editing: false },
-    { activity: "Emily", location: "emily@example.com", editing: false },
-    { activity: "David", location: "david@example.com", editing: false },
-    { activity: "Sarah", location: "sarah@example.com", editing: false },
-    { activity: "Daniel", location: "daniel@example.com", editing: false },
-    { activity: "Olivia", location: "olivia@example.com", editing: false },
-    { activity: "Andrew", location: "andrew@example.com", editing: false },
+    { activity: "Badminton", location: "Bishan", editing: false },
   ]);
 
   const editRow = (row) => {
