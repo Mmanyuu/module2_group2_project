@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ResponsesContext } from '../Context/ResponsesContext';
 
@@ -28,6 +28,9 @@ const Introduction = () => {
     };
 
     setUsersData((prevUsers) => [...prevUsers, newUser]);
+
+    // Store user data in sessionStorage
+    sessionStorage.setItem("userData", JSON.stringify(newUser));
 
     // Navigate to MainPage with user data
     navigate('/MainPage', { state: { user: newUser } });
