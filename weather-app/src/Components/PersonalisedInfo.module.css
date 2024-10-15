@@ -1,31 +1,41 @@
-.personaliseBox {
-  margin-top: 25px;
-  margin-left: 12px;
-  padding: 25px;
-  text-align: center;
-  width: 500px;
-  font-family: "Asap Condensed", sans-serif;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+.clock {
+  font-size: 50px;
+  font-family: "Poppins", sans-serif;
+  text-align: right;
+  width: 1215px;
 }
 
-.personaliseContainer {
+.userName {
+  font-size: 70px;
+  text-align: right;
+  width: 1215px;
+}
+
+.quotes {
+  font-size: 50px;
+  text-align: right;
+  width: 1215px;
+}
+
+.workContainer {
+  width: 600px;
+  text-align: right;
+  font-size: 30px;
+}
+
+.homeContainer {
+  width: 600px;
+  text-align: right;
+  font-size: 30px;
+}
+
+.flexContainer {
   display: flex;
   flex-direction: row;
 }
 
-.homeContainer {
-}
-
-.workContainer {
-}
-
-.updateButton {
-  position: relative;
-  align-content: center;
-  margin: 5px;
+.activities {
+  width: 1215px;
+  text-align: center;
+  font-size: 30px;
 }
