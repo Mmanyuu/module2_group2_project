@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Header from "./Header";
 import WeatherData from "./WeatherData";
 import AirQuality from "./AirQuality";
-import NextDayForecast from "./NextDayForecast";
-import FourDayForecast from "./FourDayForecast";
+import NextDayForecastNew from "./NextDayForecastNew";
+import FourDayForecastNew from "./FourDayForecastNew";
 import GeoCoordinates from "./GeoCoordinates";
 import PersonalisedInfo from "./PersonalisedInfo";
+import styles from "./MainPage.module.css";
 
 const MainPage = () => {
   const [coords, setCoords] = useState({ lon: null, lat: null });
@@ -33,16 +34,29 @@ const MainPage = () => {
 
   return (
     <div>
-      <Header onSearch={handleSearch} />
-      <PersonalisedInfo />
-      {coords.lon && coords.lat && (
-        <>
-          <WeatherData lon={coords.lon} lat={coords.lat} location={location} />
-          <AirQuality lat={coords.lat} long={coords.lon} />
-          <NextDayForecast />
-          <FourDayForecast />
-        </>
-      )}
+      {/*Current Weather Block */}
+      <div>
+        <PersonalisedInfo />
+        {coords.lon && coords.lat && (
+          <>
+            <WeatherData
+              lon={coords.lon}
+              lat={coords.lat}
+              location={location}
+            />
+            <AirQuality lat={coords.lat} long={coords.lon} />
+          </>
+        )}
+      </div>
+
+      <div className={styles.header}>
+        <Header onSearch={handleSearch} />
+      </div>
+
+      <div className={styles.forecast}>
+        <NextDayForecastNew />
+        <FourDayForecastNew />
+      </div>
     </div>
   );
 };
