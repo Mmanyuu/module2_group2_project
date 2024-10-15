@@ -6,14 +6,13 @@ import NextDayForecastNew from "./NextDayForecastNew";
 import GeoCoordinates from "./GeoCoordinates";
 import PersonalisedInfo from "./PersonalisedInfo";
 import styles from "./MainPage.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import FourDayForecastNew from "./FourDayForecastNew";
 
 const MainPage = () => {
   const [coords, setCoords] = useState({ lon: null, lat: null });
   const [location, setLocation] = useState("");
   const [showFourDayForecast, setShowFourDayForecast] = useState(false);
-  const navigate = useNavigate();
 
   // This asynchronous function is called when a user submits a location from the Header component.
 
