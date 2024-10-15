@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "./PersonalisedInfo.module.css";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
-// import FormThree from "./FormThree";
+import FormThree from "./FormThree";
 // import FormTwo from "./FormTwo";
-import Form from "./Form";
+// import Form from "./Form";
 // import ViewList from "./ViewList";
 
 // function Button({ label, onClick }) {
@@ -77,9 +77,9 @@ function PersonalisedInfo() {
     }
   }, [usersData]);
 
-  const handleShowList = () => {
-    setIsListVisible((isListVisible) => !isListVisible);
-  };
+  // const handleShowList = () => {
+  //   setIsListVisible((isListVisible) => !isListVisible);
+  // };
 
   const handleLogout = () => {
     sessionStorage.removeItem("userData"); // Clear user data from sessionStorage
@@ -195,10 +195,10 @@ function PersonalisedInfo() {
         )}
       </div>
       {/* <h2>Your Activity Forecast:</h2> */}
-      {/* <FormThree /> */}
+      <FormThree />
       {/* <ViewList /> */}
       {/* <FormTwo /> */}
-      <Form />
+      {/* <Form /> */}
       {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
       {isListVisible && <FormTwo />}
       {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>} */}
