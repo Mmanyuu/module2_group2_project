@@ -4,10 +4,10 @@ import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
 function FormAddEdit() {
-  const [rows, setRows] = useState([
-    { activity: "Badminton", location: "Bishan", editing: false },
-  ]);
+  // Setting one default row with detail
+  const [rows, setRows] = useState([]);
 
+  // Edit handler
   const editRow = (row) => {
     const updatedRows = rows.map((r) => {
       if (r === row) {
@@ -18,6 +18,7 @@ function FormAddEdit() {
     setRows(updatedRows);
   };
 
+  // Save handler
   const saveRow = (row) => {
     const updatedRows = rows.map((r) => {
       if (r === row) {
@@ -28,12 +29,14 @@ function FormAddEdit() {
     setRows(updatedRows);
   };
 
+  // Delete handler
   const deleteRow = (index) => {
     const updatedRows = [...rows];
     updatedRows.splice(index, 1);
     setRows(updatedRows);
   };
 
+  // Add handler
   const addRow = () => {
     const newRows = [
       ...rows,

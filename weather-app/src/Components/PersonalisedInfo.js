@@ -27,7 +27,6 @@ function PersonalisedInfo() {
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
 
   // const [isListVisible, setIsListVisible] = useState(false);
-  const [isListVisible, setIsListVisible] = useState(false);
   const navigate = useNavigate();
 
   // Create a use State for Show / Hide FormButton
