@@ -8,9 +8,13 @@ import GeoCoordinates from "./GeoCoordinates";
 import PersonalisedInfo from "./PersonalisedInfo";
 import styles from "./MainPage.module.css";
 
+import { Link, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 const MainPage = () => {
   const [coords, setCoords] = useState({ lon: null, lat: null });
   const [location, setLocation] = useState("");
+  const [showFourDayForecast, setShowFourDayForecast] = useState(false);
 
   // This asynchronous function is called when a user submits a location from the Header component.
 
@@ -32,11 +36,21 @@ const MainPage = () => {
     }
   };
 
+  const handleForecastToggle = () => {
+    console.log("clicked!");
+    setShowFourDayForecast((prev) => !prev);
+  };
+
   return (
-    <div>
-      {/*Current Weather Block */}
-      <div>
+    <div className={styles.dashboardContainer}>
+      {/*Personal Information - grid 1 [column]*/}
+      <div className={styles.personaliseBox}>
         <PersonalisedInfo />
+      </div>
+
+      {/*Weather Data and Search Header - grid 2 [column]*/}
+      <div className={styles.header}>
+        <Header />
         {coords.lon && coords.lat && (
           <>
             <WeatherData
@@ -47,15 +61,27 @@ const MainPage = () => {
             <AirQuality lat={coords.lat} long={coords.lon} />
           </>
         )}
-      </div>
-
-      <div className={styles.header}>
-        <Header onSearch={handleSearch} />
-      </div>
-
-      <div className={styles.forecast}>
         <NextDayForecastNew />
-        <FourDayForecastNew />
+
+        {/* Using react link and outlet to displayfour day forecast */}
+        <div>
+          <Link
+            to="/MainPage/FourDayForecastNew"
+            onClick={handleForecastToggle}
+          >
+            {" "}
+            {showFourDayForecast
+              ? "- Hide 4-Day Forecast"
+              : "+ View 4-Day Forecast"}
+          </Link>
+        </div>
+
+        {/* Conditionally Render Four-Day Forecast */}
+        {showFourDayForecast && (
+          <div className={styles.forecastOutlet}>
+            <Outlet />
+          </div>
+        )}
       </div>
     </div>
   );
