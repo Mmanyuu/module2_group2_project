@@ -44,12 +44,18 @@ const NextDayForecastNew = () => {
   console.log("this is forecast data", forecastData);
 
   return (
-    <div className={styles.forecastItem}>
-      <p>
+    <>
+      <div className={styles.forecastItem}>
         <strong>{`{24-Hour Weather Forecast}`}</strong>{" "}
-        {`${forecastData.forecast.text} {high} ${forecastData.temperature.high}°C {low} ${forecastData.temperature.low}°C`}
-      </p>
-    </div>
+        <p>
+          {forecastData.forecast.text}
+          <span>{` {high} `}</span>
+          {forecastData.temperature.high}°C
+          <span>{` {low} `}</span>
+          {forecastData.temperature.low}°C`
+        </p>
+      </div>
+    </>
   );
 };
 

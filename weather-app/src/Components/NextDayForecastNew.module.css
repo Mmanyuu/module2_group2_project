@@ -8,6 +8,9 @@
   font-size: 18px;
   font-family: "Poppins", sans-serif;
   text-align: left;
-  width: 500px;
   padding: 0px 10px;
+}
+
+span {
+  color: #d29a9a;
 }

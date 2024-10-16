@@ -81,18 +81,3 @@ input[type="number"]:focus {
 .submitButton:hover {
   background-color: #0056b3;
 }
-
-/* .thank-you {
-  text-align: center;
-  background-color: #0056b3;
-  font-size: 1.3em;
-  color: #0056b3;
-} */
-
-/* .answers { */
-/* white-space: pre-wrap; Preserve whitespace for better readability */
-/* background-color: #0056b3;
-  padding: 20px;
-  border-radius: 5px;
-  border: 5px solid #e0e0e0;
-} */

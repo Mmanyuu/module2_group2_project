@@ -28,7 +28,7 @@
 .workContainer,
 .homeContainer {
   padding: 0px 10px;
-  width: 700px;
+  width: 750px;
   height: 320px;
   text-align: left;
   font-size: 16px;
@@ -37,7 +37,7 @@
 .flexContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 3em;
+  margin-left: 0.5em;
 }
 
 .activities {
