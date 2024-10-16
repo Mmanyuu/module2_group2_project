@@ -46,7 +46,7 @@ const MainPage = () => {
         <WeatherData lon={coords.lon} lat={coords.lat} location={location} />
       )}
       <div className={styles.dashboardContainer}>
-        <div className={styles.personaliseBox}>
+        <div>
           <PersonalisedInfo />
         </div>
 

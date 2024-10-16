@@ -90,7 +90,7 @@
 
 .forcastPosition {
   position: relative;
-  bottom: 28%;
+  top:10%;
 }
 
 h2 {
@@ -122,8 +122,8 @@ h3 {
   height:300px !important;
 }
 .logoutButton {
+  margin-left: 77%;
   margin-top: 5%;
-  margin-left: 84%;
   padding: 10px 15px;
   align-items: center;
   text-align: center;
