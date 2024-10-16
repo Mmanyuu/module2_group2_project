@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
-
-// import styles from "./FormThree.module.css";
+import styles from "./FormThree.module.css";
 
 function FormAddEdit() {
 
@@ -57,19 +56,15 @@ function FormAddEdit() {
   };
 
   return (
-    <div className="container">
-      <h3> Your Activity Forecast: </h3>
-      <button className="add-button" onClick={addRow}>
-        Add Row
-      </button>
+    <div className={styles.tableContainer}>
       <table>
-        <thead>
+        {/* <thead>
           <tr>
             <th>Activity</th>
             <th>Location</th>
             <th>Action</th>
           </tr>
-        </thead>
+        </thead> */}
         <tbody>
           {rows.map((row, index) => (
             <tr key={index}>
@@ -123,6 +118,9 @@ function FormAddEdit() {
           ))}
         </tbody>
       </table>
+      <button className={styles.addButton} onClick={addRow}>
+        Add
+      </button>
     </div>
   );
 }

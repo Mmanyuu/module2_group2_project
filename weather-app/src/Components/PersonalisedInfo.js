@@ -126,6 +126,7 @@ function PersonalisedInfo() {
                     <h4>No planned activity today.</h4>
                   )}
                 </div>
+                <FormThree />
                 {/* Logout Button */}
                 <button className={styles.logoutButton} onClick={handleLogout}>
                   Logout
