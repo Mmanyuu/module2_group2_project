@@ -10,9 +10,12 @@ import axios from "axios";
 import styles from "./PersonalisedInfo.module.css";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
 import FormThree from "./FormThree";
-// import FormTwo from "./FormTwo";
-import Form from "./Form";
 import Clock from "./Clock";
+import WeatherIcon from "./WeatherIcon";
+import NextDayForecastNew from "./NextDayForecastNew";
+
+// import Form from "./Form";
+// import FormTwo from "./FormTwo";
 // import Form from "./Form";
 // import ViewList from "./ViewList";
 
@@ -96,17 +99,33 @@ function PersonalisedInfo() {
 
   return (
     <div>
-      <div>
+      <div className={styles.gridContainer}>
         {latestUser ? (
           <>
-            <div className={styles.clock}>
-              <Clock />
-            </div>
-
             <div>
+              <div className={styles.clock}>
+                <Clock />
+              </div>
               <h2 className={styles.userName}>Hello, {latestUser.name},</h2>
               <p className={styles.quotes}>{`{ ${randomQuote} }`}</p>
+              <div className={styles.activities}>
+                {/* -------------------------------------------------------------------------------------------------------------- */}
+                {/* this is added for integrate testing purpose. CAn rephrase and render it based on the plannedActivity values 'yes' or 'no'*/}
+
+                <h4>
+                  {latestUser.plannedActivity} , there is a planned activity{" "}
+                </h4>
+                <label>
+                  {" "}
+                  '{latestUser.activityDetails}' at '
+                  {latestUser.activityLocation}' today
+                </label>
+
+                {/* ------------------------------------------------------------------------------------------------------------------ */}
+              </div>
+              <FormThree />
             </div>
+            
 
             <div className={styles.flexContainer}>
               {loading ? (
@@ -116,29 +135,36 @@ function PersonalisedInfo() {
                   {/* Display home weather data */}
                   {personaliseData.homeWeather ? (
                     <div className={styles.homeContainer}>
-                      <h4>Home Weather: {latestUser.homeLocation}</h4>
-                      <p>
-                        Weather:{" "}
-                        {personaliseData.homeWeather.weather[0].description}
+                      <h4>{`{Home}`}</h4>
+                      <h2>{latestUser.homeLocation} </h2>
+
+                      <p className={styles.weatherIconPosition}>
+                        <WeatherIcon
+                          forecastText={
+                            personaliseData.homeWeather.weather[0].description
+                          }
+                        />
                       </p>
-                      <p>
-                        Temperature:{" "}
-                        {Math.round(personaliseData.homeWeather.main.temp)}
-                        °C
+                      {"   "}
+                      <p className={styles.highTempPosition}>
+                        {Math.round(personaliseData.homeWeather.main.temp)}°C{" "}
                       </p>
-                      <p>
-                        Feels like:{" "}
+
+                      <p className={styles.feelsPosition}>
+                        ...Feels like:{" "}
                         {Math.round(
                           personaliseData.homeWeather.main.feels_like
                         )}
                         °C
                       </p>
-                      <p>
-                        Humidity: {personaliseData.homeWeather.main.humidity}%
-                      </p>
-                      <p>
-                        Wind Speed: {personaliseData.homeWeather.wind.speed} m/s
-                      </p>
+
+                      <div className={styles.otherInfoPosition}>
+                        {`{ ${personaliseData.homeWeather.weather[0].description}`}{" "}
+                        <br />
+                        {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
+                        <br />
+                        {`Wind Speed ${personaliseData.homeWeather.wind.speed} m/s }`}
+                      </div>
                     </div>
                   ) : (
                     <p>
@@ -150,29 +176,9 @@ function PersonalisedInfo() {
                   {/* Display work weather data */}
                   {personaliseData.workWeather ? (
                     <div className={styles.workContainer}>
-                      <h4>Work Weather: {latestUser.workLocation}</h4>
-                      <p>
-                        Weather:{" "}
-                        {personaliseData.workWeather.weather[0].description}
-                      </p>
-                      <p>
-                        Temperature:{" "}
-                        {Math.round(personaliseData.workWeather.main.temp)}
-                        °C
-                      </p>
-                      <p>
-                        Feels like:{" "}
-                        {Math.round(
-                          personaliseData.workWeather.main.feels_like
-                        )}
-                        °C
-                      </p>
-                      <p>
-                        Humidity: {personaliseData.workWeather.main.humidity}%
-                      </p>
-                      <p>
-                        Wind Speed: {personaliseData.workWeather.wind.speed} m/s
-                      </p>
+                      <h3>{`{Work} ${Math.round(
+                        personaliseData.workWeather.main.temp
+                      )}°C ${latestUser.workLocation}`}</h3>
                     </div>
                   ) : (
                     <p>
@@ -182,21 +188,7 @@ function PersonalisedInfo() {
                   )}
                 </>
               )}
-            </div>
-            <div className={styles.activities}>
-              {/* -------------------------------------------------------------------------------------------------------------- */}
-              {/* this is added for integrate testing purpose. CAn rephrase and render it based on the plannedActivity values 'yes' or 'no'*/}
-
-              <h4>
-                {latestUser.plannedActivity} , there is a planned activity{" "}
-              </h4>
-              <label>
-                {" "}
-                '{latestUser.activityDetails}' at '{latestUser.activityLocation}
-                ' today
-              </label>
-
-              {/* ------------------------------------------------------------------------------------------------------------------ */}
+              <div className={styles.forcastPosition}><NextDayForecastNew /></div>
             </div>
           </>
         ) : (
@@ -204,31 +196,28 @@ function PersonalisedInfo() {
         )}
       </div>
 
-      <Form />
+      {/* <h2>Your Activity Forecast:</h2> */}
+      {/* <FormThree /> */}
+
       {/* Logout Button */}
       <button onClick={handleLogout}>Logout</button>
 
-      <div>
+      {/* <Form /> */}
+      {/* <FormThree /> */}
+      {/* <ViewList /> */}
+      {/* <FormTwo /> */}
+      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
         {/* <h2>Your Activity Forecast:</h2> */}
-        {/* <FormThree /> */}
-        {/* <ViewList /> */}
-        {/* <FormTwo /> */}
-        {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
-
-      {/* <h2>Your Activity Forecast:</h2> */}
-      <FormThree />
       {/* <ViewList /> */}
       {/* <FormTwo /> */}
       {/* <Form /> */}
       {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
-
-      {isListVisible && <FormTwo />}
-      {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>} */}
-        {/* {isEditing && <FormTwo />} */}
-        {/* <button className={styles.updateButton}>
+        {isListVisible && <FormTwo />}
+        {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>} */}
+      {/* {isEditing && <FormTwo />} */}
+      {/* <button className={styles.updateButton}>
         Update Information
       </button> */}
-      </div>
     </div>
   );
 }

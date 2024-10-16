@@ -17,14 +17,17 @@ const WeatherIcon = ({ forecastText }) => {
   if (lowerCaseText.includes("fair") || lowerCaseText.includes("clear")) {
     return <ClearDay style={weatherIconStyles} />;
   } else if (
-    lowerCaseText.includes("partly cloudy") ||
-    lowerCaseText.includes("cloudy")
+    lowerCaseText.includes("cloudy") ||
+    lowerCaseText.includes("clouds")
   ) {
     return <Cloudy style={weatherIconStyles} />;
-  } else if (lowerCaseText.includes("rain")) {
-    return <Rainy style={weatherIconStyles} />;
   } else if (lowerCaseText.includes("thundery")) {
     return <ThunderStormDay style={weatherIconStyles} />;
+  } else if (
+    lowerCaseText.includes("rain") ||
+    lowerCaseText.includes("showers")
+  ) {
+    return <Rainy style={weatherIconStyles} />;
   } else if (lowerCaseText.includes("thunder")) {
     return <Thunder style={weatherIconStyles} />;
   } else {

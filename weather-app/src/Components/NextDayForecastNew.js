@@ -1,36 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./NextDayForecastNew.module.css"
-
-//import svg log as react component
-import { ReactComponent as ClearDay } from "./images/clear-day.svg";
-import { ReactComponent as Cloudy } from "./images/cloudy.svg";
-import { ReactComponent as Rainy } from "./images/rain.svg";
-import { ReactComponent as ThunderStormDay } from "./images/thunderstorms-rain.svg";
-import { ReactComponent as Thunder } from "./images/thunderstorms.svg";
-
-// Function to show the correct weather icon based on forecast text
-const getWeatherIcon = (forecastText) => {
-  const lowerCaseText = forecastText.trim().toLowerCase();
-
-  // detecting forecast text to determine what image to use.
-  if (lowerCaseText.includes("fair") || lowerCaseText.includes("clear")) {
-    return <ClearDay className={styles.weatherIcon} />;
-  } else if (
-    lowerCaseText.includes("partly cloudy") ||
-    lowerCaseText.includes("cloudy")
-  ) {
-    return <Cloudy className={styles.weatherIcon} />;
-  } else if (lowerCaseText.includes("rain")) {
-    return <Rainy className={styles.weatherIcon} />;
-  } else if (lowerCaseText.includes("thundery")) {
-    return <ThunderStormDay className={styles.weatherIcon} />;
-  } else if (lowerCaseText.includes("thunder")) {
-    return <Thunder className={styles.weatherIcon} />;
-  } else {
-    return <Cloudy className={styles.weatherIcon} />; // Default icon
-  }
-};
+import styles from "./NextDayForecastNew.module.css";
+import WeatherIcon from "./WeatherIcon";
 
 // 24-Hour Forecast is an API from data.gov.sg, it does not require API key and it does not need any input othan than location, hency the useEffect hook has empty dependency array.
 
@@ -54,9 +25,7 @@ const NextDayForecastNew = () => {
         setForecastData(response.data.data.records[0].general);
       } catch (err) {
         console.error("Error fetching hourly forecast:", err);
-        setError(
-          "Could not fetch hourly forecast. Please try again."
-        );
+        setError("Could not fetch hourly forecast. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -72,25 +41,14 @@ const NextDayForecastNew = () => {
   if (error) {
     return <p>{error}</p>;
   }
-  console.log ("this is forecast data",forecastData)
+  console.log("this is forecast data", forecastData);
 
   return (
-    <div>
-      <h3>24-Hour Weather Forecast</h3>
-      <div>
-        <p>
-          <strong>Low Temperature:</strong>{" "}
-          {forecastData.temperature.low}°C
-        </p>
-        <p>
-          <strong>High Temperature:</strong>{" "}
-          {forecastData.temperature.high}°C
-        </p>
-        <p>
-          <strong>Forecast:</strong> {forecastData.forecast.text}
-        </p>
-        {getWeatherIcon(forecastData.forecast.text)}
-      </div>
+    <div className={styles.forecastItem}>
+      <p>
+        <strong>{`{24-Hour Weather Forecast}`}</strong>{" "}
+        {`${forecastData.forecast.text} {high} ${forecastData.temperature.high}°C {low} ${forecastData.temperature.low}°C`}
+      </p>
     </div>
   );
 };

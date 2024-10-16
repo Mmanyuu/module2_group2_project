@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
+import styles from "./FormThree.module.css";
+
 function FormAddEdit() {
   const [rows, setRows] = useState([
     { activity: "Alice", location: "alice@example.com", editing: false },
@@ -51,7 +53,7 @@ function FormAddEdit() {
   };
 
   return (
-    <div className="container">
+    <div className={styles.formContainer}>
       <h3>Your Activity Forecast:</h3>
       <button className="add-button" onClick={addRow}>
         Add Row
