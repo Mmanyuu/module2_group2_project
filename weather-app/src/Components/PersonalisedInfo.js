@@ -1,17 +1,32 @@
 // PersonalisedInfo.js - component to show personalised weather info using initial user inputs
-
+import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
 import { useNavigate } from "react-router-dom";
 import { fetchRandomQuoteForWeather } from "./RandomQuotes";
+// import { useNavigate } from "react-router-dom";
+
 
 import axios from "axios";
-import styles from "./PersonalisedInfo.module.css";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
 import FormThree from "./FormThree";
 import Clock from "./Clock";
 import WeatherIcon from "./WeatherIcon";
 import NextDayForecastNew from "./NextDayForecastNew";
+import FormFour from "./FormFour";
+
+// import Form from "./Form";
+// import FormTwo from "./FormTwo";
+// import Form from "./Form";
+// import ViewListTwo from "./ViewListTwo";
+
+// function Button({ label, onClick }) {
+//   return (
+//     <button className={styles.button} onClick={onClick}>
+//       {label}
+//     </button>
+//   );
+// }
 
 function PersonalisedInfo() {
   const [loading, setLoading] = useState(false);
@@ -22,12 +37,20 @@ function PersonalisedInfo() {
 
   //putting the quote at personalised data and come out when the person sign in
   const [randomQuote, setRandomQuote] = useState("");
+  // const [isListVisible, setIsListVisible] = useState(false);
+  // const [isListVisible, setIsListVisible] = useState(false);
+  // const navigate = useNavigate();
+  // Create a use State for Show / Hide FormButton
+  // const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (usersData.length > 0) {
       // Set latest user whenever usersData is updated
       const user = usersData[usersData.length - 1];
       setLatestUser(user);
+
+      // we can do refractor on tge following to use data from WeatherData.js for nowi only know how to use the exact same info from andrew. :(
+      // encodeURIComponent to ensure location by the user input are passed safely and correctly fomated
 
       const fetchPersonaliseData = async (location, key) => {
         try {
@@ -42,8 +65,8 @@ function PersonalisedInfo() {
           const response = await axios.get(weatherUrl);
           console.log(`Weather for ${location}`, response.data);
 
-          const quote = fetchRandomQuoteForWeather(response.data);
-          setRandomQuote(quote);
+          // const quote = fetchRandomQuoteForWeather(response.data);
+          // setRandomQuote(quote);
 
           // Set personaliseData object and define the key at the end to be either home or office
           setPersonaliseData((prevData) => ({
@@ -67,6 +90,7 @@ function PersonalisedInfo() {
     }
   }, [usersData]);
 
+
   const handleLogout = () => {
     sessionStorage.removeItem("userData");
     setLatestUser(null);
@@ -80,15 +104,20 @@ function PersonalisedInfo() {
       .join(" ");
   };
 
+  // const handleShowList = () => {
+  //   setIsListVisible((isListVisible) => !isListVisible);
+  // };
+
   return (
     <div>
-      <div className={styles.gridContainer}>
+      <div>
         {latestUser ? (
           <>
             <div>
               <div className={styles.clock}>
                 <Clock />
               </div>
+
 
               <h2 className={styles.userName}>
                 Hello {capitalizeFirstLetter(latestUser.name)},
@@ -112,6 +141,10 @@ function PersonalisedInfo() {
             </div>
 
             {/* <FormThree /> */}
+
+              <h2 className={styles.userName}>Hello, {latestUser.name},</h2>
+              {/* <p className={styles.quotes}>{`{ ${randomQuote} }`}</p> */}
+            </div>
 
             <div className={styles.flexContainer}>
               {loading ? (
@@ -200,6 +233,32 @@ function PersonalisedInfo() {
         ) : (
           <p>No users added yet</p>
         )}
+      </div>
+      
+      {/* <Form /> */}
+      {/* Logout Button */}
+      {/* <button onClick={handleLogout}>Logout</button> */}
+
+      <div>
+        {/* <h2>Your Activity Forecast:</h2> */}
+        {/* <FormThree /> */}
+        {/* <ViewList /> */}
+        {/* <FormTwo /> */}
+        {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
+
+      {/* <h2>Your Activity Forecast:</h2> */}
+      <FormFour />
+      <FormThree />
+      {/* <ViewList /> */}
+      {/* <FormTwo /> */}
+      {/* <Form /> */}
+      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
+        {isListVisible && <FormTwo />}
+        {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>} */}
+      {/* {isEditing && <FormTwo />} */}
+      {/* <button className={styles.updateButton}>
+        Update Information
+      </button> */}
       </div>
     </div>
   );
