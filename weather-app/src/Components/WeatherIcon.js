@@ -3,7 +3,7 @@ import { ReactComponent as ClearDay } from "./images/clear-day.svg";
 import { ReactComponent as Cloudy } from "./images/cloudy.svg";
 import { ReactComponent as Rainy } from "./images/rain.svg";
 import { ReactComponent as ThunderStormDay } from "./images/thunderstorms-rain.svg";
-import { ReactComponent as Thunder } from "./images/thunderstorms.svg"; // Assuming this exists
+import { ReactComponent as Thunder } from "./images/thunderstorms.svg";
 
 const weatherIconStyles = {
   width: 150,
