@@ -1,23 +1,21 @@
 // PersonalisedInfo.js - component to show personalised weather info using initial user inputs
-
+import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
-import { useNavigate } from "react-router-dom";
-
-import { fetchRandomQuoteForWeather } from "./RandomQuotes";
+// import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import styles from "./PersonalisedInfo.module.css";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
 import FormThree from "./FormThree";
 import Clock from "./Clock";
 import WeatherIcon from "./WeatherIcon";
 import NextDayForecastNew from "./NextDayForecastNew";
+import FormFour from "./FormFour";
 
 // import Form from "./Form";
 // import FormTwo from "./FormTwo";
 // import Form from "./Form";
-// import ViewList from "./ViewList";
+// import ViewListTwo from "./ViewListTwo";
 
 // function Button({ label, onClick }) {
 //   return (
@@ -32,14 +30,9 @@ function PersonalisedInfo() {
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
-
   // const [isListVisible, setIsListVisible] = useState(false);
-  const [isListVisible, setIsListVisible] = useState(false);
-  const navigate = useNavigate();
-
-  //putting the quote at personalised data and come out when the person sign in
-  const [randomQuote, setRandomQuote] = useState("");
-
+  // const [isListVisible, setIsListVisible] = useState(false);
+  // const navigate = useNavigate();
   // Create a use State for Show / Hide FormButton
   // const [isEditing, setIsEditing] = useState(false);
 
@@ -48,6 +41,9 @@ function PersonalisedInfo() {
       // Set latest user whenever usersData is updated
       const user = usersData[usersData.length - 1];
       setLatestUser(user);
+
+      // we can do refractor on tge following to use data from WeatherData.js for nowi only know how to use the exact same info from andrew. :(
+      // encodeURIComponent to ensure location by the user input are passed safely and correctly fomated
 
       const fetchPersonaliseData = async (location, key) => {
         try {
@@ -62,8 +58,8 @@ function PersonalisedInfo() {
           const response = await axios.get(weatherUrl);
           console.log(`Weather for ${location}`, response.data);
 
-          const quote = fetchRandomQuoteForWeather(response.data);
-          setRandomQuote(quote);
+          // const quote = fetchRandomQuoteForWeather(response.data);
+          // setRandomQuote(quote);
 
           // Set personaliseData object and define the key at the end to be either home or office
           setPersonaliseData((prevData) => ({
@@ -91,15 +87,9 @@ function PersonalisedInfo() {
   //   setIsListVisible((isListVisible) => !isListVisible);
   // };
 
-  const handleLogout = () => {
-    sessionStorage.removeItem("userData"); // Clear user data from sessionStorage
-    setLatestUser([]); // Clear context data if necessary
-    navigate("/"); // Redirect to the Introduction page
-  };
-
   return (
     <div>
-      <div className={styles.gridContainer}>
+      <div>
         {latestUser ? (
           <>
             <div>
@@ -107,25 +97,8 @@ function PersonalisedInfo() {
                 <Clock />
               </div>
               <h2 className={styles.userName}>Hello, {latestUser.name},</h2>
-              <p className={styles.quotes}>{`{ ${randomQuote} }`}</p>
-              <div className={styles.activities}>
-                {/* -------------------------------------------------------------------------------------------------------------- */}
-                {/* this is added for integrate testing purpose. CAn rephrase and render it based on the plannedActivity values 'yes' or 'no'*/}
-
-                <h4>
-                  {latestUser.plannedActivity} , there is a planned activity{" "}
-                </h4>
-                <label>
-                  {" "}
-                  '{latestUser.activityDetails}' at '
-                  {latestUser.activityLocation}' today
-                </label>
-
-                {/* ------------------------------------------------------------------------------------------------------------------ */}
-              </div>
-              <FormThree />
+              {/* <p className={styles.quotes}>{`{ ${randomQuote} }`}</p> */}
             </div>
-            
 
             <div className={styles.flexContainer}>
               {loading ? (
@@ -196,18 +169,20 @@ function PersonalisedInfo() {
         )}
       </div>
 
-      {/* <h2>Your Activity Forecast:</h2> */}
-      {/* <FormThree /> */}
-
-      {/* Logout Button */}
-      <button onClick={handleLogout}>Logout</button>
-
       {/* <Form /> */}
-      {/* <FormThree /> */}
-      {/* <ViewList /> */}
-      {/* <FormTwo /> */}
-      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
+      {/* Logout Button */}
+      {/* <button onClick={handleLogout}>Logout</button> */}
+
+      <div>
         {/* <h2>Your Activity Forecast:</h2> */}
+        {/* <FormThree /> */}
+        {/* <ViewList /> */}
+        {/* <FormTwo /> */}
+        {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
+
+      {/* <h2>Your Activity Forecast:</h2> */}
+      <FormFour />
+      <FormThree />
       {/* <ViewList /> */}
       {/* <FormTwo /> */}
       {/* <Form /> */}
@@ -218,6 +193,7 @@ function PersonalisedInfo() {
       {/* <button className={styles.updateButton}>
         Update Information
       </button> */}
+      </div>
     </div>
   );
 }

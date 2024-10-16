@@ -32,6 +32,7 @@ const Introduction = () => {
 
     // Store user data in sessionStorage
     sessionStorage.setItem("userData", JSON.stringify(newUser));
+    console.log(newUser);
 
     // Navigate to MainPage with user data
     navigate("/MainPage", { state: { user: newUser } });
