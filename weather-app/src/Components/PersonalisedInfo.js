@@ -2,16 +2,16 @@
 import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
 import FormThree from "./FormThree";
 // import FormTwo from "./FormTwo";
-import Form from "./Form";
+// import Form from "./Form";
 import Clock from "./Clock";
 // import Form from "./Form";
-// import ViewList from "./ViewList";
+// import ViewListTwo from "./ViewListTwo";
 
 // function Button({ label, onClick }) {
 //   return (
@@ -27,9 +27,8 @@ function PersonalisedInfo() {
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
   // const [isListVisible, setIsListVisible] = useState(false);
-  const [isListVisible, setIsListVisible] = useState(false);
-  const navigate = useNavigate();
-
+  // const [isListVisible, setIsListVisible] = useState(false);
+  // const navigate = useNavigate();
   // Create a use State for Show / Hide FormButton
   // const [isEditing, setIsEditing] = useState(false);
 
@@ -55,8 +54,8 @@ function PersonalisedInfo() {
           const response = await axios.get(weatherUrl);
           console.log(`Weather for ${location}`, response.data);
 
-          const quote = fetchRandomQuoteForWeather(response.data);
-          setRandomQuote(quote);
+          // const quote = fetchRandomQuoteForWeather(response.data);
+          // setRandomQuote(quote);
 
           // Set personaliseData object and define the key at the end to be either home or office
           setPersonaliseData((prevData) => ({
@@ -85,7 +84,7 @@ function PersonalisedInfo() {
   // };
 
   return (
-    <div>
+    <>
       <div>
         {latestUser ? (
           <>
@@ -95,7 +94,7 @@ function PersonalisedInfo() {
 
             <div>
               <h2 className={styles.userName}>Hello, {latestUser.name},</h2>
-              <p className={styles.quotes}>{`{ ${randomQuote} }`}</p>
+              {/* <p className={styles.quotes}>{`{ ${randomQuote} }`}</p> */}
             </div>
 
             <div className={styles.flexContainer}>
@@ -194,18 +193,18 @@ function PersonalisedInfo() {
         )}
       </div>
 
-      <Form />
+      {/* <Form /> */}
       {/* Logout Button */}
-      <button onClick={handleLogout}>Logout</button>
+      {/* <button onClick={handleLogout}>Logout</button> */}
 
       <div>
-        {/* <h2>Your Activity Forecast:</h2> */}
         {/* <FormThree /> */}
         {/* <ViewList /> */}
         {/* <FormTwo /> */}
         {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
 
       {/* <h2>Your Activity Forecast:</h2> */}
+      {/* <ViewListTwo /> */}
       <FormThree />
       {/* <ViewList /> */}
       {/* <FormTwo /> */}
@@ -219,8 +218,9 @@ function PersonalisedInfo() {
         Update Information
       </button> */}
       {/* Logout Button */}
-      <button onClick={handleLogout}>Logout</button>
+      {/* <button onClick={handleLogout}>Logout</button> */}
     </div>
+    </>
   );
 }
 
