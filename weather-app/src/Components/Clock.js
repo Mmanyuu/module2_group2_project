@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+const clockStyle = {
+  margin: 0,
+};
+
 function Clock() {
   const [time, setTime] = useState(Date.now());
 
@@ -20,11 +24,7 @@ function Clock() {
     hour12: false,
   });
 
-  return (
-    <div>
-      <p>{formattedTime}</p>
-    </div>
-  );
+  return <p style={clockStyle}>{formattedTime}</p>;
 }
 
 export default Clock;
