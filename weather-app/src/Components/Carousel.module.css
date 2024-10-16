@@ -1,0 +1,59 @@
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translate(-100%);
+  }
+}
+
+.logos {
+  width: 70%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin: 0 auto;
+}
+
+.logos:before,
+.logos:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 0),
+    #d9d9d9
+  );
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    #d9d9d9
+  );
+}
+
+.logos:hover .logo_slide {
+  animation-play-state: paused;
+}
+
+.logo_slide {
+  display: inline-block;
+  padding: 30px 0;
+  animation: 30s slide infinite linear;
+}
+
+.logo_slide img {
+  margin: 0 30px;
+  opacity: 0.8;
+}
