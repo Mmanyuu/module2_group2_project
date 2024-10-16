@@ -8,6 +8,16 @@
   font-size: 18px;
   font-family: "Poppins", sans-serif;
   text-align: left;
-  width: 500px;
   padding: 0px 10px;
 }
+
+.spanColorPink {
+  color: #d29a9a;
+  font-weight: 550;
+}
+
+.spanColorWhite {
+  color: white;
+  font-weight: 500;
+}
+

@@ -12,9 +12,11 @@ body {
   /* Flex container for row layout */
   .forecastRow {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     margin-top: 20px;
-    width: 790px
+    margin-left: 70px;
+    width: 800px;
+    height: 300px;
   }
   
   /* Each forecast item */
@@ -22,15 +24,21 @@ body {
     padding: 10px;
     border-radius: 8px;
     text-align: center;
-    width: 350px;
-    height: 230px;
+    width: 250px;
+    height: 250px;
     font-size: 18px;
   }
 
   .temperaturePosition {
+    color: #d29a9a;
+    font-weight: 500;
     position: relative;
     font-size: 24px;
-    left: 33%;
-    bottom: 65%;
+    left: 30%;
+    bottom: 85%;
   }
-  
+
+  .spanColorPink {
+    color: #d29a9a;
+    font-weight: 550;
+  }

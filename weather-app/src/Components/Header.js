@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Header.module.css"; // Import CSS module
+import logo from "./images/nimbusLogo.png"
 
 // Header consits of app title, an input form and a real time clock.
 
@@ -25,25 +26,21 @@ function Header({ onSearch }) {
   };
 
   return (
-    <header className={styles.headerContainer}>
-      <div className={styles.rightSideContainer}>
-        <div>
-          <h2>Weather App</h2>
-        </div>
-          <form className={styles.searchBox} onSubmit={handlerSearchSubmit}>
-            <input
-              type="text"
-              placeholder="Enter Location"
-              value={location}
-              onChange={handlerInputChange}
-              className={styles.searchInput}
-            />
-            <button type="submit" className={styles.searchButton}>
-              Search
-            </button>
-          </form>
-      </div>
-    </header>
+    <div className={styles.headerContainer}>
+      <p className={styles.nimbusLogo}><img src={logo} alt = "NimbusNow Logo" width={50} height={50}/></p>
+      <form className={styles.searchBox} onSubmit={handlerSearchSubmit}>
+        <input
+          type="text"
+          placeholder="Enter Location"
+          value={location}
+          onChange={handlerInputChange}
+          className={styles.searchInput}
+        />
+        <button type="submit" className={styles.searchButton}>
+          Search
+        </button>
+      </form>
+    </div>
   );
 }
 

@@ -2,7 +2,10 @@
 import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
+import { useNavigate } from "react-router-dom";
+import { fetchRandomQuoteForWeather } from "./RandomQuotes";
 // import { useNavigate } from "react-router-dom";
+
 
 import axios from "axios";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
@@ -30,6 +33,10 @@ function PersonalisedInfo() {
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
+  const navigate = useNavigate();
+
+  //putting the quote at personalised data and come out when the person sign in
+  const [randomQuote, setRandomQuote] = useState("");
   // const [isListVisible, setIsListVisible] = useState(false);
   // const [isListVisible, setIsListVisible] = useState(false);
   // const navigate = useNavigate();
@@ -83,6 +90,20 @@ function PersonalisedInfo() {
     }
   }, [usersData]);
 
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("userData");
+    setLatestUser(null);
+    navigate("/");
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   // const handleShowList = () => {
   //   setIsListVisible((isListVisible) => !isListVisible);
   // };
@@ -96,6 +117,31 @@ function PersonalisedInfo() {
               <div className={styles.clock}>
                 <Clock />
               </div>
+
+
+              <h2 className={styles.userName}>
+                Hello {capitalizeFirstLetter(latestUser.name)},
+              </h2>
+
+              <p className={styles.quotes}>{`{ ${randomQuote} }`}</p>
+
+              {/* Display of activity if any */}
+              <div className={styles.activities}>
+                {latestUser.plannedActivity === "yes" ? (
+                  <>
+                    <h4>Planned Activity:</h4>
+                    <p>{`${latestUser.activityDetails} at ${latestUser.activityLocation} today.`}</p>
+                  </>
+                ) : (
+                  <h4>No planned activity today.</h4>
+                )}
+              </div>
+              {/* Logout Button */}
+              <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
+            </div>
+
+            {/* <FormThree /> */}
+
               <h2 className={styles.userName}>Hello, {latestUser.name},</h2>
               {/* <p className={styles.quotes}>{`{ ${randomQuote} }`}</p> */}
             </div>
@@ -108,8 +154,10 @@ function PersonalisedInfo() {
                   {/* Display home weather data */}
                   {personaliseData.homeWeather ? (
                     <div className={styles.homeContainer}>
-                      <h4>{`{Home}`}</h4>
-                      <h2>{latestUser.homeLocation} </h2>
+                      <h3>
+                        <span className={styles.spanColorPink}>{`{HOME}`}</span>
+                      </h3>
+                      <h2>{capitalizeFirstLetter(latestUser.homeLocation)} </h2>
 
                       <p className={styles.weatherIconPosition}>
                         <WeatherIcon
@@ -124,7 +172,7 @@ function PersonalisedInfo() {
                       </p>
 
                       <p className={styles.feelsPosition}>
-                        ...Feels like:{" "}
+                        ...Feels like{" "}
                         {Math.round(
                           personaliseData.homeWeather.main.feels_like
                         )}
@@ -149,9 +197,25 @@ function PersonalisedInfo() {
                   {/* Display work weather data */}
                   {personaliseData.workWeather ? (
                     <div className={styles.workContainer}>
-                      <h3>{`{Work} ${Math.round(
-                        personaliseData.workWeather.main.temp
-                      )}°C ${latestUser.workLocation}`}</h3>
+                      <p>
+                        <span
+                          className={styles.spanColorPink}
+                        >{`{WORK} `}</span>
+                        <span>{`${personaliseData.workWeather.weather[0].description} `}</span>
+
+                        <span className={styles.smallWeatherIcon}></span>
+
+                        <span
+                          className={`${styles.spanColorPink} ${styles.spanFontBig}`}
+                        >
+                          {Math.round(personaliseData.workWeather.main.temp)}°C{" "}
+                        </span>
+                        <span
+                          className={`${styles.spanColorwhite} ${styles.spanFontBig}`}
+                        >
+                          {capitalizeFirstLetter(latestUser.workLocation)}
+                        </span>
+                      </p>
                     </div>
                   ) : (
                     <p>
@@ -161,14 +225,16 @@ function PersonalisedInfo() {
                   )}
                 </>
               )}
-              <div className={styles.forcastPosition}><NextDayForecastNew /></div>
+              <div className={styles.forcastPosition}>
+                <NextDayForecastNew />
+              </div>
             </div>
           </>
         ) : (
           <p>No users added yet</p>
         )}
       </div>
-
+      
       {/* <Form /> */}
       {/* Logout Button */}
       {/* <button onClick={handleLogout}>Logout</button> */}
