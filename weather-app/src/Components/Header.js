@@ -25,25 +25,21 @@ function Header({ onSearch }) {
   };
 
   return (
-    <header className={styles.headerContainer}>
-      <div className={styles.rightSideContainer}>
-        <div>
-          <h2>Weather App</h2>
-        </div>
-          <form className={styles.searchBox} onSubmit={handlerSearchSubmit}>
-            <input
-              type="text"
-              placeholder="Enter Location"
-              value={location}
-              onChange={handlerInputChange}
-              className={styles.searchInput}
-            />
-            <button type="submit" className={styles.searchButton}>
-              Search
-            </button>
-          </form>
-      </div>
-    </header>
+    <div className={styles.headerContainer}>
+      <p className={styles.headerFont}>Weather App</p>
+      <form className={styles.searchBox} onSubmit={handlerSearchSubmit}>
+        <input
+          type="text"
+          placeholder="Enter Location"
+          value={location}
+          onChange={handlerInputChange}
+          className={styles.searchInput}
+        />
+        <button type="submit" className={styles.searchButton}>
+          Search
+        </button>
+      </form>
+    </div>
   );
 }
 
