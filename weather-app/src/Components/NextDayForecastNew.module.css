@@ -1,5 +1,13 @@
+
 .weatherIcon {
-    width: 200px;
-    height: 200px;
-  }
-  
+  width: 200px;
+  height: 200px;
+}
+
+.forecastItem {
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  width: 500px;
+  padding: 0px 10px;
+}

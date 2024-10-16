@@ -1,41 +1,79 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: auto auto;
+  height: 750px;
+}
+
 .clock {
-  font-size: 50px;
+  font-size: 28px;
   font-family: "Poppins", sans-serif;
   text-align: right;
-  width: 1215px;
+  width: 500px;
 }
 
 .userName {
-  font-size: 70px;
+  font-size: 40px;
   text-align: right;
-  width: 1215px;
+  width: 500px;
+  margin: 15px 0px;
 }
 
 .quotes {
-  font-size: 50px;
+  font-size: 28px;
   text-align: right;
-  width: 1215px;
+  width: 500px;
+  margin: 0px;
 }
 
-.workContainer {
-  width: 600px;
-  text-align: right;
-  font-size: 30px;
-}
-
+.workContainer,
 .homeContainer {
-  width: 600px;
-  text-align: right;
-  font-size: 30px;
+  padding: 0px 10px;
+  width: 700px;
+  height: 320px;
+  text-align: left;
+  font-size: 16px;
 }
 
 .flexContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-left: 3em;
 }
 
 .activities {
-  width: 1215px;
+  width: 500px;
   text-align: center;
-  font-size: 30px;
+  font-size: 16px;
+}
+
+.weatherIconPosition {
+  position: relative;
+  left: 25%;
+  bottom: 40%;
+}
+
+.highTempPosition {
+  position: relative;
+  left: 50%;
+  bottom: 100%;
+  font-size: 60px;
+}
+
+.feelsPosition {
+  position: relative;
+  bottom: 115%;
+  left: 60%;
+  font-size: 18px;
+}
+
+.otherInfoPosition {
+  position: relative;
+  bottom: 117%;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.forcastPosition {
+  position: relative;
+  bottom: 25%;
 }
