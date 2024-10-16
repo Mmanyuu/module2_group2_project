@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ResponsesContext } from "../Context/ResponsesContext";
 import styles from "./Introduction.module.css";
+import Carousel from "./Carousel";
 
 const Introduction = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const Introduction = () => {
 
     // Store user data in sessionStorage
     sessionStorage.setItem("userData", JSON.stringify(newUser));
+    console.log(newUser);
 
     // Navigate to MainPage with user data
     navigate("/MainPage", { state: { user: newUser } });
@@ -38,6 +40,7 @@ const Introduction = () => {
 
   return (
     <div className={styles.container}>
+      <Carousel />
       <p>
         Ah, so you stumble upon this random weather app. <br />
         well, since you are here, <br />
@@ -70,20 +73,21 @@ const Introduction = () => {
           />
         </p>
         <p>
-          How about your school or work location?<br/>
+          How about your school or work location?
+          <br />
           <input
             type="text"
             value={workLocation}
             onChange={(e) => {
               setWorkLocation(e.target.value);
             }}
-            placeholder="Your School/Work Location"
+            placeholder="Your School / Work Location"
             required
           />
         </p>
         <p>
-          Do you have any activities planned tomorrow that rely on the weather,
-          like a picnic or sports?
+          Do you have any activities planned tomorrow that rely on the
+          weather, like a picnic or sports?
         </p>
         <label>
           <input
@@ -110,7 +114,7 @@ const Introduction = () => {
         {hasActivity === "yes" && (
           <>
             <p>
-              If yes, tell us what activity you have planned: <br />
+              What activity you have planned? <br />
               <input
                 type="text"
                 value={activityDetails}
@@ -122,7 +126,7 @@ const Introduction = () => {
               />
             </p>
             <p>
-              Where will this activity take place? <br />
+              Where will it take place? <br />
               <input
                 type="text"
                 value={activityLocation}
@@ -135,11 +139,11 @@ const Introduction = () => {
             </p>
           </>
         )}
-        <p>
-          Alright, all set. Let’s get something just for you on the click of
-          submit.
-        </p>
-        <button type="submit" className={styles.submitButton}>Submit</button>
+        <p>Alright, all set. Let’s get something just for you.</p>
+        <br />
+        <button type="submit" className={styles.submitButton}>
+          GO
+        </button>
       </form>
     </div>
   );

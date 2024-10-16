@@ -1,15 +1,10 @@
-/* Introduction.module.css or Questionnaire.css 
-@Manyu I just tried the basic styles  from our old projects.
-You can delete it and do your kind of styling which looked pretty 
-*/
-
 .container {
-  margin: 50px;
+  margin: 25px; /* Keep or adjust the outer margin as needed */
   color: white; /* Text color */
   text-align: center; /* Center the text */
-  font-size: 35px; /* Font size */
+  font-size: 1.25rem; /* Font size */
   font-weight: 200px;
-  color: #000000; /* Color of the text*/
+  color: #d29a9a; /* Color of the text */
   font-family: "Poppins", sans-serif;
   font-style: normal;
   align-content: center;
@@ -23,12 +18,7 @@ You can delete it and do your kind of styling which looked pretty
   justify-content: center;
   width: 1000px;
   height: 70px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.589
-  ); /* Main color for the title bar */
+  background-color: #d9d9d9; /* Main color for the title bar */
   border-radius: 5px 5px 0 0; /* Rounded corners at the top */
   box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
@@ -39,10 +29,9 @@ form {
 }
 
 label {
-  margin-bottom: 10px;
-  margin-right: 20px;
-  font-size: 1em;
-  color: black;
+  margin-bottom: 10px; /* Keep this for spacing between labels and inputs */
+  font-size: 1.25rem;
+  color: #d29a9a;
   align-content: center;
 }
 
@@ -50,25 +39,31 @@ input[type="radio"] {
   transform: scale(1.5);
 }
 
+input[type="radio"]:checked {
+  background-color: #373d44; /* Change background color when checked */
+}
+
 input[type="text"],
 input[type="number"] {
-  padding: 15px;
-  margin: 10px auto;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
-  font-size: 20px;
+  text-align: center;
+  border: none; /* Remove default border */
+  border-bottom: 2px solid #ccc; /* Add underline */
+  background: transparent; /* Transparent background */
+  padding: 10px 0; /* Adjust padding */
+  margin: 10px auto; /* Vertical margin can remain for inputs */
   width: 300px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus {
-  border-color: #007bff;
-  outline: none;
+  border-bottom-color: #373d44; /* Change color on focus */
+  outline: none; /* Remove default focus outline */
 }
 
 .submitButton {
-  margin: 0 auto;
+  margin: 0 auto; /* Center the button */
   padding: 10px 15px;
   align-items: center;
   text-align: center;
@@ -78,7 +73,7 @@ input[type="number"]:focus {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 1rem;
   font-weight: 100px;
   transition: background-color 0.3s ease;
 }
@@ -87,17 +82,8 @@ input[type="number"]:focus {
   background-color: #0056b3;
 }
 
-/* .thank-you {
-  text-align: center;
-  background-color: #0056b3;
-  font-size: 1.3em;
-  color: #0056b3;
-} */
-
-/* .answers { */
-/* white-space: pre-wrap; Preserve whitespace for better readability */
-/* background-color: #0056b3;
-  padding: 20px;
-  border-radius: 5px;
-  border: 5px solid #e0e0e0;
-} */
+.container p {
+  max-width: 45ch; /* Set max width to 70 characters */
+  margin: 20px auto; /* Center the paragraph and add vertical spacing */
+  word-wrap: break-word; /* Allow breaking long words */
+}

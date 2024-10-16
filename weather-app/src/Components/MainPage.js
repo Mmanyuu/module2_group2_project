@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import Header from "./Header";
 import WeatherData from "./WeatherData";
 import AirQuality from "./AirQuality";
-import NextDayForecastNew from "./NextDayForecastNew";
-import FourDayForecastNew from "./FourDayForecastNew";
 import GeoCoordinates from "./GeoCoordinates";
 import PersonalisedInfo from "./PersonalisedInfo";
 import styles from "./MainPage.module.css";
-
-import { Link, Outlet } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import FourDayForecastNew from "./FourDayForecastNew";
 
 const MainPage = () => {
   const [coords, setCoords] = useState({ lon: null, lat: null });
@@ -37,7 +34,6 @@ const MainPage = () => {
   };
 
   const handleForecastToggle = () => {
-    console.log("clicked!");
     setShowFourDayForecast((prev) => !prev);
   };
 
@@ -46,11 +42,7 @@ const MainPage = () => {
       {/*Personal Information - grid 1 [column]*/}
       <div className={styles.personaliseBox}>
         <PersonalisedInfo />
-      </div>
-
-      {/*Weather Data and Search Header - grid 2 [column]*/}
-      <div className={styles.header}>
-        <Header />
+        <Header onSearch={handleSearch} />
         {coords.lon && coords.lat && (
           <>
             <WeatherData
@@ -61,15 +53,13 @@ const MainPage = () => {
             <AirQuality lat={coords.lat} long={coords.lon} />
           </>
         )}
-        <NextDayForecastNew />
+      </div>
 
+      {/*Weather Data and Search Header - grid 2 [column]*/}
+      <div className={styles.header}>
         {/* Using react link and outlet to displayfour day forecast */}
-        <div>
-          <Link
-            to="/MainPage/FourDayForecastNew"
-            onClick={handleForecastToggle}
-          >
-            {" "}
+        <div className={styles.forecastLink}>
+          <Link to="#" onClick={handleForecastToggle}>
             {showFourDayForecast
               ? "- Hide 4-Day Forecast"
               : "+ View 4-Day Forecast"}
@@ -79,7 +69,7 @@ const MainPage = () => {
         {/* Conditionally Render Four-Day Forecast */}
         {showFourDayForecast && (
           <div className={styles.forecastOutlet}>
-            <Outlet />
+            <FourDayForecastNew />
           </div>
         )}
       </div>

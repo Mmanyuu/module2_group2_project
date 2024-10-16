@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
+// import styles from "./FormThree.module.css";
+
 function FormAddEdit() {
 
   const blankForm = {
-    index: 0,
-    activity: "Badminton",
-    location: "Bishan",
-    editing: false,
+    // index: 0,
+    activity: "",
+    location: "",
   };
 
   // Setting one default row with detail
@@ -57,7 +58,7 @@ function FormAddEdit() {
 
   return (
     <div className="container">
-      <h3>Your Activity Forecast: </h3>
+      <h3> Your Activity Forecast: </h3>
       <button className="add-button" onClick={addRow}>
         Add Row
       </button>
@@ -122,9 +123,6 @@ function FormAddEdit() {
           ))}
         </tbody>
       </table>
-      <div>
-        Total sum: <span> {rows.activity}</span>
-      </div>
     </div>
   );
 }
