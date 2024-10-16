@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Header from "./Header";
 import WeatherData from "./WeatherData";
 import AirQuality from "./AirQuality";
-import NextDayForecastNew from "./NextDayForecastNew";
 import GeoCoordinates from "./GeoCoordinates";
 import PersonalisedInfo from "./PersonalisedInfo";
 import styles from "./MainPage.module.css";
@@ -43,11 +42,7 @@ const MainPage = () => {
       {/*Personal Information - grid 1 [column]*/}
       <div className={styles.personaliseBox}>
         <PersonalisedInfo />
-      </div>
-
-      {/*Weather Data and Search Header - grid 2 [column]*/}
-      <div className={styles.header}>
-        <Header onSearch={handleSearch}/>
+        <Header onSearch={handleSearch} />
         {coords.lon && coords.lat && (
           <>
             <WeatherData
@@ -58,10 +53,12 @@ const MainPage = () => {
             <AirQuality lat={coords.lat} long={coords.lon} />
           </>
         )}
-        <NextDayForecastNew />
+      </div>
 
+      {/*Weather Data and Search Header - grid 2 [column]*/}
+      <div className={styles.header}>
         {/* Using react link and outlet to displayfour day forecast */}
-        <div>
+        <div className={styles.forecastLink}>
           <Link to="#" onClick={handleForecastToggle}>
             {showFourDayForecast
               ? "- Hide 4-Day Forecast"
