@@ -80,7 +80,7 @@ const Introduction = () => {
             onChange={(e) => {
               setWorkLocation(e.target.value);
             }}
-            placeholder="Your School/Work Location"
+            placeholder="Your School / Work Location"
             required
           />
         </p>
@@ -113,7 +113,7 @@ const Introduction = () => {
         {hasActivity === "yes" && (
           <>
             <p>
-              If yes, tell us what activity you have planned: <br />
+              What activity you have planned? <br />
               <input
                 type="text"
                 value={activityDetails}
@@ -125,7 +125,7 @@ const Introduction = () => {
               />
             </p>
             <p>
-              Where will this activity take place? <br />
+              Where will it take place? <br />
               <input
                 type="text"
                 value={activityLocation}
@@ -138,12 +138,10 @@ const Introduction = () => {
             </p>
           </>
         )}
-        <p>
-          Alright, all set. Let’s get something just for you on the
-          click of submit.
-        </p>
+        <p>Alright, all set. Let’s get something just for you.</p>
+        <br />
         <button type="submit" className={styles.submitButton}>
-          Submit
+          GO
         </button>
       </form>
     </div>
