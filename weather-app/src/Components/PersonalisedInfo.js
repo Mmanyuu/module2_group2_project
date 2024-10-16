@@ -140,9 +140,10 @@ function PersonalisedInfo() {
               <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
             </div>
 
+                <div>
             {/* <FormThree /> */}
 
-              <h2 className={styles.userName}>Hello, {latestUser.name},</h2>
+              <h2 className={styles.userName}>Hello {latestUser.name},</h2>
               {/* <p className={styles.quotes}>{`{ ${randomQuote} }`}</p> */}
             </div>
 
