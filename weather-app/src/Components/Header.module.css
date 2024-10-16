@@ -4,13 +4,20 @@
   padding: 0.15em;
   font-family: "Poppins", sans-serif;
   position: relative;
+  height: 90px;
+}
+
+.nimbusLogo {
+  margin-top:20px;
+  margin-left: 10px;
 }
 
 .headerFont {
-  font-size: 18px;
-  font-weight: 500;
-  align-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  text-align: right;
   margin: 10px;
+  color: #d29a9a;
 }
 
 .searchBox {
@@ -21,23 +28,27 @@
 }
 
 .searchInput {
+  padding: 5px !important;
   border: 2px solid rgba(69, 65, 65, 0.3) !important;
   border-radius: 5px !important;
-  width: 1050px !important;
+  width: 1150px !important;
+  height: 30px !important;
   margin: 10px !important;
 }
 
 .searchButton {
   margin: 10px;
   padding: 10px;
-  font-size: 14px;
-  background-color: #007bff;
-  color: #fff;
+  font-size: 1rem;
+  font-weight: 100px;
+  background-color: #373d44;
+  color: white;
   border: 2px solid rgba(69, 65, 65, 0.3);
   border-radius: 5px;
   cursor: pointer;
   width: 80px;
   height: 40px;
+  transition: background-color 0.3s ease;
 }
 
 .searchButton:hover {

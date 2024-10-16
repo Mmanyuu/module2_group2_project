@@ -3,7 +3,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
 import { useNavigate } from "react-router-dom";
-
 import { fetchRandomQuoteForWeather } from "./RandomQuotes";
 
 import axios from "axios";
@@ -14,34 +13,15 @@ import Clock from "./Clock";
 import WeatherIcon from "./WeatherIcon";
 import NextDayForecastNew from "./NextDayForecastNew";
 
-// import Form from "./Form";
-// import FormTwo from "./FormTwo";
-// import Form from "./Form";
-// import ViewList from "./ViewList";
-
-// function Button({ label, onClick }) {
-//   return (
-//     <button className={styles.button} onClick={onClick}>
-//       {label}
-//     </button>
-//   );
-// }
-
 function PersonalisedInfo() {
   const [loading, setLoading] = useState(false);
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
-
-  // const [isListVisible, setIsListVisible] = useState(false);
-  const [isListVisible, setIsListVisible] = useState(false);
   const navigate = useNavigate();
 
   //putting the quote at personalised data and come out when the person sign in
   const [randomQuote, setRandomQuote] = useState("");
-
-  // Create a use State for Show / Hide FormButton
-  // const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (usersData.length > 0) {
@@ -87,14 +67,17 @@ function PersonalisedInfo() {
     }
   }, [usersData]);
 
-  // const handleShowList = () => {
-  //   setIsListVisible((isListVisible) => !isListVisible);
-  // };
-
   const handleLogout = () => {
-    sessionStorage.removeItem("userData"); // Clear user data from sessionStorage
-    setLatestUser([]); // Clear context data if necessary
-    navigate("/"); // Redirect to the Introduction page
+    sessionStorage.removeItem("userData");
+    setLatestUser(null);
+    navigate("/");
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   };
 
   return (
@@ -106,26 +89,29 @@ function PersonalisedInfo() {
               <div className={styles.clock}>
                 <Clock />
               </div>
-              <h2 className={styles.userName}>Hello, {latestUser.name},</h2>
+
+              <h2 className={styles.userName}>
+                Hello {capitalizeFirstLetter(latestUser.name)},
+              </h2>
+
               <p className={styles.quotes}>{`{ ${randomQuote} }`}</p>
+
+              {/* Display of activity if any */}
               <div className={styles.activities}>
-                {/* -------------------------------------------------------------------------------------------------------------- */}
-                {/* this is added for integrate testing purpose. CAn rephrase and render it based on the plannedActivity values 'yes' or 'no'*/}
-
-                <h4>
-                  {latestUser.plannedActivity} , there is a planned activity{" "}
-                </h4>
-                <label>
-                  {" "}
-                  '{latestUser.activityDetails}' at '
-                  {latestUser.activityLocation}' today
-                </label>
-
-                {/* ------------------------------------------------------------------------------------------------------------------ */}
+                {latestUser.plannedActivity === "yes" ? (
+                  <>
+                    <h4>Planned Activity:</h4>
+                    <p>{`${latestUser.activityDetails} at ${latestUser.activityLocation} today.`}</p>
+                  </>
+                ) : (
+                  <h4>No planned activity today.</h4>
+                )}
               </div>
-              <FormThree />
+              {/* Logout Button */}
+              <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
             </div>
-            
+
+            {/* <FormThree /> */}
 
             <div className={styles.flexContainer}>
               {loading ? (
@@ -135,8 +121,10 @@ function PersonalisedInfo() {
                   {/* Display home weather data */}
                   {personaliseData.homeWeather ? (
                     <div className={styles.homeContainer}>
-                      <h4>{`{Home}`}</h4>
-                      <h2>{latestUser.homeLocation} </h2>
+                      <h3>
+                        <span className={styles.spanColorPink}>{`{HOME}`}</span>
+                      </h3>
+                      <h2>{capitalizeFirstLetter(latestUser.homeLocation)} </h2>
 
                       <p className={styles.weatherIconPosition}>
                         <WeatherIcon
@@ -151,7 +139,7 @@ function PersonalisedInfo() {
                       </p>
 
                       <p className={styles.feelsPosition}>
-                        ...Feels like:{" "}
+                        ...Feels like{" "}
                         {Math.round(
                           personaliseData.homeWeather.main.feels_like
                         )}
@@ -176,9 +164,25 @@ function PersonalisedInfo() {
                   {/* Display work weather data */}
                   {personaliseData.workWeather ? (
                     <div className={styles.workContainer}>
-                      <h3>{`{Work} ${Math.round(
-                        personaliseData.workWeather.main.temp
-                      )}°C ${latestUser.workLocation}`}</h3>
+                      <p>
+                        <span
+                          className={styles.spanColorPink}
+                        >{`{WORK} `}</span>
+                        <span>{`${personaliseData.workWeather.weather[0].description} `}</span>
+
+                        <span className={styles.smallWeatherIcon}></span>
+
+                        <span
+                          className={`${styles.spanColorPink} ${styles.spanFontBig}`}
+                        >
+                          {Math.round(personaliseData.workWeather.main.temp)}°C{" "}
+                        </span>
+                        <span
+                          className={`${styles.spanColorwhite} ${styles.spanFontBig}`}
+                        >
+                          {capitalizeFirstLetter(latestUser.workLocation)}
+                        </span>
+                      </p>
                     </div>
                   ) : (
                     <p>
@@ -188,36 +192,15 @@ function PersonalisedInfo() {
                   )}
                 </>
               )}
-              <div className={styles.forcastPosition}><NextDayForecastNew /></div>
+              <div className={styles.forcastPosition}>
+                <NextDayForecastNew />
+              </div>
             </div>
           </>
         ) : (
           <p>No users added yet</p>
         )}
       </div>
-
-      {/* <h2>Your Activity Forecast:</h2> */}
-      {/* <FormThree /> */}
-
-      {/* Logout Button */}
-      <button onClick={handleLogout}>Logout</button>
-
-      {/* <Form /> */}
-      {/* <FormThree /> */}
-      {/* <ViewList /> */}
-      {/* <FormTwo /> */}
-      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
-        {/* <h2>Your Activity Forecast:</h2> */}
-      {/* <ViewList /> */}
-      {/* <FormTwo /> */}
-      {/* <Form /> */}
-      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
-        {isListVisible && <FormTwo />}
-        {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>} */}
-      {/* {isEditing && <FormTwo />} */}
-      {/* <button className={styles.updateButton}>
-        Update Information
-      </button> */}
     </div>
   );
 }

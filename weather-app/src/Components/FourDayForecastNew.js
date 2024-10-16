@@ -45,10 +45,9 @@ const FourDayForecastNew = () => {
       <div className={styles.forecastRow}>
         {forecastData.map((forecast, index) => (
           <div key={index} className={styles.forecastItem}>
-            <strong>{forecast.day} </strong> <br />
-            <strong>{forecast.forecast.text}</strong> <br />
-            <WeatherIcon forecastText={forecast.forecast.text} />
-            <br />
+            <p><WeatherIcon forecastText={forecast.forecast.text} /></p>
+            <strong className={styles.spanColorPink}>{forecast.day} </strong>
+            {/* <strong>{forecast.forecast.text}</strong> <br /> */}
             <p className={styles.temperaturePosition}>
               {forecast.temperature.high}°C
             </p>

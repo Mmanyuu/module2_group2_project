@@ -1,11 +1,12 @@
+// import AirQuality from "./AirQuality";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import Header from "./Header";
 import WeatherData from "./WeatherData";
-import AirQuality from "./AirQuality";
 import GeoCoordinates from "./GeoCoordinates";
 import PersonalisedInfo from "./PersonalisedInfo";
 import styles from "./MainPage.module.css";
-import { Link } from "react-router-dom";
 import FourDayForecastNew from "./FourDayForecastNew";
 
 const MainPage = () => {
@@ -19,6 +20,7 @@ const MainPage = () => {
   // 2) It then attempts to fetch the geographical coordinates using the GeoCoordinates function, passing the locationInput.
   // 3) If successful, it updates the coords state with the retrieved lon and lat.
   // 4) If an error occurs during the fetch (e.g., invalid location), it logs the error to the console and displays an alert.
+
   const handleSearch = async (locationInput) => {
     setLocation(locationInput);
     try {
@@ -38,40 +40,33 @@ const MainPage = () => {
   };
 
   return (
-    <div className={styles.dashboardContainer}>
-      {/*Personal Information - grid 1 [column]*/}
-      <div className={styles.personaliseBox}>
-        <PersonalisedInfo />
-        <Header onSearch={handleSearch} />
-        {coords.lon && coords.lat && (
-          <>
-            <WeatherData
-              lon={coords.lon}
-              lat={coords.lat}
-              location={location}
-            />
-            <AirQuality lat={coords.lat} long={coords.lon} />
-          </>
-        )}
-      </div>
-
-      {/*Weather Data and Search Header - grid 2 [column]*/}
-      <div className={styles.header}>
-        {/* Using react link and outlet to displayfour day forecast */}
-        <div className={styles.forecastLink}>
-          <Link to="#" onClick={handleForecastToggle}>
-            {showFourDayForecast
-              ? "- Hide 4-Day Forecast"
-              : "+ View 4-Day Forecast"}
-          </Link>
+    <div>
+      <Header onSearch={handleSearch} />
+      {coords.lon && coords.lat && (
+        <WeatherData lon={coords.lon} lat={coords.lat} location={location} />
+      )}
+      <div className={styles.dashboardContainer}>
+        <div className={styles.personaliseBox}>
+          <PersonalisedInfo />
         </div>
 
-        {/* Conditionally Render Four-Day Forecast */}
-        {showFourDayForecast && (
-          <div className={styles.forecastOutlet}>
-            <FourDayForecastNew />
+        <div className={styles.header}>
+          {/* Using react link and outlet to displayfour day forecast */}
+          <div className={styles.forecastLink}>
+            <Link to="#" onClick={handleForecastToggle}>
+              {showFourDayForecast
+                ? "- Hide 4-Day Forecast"
+                : "+ View 4-Day Forecast"}
+            </Link>
           </div>
-        )}
+
+          {/* Conditionally Render Four-Day Forecast */}
+          {showFourDayForecast && (
+            <div className={styles.forecastOutlet}>
+              <FourDayForecastNew />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
