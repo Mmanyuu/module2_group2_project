@@ -1,36 +1,44 @@
 /* FourDayForecastNew.module.css */
-body {
-    font-family: "Poppins", sans-serif;
-    font-size: 25px;
+/* body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+} */
+
+/* Container for scaling everything */
+.forecastContainer {
+  transform: scale(0.8); /* Scale down to 80% */
+  transform-origin: top left; /* Scale from the top-left corner */
 }
 
-.weatherIcon {
-    width: 200px;
-    height: 200px;
-  }
-  
-  /* Flex container for row layout */
-  .forecastRow {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    width: 790px
-  }
-  
-  /* Each forecast item */
-  .forecastItem {
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    width: 350px;
-    height: 230px;
-    font-size: 18px;
-  }
+/* Flex container for row layout */
+.forecastRow {
+  display: flex;
+  max-width: 500px;
+}
 
-  .temperaturePosition {
-    position: relative;
-    font-size: 24px;
-    left: 33%;
-    bottom: 65%;
-  }
-  
+/* Each forecast item */
+.forecastItem {
+  padding: 10px;
+  text-align: center;
+  width: 250px;
+  height: 200px;
+  font-size: 1.125rem;
+}
+
+.temperaturePosition {
+  color: #d29a9a;
+  font-weight: 500;
+  position: relative;
+  font-size: 1rem;
+  left: 30%;
+  bottom: 80%;
+}
+
+.spanColorPink {
+  color: #d29a9a;
+  font-weight: 550;
+}
+
+.loading {
+  color: white;
+}

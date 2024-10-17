@@ -1,23 +1,23 @@
 // PersonalisedInfo.js - component to show personalised weather info using initial user inputs
-
+import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { fetchRandomQuoteForWeather } from "./RandomQuotes";
+// import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import styles from "./PersonalisedInfo.module.css";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
 import FormThree from "./FormThree";
 import Clock from "./Clock";
 import WeatherIcon from "./WeatherIcon";
 import NextDayForecastNew from "./NextDayForecastNew";
+import FourDayForecastNew from "./FourDayForecastNew";
 
 // import Form from "./Form";
 // import FormTwo from "./FormTwo";
 // import Form from "./Form";
-// import ViewList from "./ViewList";
+// import ViewListTwo from "./ViewListTwo";
 
 // function Button({ label, onClick }) {
 //   return (
@@ -32,14 +32,15 @@ function PersonalisedInfo() {
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
-
-  // const [isListVisible, setIsListVisible] = useState(false);
-  const [isListVisible, setIsListVisible] = useState(false);
+  const [showFourDayForecast, setShowFourDayForecast] =
+    useState(false);
   const navigate = useNavigate();
 
   //putting the quote at personalised data and come out when the person sign in
   const [randomQuote, setRandomQuote] = useState("");
-
+  // const [isListVisible, setIsListVisible] = useState(false);
+  // const [isListVisible, setIsListVisible] = useState(false);
+  // const navigate = useNavigate();
   // Create a use State for Show / Hide FormButton
   // const [isEditing, setIsEditing] = useState(false);
 
@@ -48,6 +49,9 @@ function PersonalisedInfo() {
       // Set latest user whenever usersData is updated
       const user = usersData[usersData.length - 1];
       setLatestUser(user);
+
+      // we can do refractor on tge following to use data from WeatherData.js for nowi only know how to use the exact same info from andrew. :(
+      // encodeURIComponent to ensure location by the user input are passed safely and correctly fomated
 
       const fetchPersonaliseData = async (location, key) => {
         try {
@@ -71,7 +75,10 @@ function PersonalisedInfo() {
             [key]: response.data,
           }));
         } catch (err) {
-          console.error(`Error fetching weather data for ${location}`, err);
+          console.error(
+            `Error fetching weather data for ${location}`,
+            err
+          );
           setPersonaliseData((prevData) => ({
             ...prevData,
             [key]: null,
@@ -87,137 +94,223 @@ function PersonalisedInfo() {
     }
   }, [usersData]);
 
-  // const handleShowList = () => {
-  //   setIsListVisible((isListVisible) => !isListVisible);
-  // };
-
   const handleLogout = () => {
-    sessionStorage.removeItem("userData"); // Clear user data from sessionStorage
-    setLatestUser([]); // Clear context data if necessary
-    navigate("/"); // Redirect to the Introduction page
+    sessionStorage.removeItem("userData");
+    setLatestUser(null);
+    navigate("/");
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  const handleForecastToggle = () => {
+    setShowFourDayForecast((prev) => !prev);
   };
 
   return (
     <div>
-      <div className={styles.gridContainer}>
+      <div>
         {latestUser ? (
           <>
-            <div>
-              <div className={styles.clock}>
-                <Clock />
-              </div>
-              <h2 className={styles.userName}>Hello, {latestUser.name},</h2>
-              <p className={styles.quotes}>{`{ ${randomQuote} }`}</p>
-              <div className={styles.activities}>
-                {/* -------------------------------------------------------------------------------------------------------------- */}
-                {/* this is added for integrate testing purpose. CAn rephrase and render it based on the plannedActivity values 'yes' or 'no'*/}
-
-                <h4>
-                  {latestUser.plannedActivity} , there is a planned activity{" "}
-                </h4>
-                <label>
-                  {" "}
-                  '{latestUser.activityDetails}' at '
-                  {latestUser.activityLocation}' today
-                </label>
-
-                {/* ------------------------------------------------------------------------------------------------------------------ */}
-              </div>
-              <FormThree />
-            </div>
-            
-
-            <div className={styles.flexContainer}>
-              {loading ? (
-                <p>Loading weather data...</p>
-              ) : (
-                <>
-                  {/* Display home weather data */}
-                  {personaliseData.homeWeather ? (
-                    <div className={styles.homeContainer}>
-                      <h4>{`{Home}`}</h4>
-                      <h2>{latestUser.homeLocation} </h2>
-
-                      <p className={styles.weatherIconPosition}>
-                        <WeatherIcon
-                          forecastText={
-                            personaliseData.homeWeather.weather[0].description
-                          }
-                        />
-                      </p>
-                      {"   "}
-                      <p className={styles.highTempPosition}>
-                        {Math.round(personaliseData.homeWeather.main.temp)}°C{" "}
-                      </p>
-
-                      <p className={styles.feelsPosition}>
-                        ...Feels like:{" "}
-                        {Math.round(
-                          personaliseData.homeWeather.main.feels_like
-                        )}
-                        °C
-                      </p>
-
-                      <div className={styles.otherInfoPosition}>
-                        {`{ ${personaliseData.homeWeather.weather[0].description}`}{" "}
-                        <br />
-                        {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
-                        <br />
-                        {`Wind Speed ${personaliseData.homeWeather.wind.speed} m/s }`}
+            <div className={styles.gridContainer}>
+              {/* Left Grid */}
+              <div className={styles.leftGrid}>
+                <div className={styles.clock}>
+                  <Clock />
+                </div>
+                <h2 className={styles.userName}>
+                  Hello {capitalizeFirstLetter(latestUser.name)};
+                </h2>
+                <p
+                  className={styles.quotes}
+                >{`{ ${randomQuote} }`}</p>
+                {/* Display of activity if any */}
+                <div className={styles.activities}>
+                  {latestUser.plannedActivity === "yes" ? (
+                    <>
+                      <h4>Planned Activity:</h4>
+                      <p>{`${latestUser.activityDetails} at ${latestUser.activityLocation} today.`}</p>
+                      <div className={styles.editContainer}>
+                        <span className={styles.editButton}>
+                          edit
+                        </span>
+                        <span className={styles.addButton}>+</span>
+                        <span className={styles.deleteButton}>-</span>
                       </div>
-                    </div>
+                    </>
                   ) : (
-                    <p>
-                      Could not fetch weather data for {latestUser.homeLocation}
-                      .
-                    </p>
+                    <div>
+                      <h4>No planned activity today.</h4>
+                      <span className={styles.addButton}>+</span>
+                    </div>
                   )}
+                </div>
+                {/* Form to edit activity */}
+                {/* <FormThree /> */}
+                {/* Logout Button */}
+                <button
+                  className={styles.logoutButton}
+                  onClick={handleLogout}
+                >
+                  LOGOUT
+                </button>
+              </div>
 
-                  {/* Display work weather data */}
-                  {personaliseData.workWeather ? (
-                    <div className={styles.workContainer}>
-                      <h3>{`{Work} ${Math.round(
-                        personaliseData.workWeather.main.temp
-                      )}°C ${latestUser.workLocation}`}</h3>
-                    </div>
-                  ) : (
-                    <p>
-                      Could not fetch weather data for {latestUser.workLocation}
-                      .
-                    </p>
-                  )}
-                </>
-              )}
-              <div className={styles.forcastPosition}><NextDayForecastNew /></div>
+              {/* Right Grid */}
+              <div className={styles.flexContainer}>
+                {loading ? (
+                  <p className={styles.loading}>
+                    Loading weather data...
+                  </p>
+                ) : (
+                  <>
+                    {/* Display home weather data */}
+                    {personaliseData.homeWeather ? (
+                      <div className={styles.homeContainer}>
+                        <div>
+                          <span
+                            className={styles.spanColorPink}
+                          >{`{ HOME }`}</span>
+                          <br />
+                          <br />
+
+                          <span className={styles.homeLocation}>
+                            {capitalizeFirstLetter(
+                              latestUser.homeLocation
+                            )}
+                            , Singapore
+                          </span>
+                          <br />
+                          <br />
+                          <span className={styles.otherInfoPosition}>
+                            {`{ ${capitalizeFirstLetter(
+                              personaliseData.homeWeather.weather[0]
+                                .description
+                            )}`}{" "}
+                            <br />
+                            {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
+                            <br />
+                            {`Wind Speed ${personaliseData.homeWeather.wind.speed} m/s }`}
+                          </span>
+                        </div>
+
+                        <div className={styles.temperatureContainer}>
+                          <span
+                            className={styles.weatherIconPosition}
+                          >
+                            <WeatherIcon
+                              forecastText={
+                                personaliseData.homeWeather.weather[0]
+                                  .description
+                              }
+                              width={160}
+                              height={160}
+                            />
+                          </span>
+                          <p>
+                            <span className={styles.highTempPosition}>
+                              {Math.round(
+                                personaliseData.homeWeather.main.temp
+                              )}
+                              °C
+                            </span>
+                            <span className={styles.feelsPosition}>
+                              ...Feels like{" "}
+                              {Math.round(
+                                personaliseData.homeWeather.main
+                                  .feels_like
+                              )}
+                              °C
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <p>
+                        Could not fetch weather data for{" "}
+                        {latestUser.homeLocation}.
+                      </p>
+                    )}
+
+                    {/* Display work weather data */}
+                    {personaliseData.workWeather ? (
+                      <div className={styles.workContainer}>
+                        <p className={styles.workWeatherPosition}>
+                          <span
+                            className={styles.spanColorPink}
+                          >{`{ WORK } `}</span>
+
+                          <span
+                            className={`${styles.spanColorwhite} ${styles.spanBold}`}
+                          >
+                            {capitalizeFirstLetter(
+                              latestUser.workLocation
+                            )}
+                          </span>
+                          <span>
+                            <WeatherIcon
+                              forecastText={
+                                personaliseData.workWeather.weather[0]
+                                  .description
+                              }
+                              width={60}
+                              height={60}
+                            />
+                          </span>
+
+                          <span
+                            className={`${styles.spanColorPink} ${styles.spanFontBig}`}
+                          >
+                            {" "}
+                            {`${personaliseData.workWeather.weather[0].description} `}
+                            {Math.round(
+                              personaliseData.workWeather.main.temp
+                            )}
+                            °C{" "}
+                          </span>
+                        </p>
+                        <div>
+                          <NextDayForecastNew />
+                        </div>
+                        <div>
+                          {/* Using react link and outlet to displayfour day forecast */}
+                          <Link
+                            to="#"
+                            onClick={handleForecastToggle}
+                            className={styles.forecastLink}
+                          >
+                            {showFourDayForecast
+                              ? "- Hide 4-Day Forecast"
+                              : "+ View 4-Day Forecast"}
+                          </Link>
+
+                          {/* Conditionally Render Four-Day Forecast */}
+                          {showFourDayForecast && (
+                            <div className={styles.forecastOutlet}>
+                              <FourDayForecastNew />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <p>
+                        Could not fetch weather data for{" "}
+                        {latestUser.workLocation}.
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           </>
         ) : (
           <p>No users added yet</p>
         )}
       </div>
-
-      {/* <h2>Your Activity Forecast:</h2> */}
-      {/* <FormThree /> */}
-
-      {/* Logout Button */}
-      <button onClick={handleLogout}>Logout</button>
-
-      {/* <Form /> */}
-      {/* <FormThree /> */}
-      {/* <ViewList /> */}
-      {/* <FormTwo /> */}
-      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
-        {/* <h2>Your Activity Forecast:</h2> */}
-      {/* <ViewList /> */}
-      {/* <FormTwo /> */}
-      {/* <Form /> */}
-      {/* <Button label={isListVisible ? "Hide" : "Add Activity"} onClick={handleShowList} />
-        {isListVisible && <FormTwo />}
-        {!isListVisible && <p>Click 'Add Activity' When you have plan.</p>} */}
-      {/* {isEditing && <FormTwo />} */}
-      {/* <button className={styles.updateButton}>
-        Update Information
-      </button> */}
     </div>
   );
 }

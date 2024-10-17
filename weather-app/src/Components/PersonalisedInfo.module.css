@@ -1,79 +1,219 @@
+/* LEFT GRID ITEMS */
+
 .gridContainer {
   display: grid;
-  grid-template-columns: auto auto;
-  height: 750px;
+  gap: 70px;
+  grid-template-columns: 525px auto;
+  min-height: 750px;
+  text-align: right;
+}
+
+.clock,
+.userName,
+.quotes {
+  width: 100%;
 }
 
 .clock {
-  font-size: 28px;
+  color: white;
+  font-size: 1.5rem;
   font-family: "Poppins", sans-serif;
-  text-align: right;
-  width: 500px;
 }
 
 .userName {
-  font-size: 40px;
-  text-align: right;
-  width: 500px;
-  margin: 15px 0px;
+  color: white;
+  font-size: 5rem;
+  margin: 0.25rem 0;
 }
 
 .quotes {
-  font-size: 28px;
-  text-align: right;
-  width: 500px;
-  margin: 0px;
+  font-size: 1.5rem;
+  color: #d29a9a;
 }
 
-.workContainer,
-.homeContainer {
-  padding: 0px 10px;
-  width: 700px;
-  height: 320px;
-  text-align: left;
-  font-size: 16px;
+.activities {
+  width: 100%;
+  text-align: right;
+  font-size: 1.25rem;
+  color: white;
 }
+
+.editButton,
+.addButton,
+.deleteButton {
+  font-size: 1.125rem;
+  color: #d29a9a;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.logoutButton {
+  margin-top: 100px;
+  padding: 8px 15px;
+  text-align: center;
+  justify-content: center;
+  background-color: #a68c8c;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #846c6c;
+}
+
+.loading {
+  color: white;
+}
+
+/* RIGHT GRID ITEMS */
 
 .flexContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 3em;
+  align-items: center; /* Centers content horizontally */
+  margin-left: 0; /* Adjust as needed */
+  gap: 40px;
 }
 
-.activities {
-  width: 500px;
-  text-align: center;
-  font-size: 16px;
+.homeContainer {
+  display: grid;
+  grid-template-columns: 300px auto;
+  width: 100%;
+  text-align: left;
 }
 
-.weatherIconPosition {
-  position: relative;
-  left: 25%;
-  bottom: 40%;
+.spanColorPink {
+  color: #d29a9a;
+  font-size: 1.25rem;
+  font-weight: 550;
 }
 
-.highTempPosition {
-  position: relative;
-  left: 50%;
-  bottom: 100%;
-  font-size: 60px;
-}
-
-.feelsPosition {
-  position: relative;
-  bottom: 115%;
-  left: 60%;
-  font-size: 18px;
+.homeLocation {
+  color: white;
+  font-size: 3.2rem;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .otherInfoPosition {
-  position: relative;
-  bottom: 117%;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 500;
+  color: #d29a9a;
 }
 
-.forcastPosition {
-  position: relative;
-  bottom: 25%;
+.temperatureContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.weatherIconPosition {
+  display: flex;
+}
+
+.highTempPosition {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  color: #d29a9a;
+  font-family: "Impact", sans-serif;
+  font-weight: 600;
+  font-size: 6rem;
+}
+
+.feelsPosition {
+  display: flex;
+  width: fit-content;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: white;
+  margin-left: 50px;
+}
+
+.workContainer {
+  display: grid;
+  grid-template-rows: auto auto;
+  width: 100%;
+  text-align: left;
+  font-size: 1.125rem;
+}
+
+.workWeatherPosition {
+  text-align: left;
+  justify-content: center;
+  margin: 0 0 20px; /* Adjust margins as needed */
+}
+
+.spanColorwhite {
+  color: white;
+}
+
+.spanFontBig {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+.spanBold {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-style: italic;
+  margin-left: 10px;
+}
+
+.forecastLink {
+  display: flex;
+  justify-content: left; /* Aligns content to the right horizontally */
+  align-items: left; /* Align items to the center vertically */
+  color: #a68c8c;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  width: fit-content;
+  margin-top: 30px;
+  text-decoration: none;
+}
+
+.forecastLink:hover {
+  color: #846c6c;
+}
+
+.forecastLink:active {
+  color: #846c6c;
+  padding: 5px;
+}
+
+.forecastOutlet {
+  display: flex;
+  align-items: left; /* Vertically centers the content */
+  justify-content: left;
+  width: 100%;
+  font-size: 1.125rem;
+}
+
+/* Responsive Design */
+
+/* to make the screen responsive in different screen size*/
+
+@media screen and (max-width: 1024px) {
+  .gridContainer {
+    grid-template-columns: 1fr; /* Single column for tablets */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logoutButton {
+    width: 100%;
+    padding: 15px 20px; /* Increase padding for smaller screens */
+  }
+
+  .smallWeatherIcon {
+    width: 200px;
+    height: 200px;
+  }
+
+  .flexContainer {
+    margin-left: 2em;
+  }
 }
