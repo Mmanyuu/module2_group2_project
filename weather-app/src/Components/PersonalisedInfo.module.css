@@ -1,110 +1,110 @@
 .gridContainer {
   display: grid;
-  grid-template-columns: auto auto;
-  height: 750px;
+  gap: 60px;
+  grid-template-columns: 525px auto;
+  min-height: 750px;
+}
+
+.clock,
+.userName,
+.quotes {
+  color: white;
+  text-align: right;
+  width: 100%;
 }
 
 .clock {
-  color: white;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-family: "Poppins", sans-serif;
-  text-align: right;
-  width: 500px;
 }
 
 .userName {
-  color: white;
-  font-size: 40px;
-  text-align: right;
-  width: 500px;
-  margin: 15px 0px;
+  font-size: 2.5rem;
+  margin: 1rem 0;
 }
 
 .quotes {
-  font-size: 28px;
-  text-align: right;
-  width: 500px;
-  margin: 0px;
+  font-size: 1.75rem;
   color: #d29a9a;
-}
-
-.homeContainer {
-  padding: 0px 10px;
-  width: 750px;
-  height: 300px;
-  text-align: left;
-  font-size: 18px;
-}
-
-.workContainer {
-  padding: 0px 10px;
-  width: 750px;
-  height: 300px;
-  text-align: left;
-  font-size: 18px;
 }
 
 .flexContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 4em;
+  align-items: center; /* Centers content horizontally */
+  margin-left: 0; /* Adjust as needed */
+  gap: 50px;
+}
+
+.homeContainer {
+  display: grid;
+  grid-template-columns: 300px auto;
+  width: 100%;
+  text-align: left;
+  font-size: 1.125rem;
+}
+
+.homeLocation {
+  color: white;
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.otherInfoPosition {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #d29a9a;
+}
+
+.temperatureContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.weatherIconPosition {
+  display: flex;
+}
+
+.highTempPosition {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  color: #d29a9a;
+  font-size: 3.75rem;
+}
+
+.feelsPosition {
+  display: flex;
+  width: fit-content;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: white;
+  margin-left: 50px;
+}
+
+.workContainer {
+  display: grid;
+  grid-template-rows: auto auto;
+  width: 100%;
+  text-align: left;
+  font-size: 1.125rem;
+}
+
+.workWeatherPosition {
+  text-align: left;
+  justify-content: center;
+  margin: 0 0 20px; /* Adjust margins as needed */
 }
 
 .activities {
-  width: 500px;
+  width: 100%;
   text-align: right;
   font-size: 16px;
   color: white;
 }
 
-.weatherIconPosition {
-  position: relative;
-  left: 33%;
-  bottom: 40%;
-}
-
-.highTempPosition {
-  position: relative;
-  color: #d29a9a;
-  left: 50%;
-  bottom: 115%;
-  font-size: 60px;
-}
-
-.feelsPosition {
-  position: relative;
-  bottom: 135%;
-  left: 60%;
-  font-size: 18px;
-  font-weight: 400;
-  color:white;
-}
-
-.otherInfoPosition {
-  position: relative;
-  bottom: 137%;
-  font-size: 24px;
-  font-weight: 400;
-  color: #d29a9a;
-}
-
-.forcastPosition {
-  position: relative;
-  top:10%;
-}
-
-h2 {
-  font-size: 40px;
-  margin: 3px;
-  color: white;
-}
-
-h3 {
-  margin-top: 3px;
-}
-
 .spanColorwhite {
-  color:white;
+  color: white;
 }
 
 .spanColorPink {
@@ -112,20 +112,14 @@ h3 {
   font-weight: 550;
 }
 
-.spanFontBig{
+.spanFontBig {
   font-size: 30px;
   font-weight: 500;
 }
 
-.smallWeatherIcon {
-  width: 300px !important;
-  height:300px !important;
-}
 .logoutButton {
-  margin-left: 77%;
-  margin-top: 5%;
+  margin: 0 auto; /* Center align button */
   padding: 10px 15px;
-  align-items: center;
   text-align: center;
   justify-content: center;
   background-color: #373d44;
@@ -134,10 +128,64 @@ h3 {
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
-  font-weight: 100px;
+  font-weight: 400;
   transition: background-color 0.3s ease;
 }
 
 .logoutButton:hover {
   background-color: #0056b3;
+}
+
+.forecastLink {
+  display: flex;
+  justify-content: left; /* Aligns content to the right horizontally */
+  align-items: left; /* Align items to the center vertically */
+  color: #373d44;
+  font-size: 1rem; 
+  transition: color 0.3s ease;
+  width: fit-content;
+  margin-top: 30px;
+}
+
+.forecastLink:hover{
+  color: white;
+}
+
+.forecastLink:active {
+  color: white;
+  padding: 5px;
+}
+
+.forecastOutlet {
+  display: flex;
+  align-items: left; /* Vertically centers the content */
+  justify-content: left;
+  width: 100%;
+  font-size: 1.125rem; 
+}
+
+/* Responsive Design */
+
+/* to make the screen responsive in different screen size*/
+
+@media screen and (max-width: 1024px) {
+  .gridContainer {
+    grid-template-columns: 1fr; /* Single column for tablets */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logoutButton {
+    width: 100%;
+    padding: 15px 20px; /* Increase padding for smaller screens */
+  }
+
+  .smallWeatherIcon {
+    width: 200px;
+    height: 200px;
+  }
+
+  .flexContainer {
+    margin-left: 2em;
+  }
 }

@@ -2,7 +2,7 @@
 import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
 import { ResponsesContext } from "../Context/ResponsesContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchRandomQuoteForWeather } from "./RandomQuotes";
 // import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,7 @@ import Clock from "./Clock";
 import WeatherIcon from "./WeatherIcon";
 import NextDayForecastNew from "./NextDayForecastNew";
 import FormFour from "./FormFour";
+import FourDayForecastNew from "./FourDayForecastNew";
 
 // import Form from "./Form";
 // import FormTwo from "./FormTwo";
@@ -32,6 +33,7 @@ function PersonalisedInfo() {
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
+  const [showFourDayForecast, setShowFourDayForecast] = useState(false);
   const navigate = useNavigate();
 
   //putting the quote at personalised data and come out when the person sign in
@@ -102,6 +104,10 @@ function PersonalisedInfo() {
       .join(" ");
   };
 
+  const handleForecastToggle = () => {
+    setShowFourDayForecast((prev) => !prev);
+  };
+
   return (
     <div>
       <div>
@@ -133,100 +139,134 @@ function PersonalisedInfo() {
                 </button>
               </div>
 
-              <div>
-                {/* Second Grid */}
-                <div className={styles.flexContainer}>
-                  {loading ? (
-                    <p>Loading weather data...</p>
-                  ) : (
-                    <>
-                      {/* Display home weather data */}
-                      {personaliseData.homeWeather ? (
-                        <div className={styles.homeContainer}>
-                          <h3>
-                            <span
-                              className={styles.spanColorPink}
-                            >{`{HOME}`}</span>
-                          </h3>
-                          <h2>
-                            {capitalizeFirstLetter(latestUser.homeLocation)}{" "}
-                          </h2>
-
-                          <p className={styles.weatherIconPosition}>
-                            <WeatherIcon
-                              forecastText={
-                                personaliseData.homeWeather.weather[0]
-                                  .description
-                              }
-                            />
-                          </p>
-                          {"   "}
-                          <p className={styles.highTempPosition}>
-                            {Math.round(personaliseData.homeWeather.main.temp)}
-                            °C{" "}
-                          </p>
-
-                          <p className={styles.feelsPosition}>
-                            ...Feels like{" "}
-                            {Math.round(
-                              personaliseData.homeWeather.main.feels_like
-                            )}
-                            °C
-                          </p>
-
-                          <div className={styles.otherInfoPosition}>
+              {/* Second Grid */}
+              <div className={styles.flexContainer}>
+                {loading ? (
+                  <p>Loading weather data...</p>
+                ) : (
+                  <>
+                    {/* Display home weather data */}
+                    {personaliseData.homeWeather ? (
+                      <div className={styles.homeContainer}>
+                        <div>
+                          <span
+                            className={styles.spanColorPink}
+                          >{`{HOME}`}</span>
+                          <br />
+                          <br />
+                          <span className={styles.homeLocation}>
+                            {capitalizeFirstLetter(latestUser.homeLocation)}
+                          </span>
+                          <br />
+                          <br />
+                          <span className={styles.otherInfoPosition}>
                             {`{ ${personaliseData.homeWeather.weather[0].description}`}{" "}
                             <br />
                             {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
                             <br />
                             {`Wind Speed ${personaliseData.homeWeather.wind.speed} m/s }`}
-                          </div>
+                          </span>
                         </div>
-                      ) : (
-                        <p>
-                          Could not fetch weather data for{" "}
-                          {latestUser.homeLocation}.
-                        </p>
-                      )}
 
-                      {/* Display work weather data */}
-                      {personaliseData.workWeather ? (
-                        <div className={styles.workContainer}>
+                        <div className={styles.temperatureContainer}>
+                          <span className={styles.weatherIconPosition}>
+                            <WeatherIcon
+                              forecastText={
+                                personaliseData.homeWeather.weather[0]
+                                  .description
+                              }
+                              width={160}
+                              height={160}
+                            />
+                          </span>
                           <p>
-                            <span
-                              className={styles.spanColorPink}
-                            >{`{WORK} `}</span>
-                            <span>{`${personaliseData.workWeather.weather[0].description} `}</span>
-
-                            <span className={styles.smallWeatherIcon}></span>
-
-                            <span
-                              className={`${styles.spanColorPink} ${styles.spanFontBig}`}
-                            >
+                            <span className={styles.highTempPosition}>
                               {Math.round(
-                                personaliseData.workWeather.main.temp
+                                personaliseData.homeWeather.main.temp
                               )}
-                              °C{" "}
+                              °C
                             </span>
-                            <span
-                              className={`${styles.spanColorwhite} ${styles.spanFontBig}`}
-                            >
-                              {capitalizeFirstLetter(latestUser.workLocation)}
+                            <span className={styles.feelsPosition}>
+                              ...Feels like{" "}
+                              {Math.round(
+                                personaliseData.homeWeather.main.feels_like
+                              )}
+                              °C
                             </span>
                           </p>
-                          <div className={styles.forcastPosition}>
-                            <NextDayForecastNew />
-                          </div>
                         </div>
-                      ) : (
-                        <p>
-                          Could not fetch weather data for{" "}
-                          {latestUser.workLocation}.
+                      </div>
+                    ) : (
+                      <p>
+                        Could not fetch weather data for{" "}
+                        {latestUser.homeLocation}.
+                      </p>
+                    )}
+
+                    {/* Display work weather data */}
+                    {personaliseData.workWeather ? (
+                      <div className={styles.workContainer}>
+                        <p className={styles.workWeatherPosition}>
+                          <span
+                            className={styles.spanColorPink}
+                          >{`{WORK} `}</span>
+
+                          <span>
+                            <WeatherIcon
+                              forecastText={
+                                personaliseData.workWeather.weather[0]
+                                  .description
+                              }
+                              width={60}
+                              height={60}
+                            />
+                          </span>
+
+                          <span
+                            className={`${styles.spanColorPink} ${styles.spanFontBig}`}
+                          >
+                            {" "}
+                            {`${personaliseData.workWeather.weather[0].description} `}
+                            {Math.round(personaliseData.workWeather.main.temp)}
+                            °C{" "}
+                          </span>
+                          <span
+                            className={`${styles.spanColorwhite} ${styles.spanFontBig}`}
+                          >
+                            {capitalizeFirstLetter(latestUser.workLocation)}
+                          </span>
                         </p>
-                      )}
-                    </>
-                  )}
-                </div>
+                        <div>
+                          <NextDayForecastNew />
+                        </div>
+                        <div>
+                          {/* Using react link and outlet to displayfour day forecast */}
+                          <Link
+                            to="#"
+                            onClick={handleForecastToggle}
+                            className={styles.forecastLink}
+                          >
+                            {showFourDayForecast
+                              ? "- Hide 4-Day Forecast"
+                              : "+ View 4-Day Forecast"}
+                          </Link>
+
+                          {/* Conditionally Render Four-Day Forecast */}
+                          {showFourDayForecast && (
+                            <div className={styles.forecastOutlet}>
+                              <FourDayForecastNew />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <p>
+                        Could not fetch weather data for{" "}
+                        {latestUser.workLocation}.
+                      </p>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           </>

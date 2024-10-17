@@ -1,22 +1,8 @@
 .dashboardContainer {
   display: grid;
-  grid-template-columns: 550px auto;
-  grid-template-rows: auto auto;
-  grid-gap: 20px; /* Space between grid items */
+  grid-template-rows: minmax(200px, 500px) auto; /* Flexibly adjusts the first row */
+  grid-gap: 20px;
   padding: 10px;
   margin: 10px;
-}
-
-.forecastLink {
-  position: relative;
-  top: 62%;
-  left: 5.5%;
-  font-size: 16px;
-}
-
-.forecastOutlet {
-  position: relative;
-  top: 58%;
-  right: 5%;
-  font-size: 18px;
+  min-height: 500px;
 }

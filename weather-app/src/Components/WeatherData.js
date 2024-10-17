@@ -1,7 +1,6 @@
 import styles from "./WeatherData.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import { fetchRandomQuoteForWeather } from "./RandomQuotes";
 
 // The WeatherData component fetches current weather data for a specified location based on geographical coordinates (longitude and latitude) from openweathermap.org API.
@@ -10,10 +9,10 @@ const WeatherData = ({ lon, lat, location }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [randomQuote, setRandomQuote] = useState("");
 
   // The useEffect hook is used to perform the side effect of fetching weather data when the component mounts or when the lon or lat props change
+
   useEffect(() => {
     const fetchWeatherData = async () => {
       if (!lon || !lat) return; // Early return if coordinates are missing
@@ -70,8 +69,8 @@ const WeatherData = ({ lon, lat, location }) => {
       <p>Visibility: {weatherData.visibility / 1000}km</p>
       <p>Wind Speed: {weatherData.wind.speed} m/s</p>
       <p>
-        Rainfall in last hour:{" "}
-        {weatherData.rain ? weatherData.rain["1h"] : 0} mm
+        Rainfall in last hour: {weatherData.rain ? weatherData.rain["1h"] : 0}{" "}
+        mm
       </p>
       <p>Cloudiness: {weatherData.clouds.all}%</p>
       <p>Pressure: {weatherData.main.pressure} hPa</p>
