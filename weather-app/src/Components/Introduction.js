@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ResponsesContext } from "../Context/ResponsesContext";
 import styles from "./Introduction.module.css";
@@ -40,110 +40,112 @@ const Introduction = () => {
   return (
     <div className={styles.container}>
       <Carousel />
-      <p>
-        Ah, so you stumble upon this random weather app. <br />
-        well, since you are here, <br />
-        why don't you tell us a bit about yourself.
-      </p>
+      <main>
+        <p>
+          Ah, so you stumble upon this random weather app. <br />
+          well, since you are here, <br />
+          why don't you tell us a bit about yourself.
+        </p>
 
-      <form onSubmit={handleSubmit}>
-        <p>
-          How should we address you? <br />
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            placeholder="Your Name"
-            required
-          />
-        </p>
-        <p>
-          Area of residence? <br />
-          <input
-            type="text"
-            value={homeLocation}
-            onChange={(e) => {
-              setHomeLocation(e.target.value);
-            }}
-            placeholder="Your Area"
-            required
-          />
-        </p>
-        <p>
-          How about your school or work location?
+        <form onSubmit={handleSubmit}>
+          <p>
+            How should we address you? <br />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              placeholder="Your Name"
+              required
+            />
+          </p>
+          <p>
+            Area of residence? <br />
+            <input
+              type="text"
+              value={homeLocation}
+              onChange={(e) => {
+                setHomeLocation(e.target.value);
+              }}
+              placeholder="Your Area"
+              required
+            />
+          </p>
+          <p>
+            How about your school or work location?
+            <br />
+            <input
+              type="text"
+              value={workLocation}
+              onChange={(e) => {
+                setWorkLocation(e.target.value);
+              }}
+              placeholder="Your School / Work Location"
+              required
+            />
+          </p>
+          <p>
+            Do you have any activities planned tomorrow that rely on
+            the weather, like a picnic or sports?
+          </p>
+          <label>
+            <input
+              type="radio"
+              value="yes"
+              checked={hasActivity === "yes"}
+              onChange={(e) => {
+                setHasActivity(e.target.value);
+              }}
+            />{" "}
+            Yes
+          </label>
+          <label>
+            <input
+              type="radio"
+              value="no"
+              checked={hasActivity === "no"}
+              onChange={(e) => {
+                setHasActivity(e.target.value);
+              }}
+            />{" "}
+            No
+          </label>
+          {hasActivity === "yes" && (
+            <>
+              <p>
+                What activity you have planned? <br />
+                <input
+                  type="text"
+                  value={activityDetails}
+                  onChange={(e) => {
+                    setActivityDetails(e.target.value);
+                  }}
+                  placeholder="Activity"
+                  required
+                />
+              </p>
+              <p>
+                Where will it take place? <br />
+                <input
+                  type="text"
+                  value={activityLocation}
+                  onChange={(e) => {
+                    setActivityLocation(e.target.value);
+                  }}
+                  placeholder="Location"
+                  required
+                />
+              </p>
+            </>
+          )}
+          <p>Alright, all set. Let’s get something just for you.</p>
           <br />
-          <input
-            type="text"
-            value={workLocation}
-            onChange={(e) => {
-              setWorkLocation(e.target.value);
-            }}
-            placeholder="Your School / Work Location"
-            required
-          />
-        </p>
-        <p>
-          Do you have any activities planned tomorrow that rely on the
-          weather, like a picnic or sports?
-        </p>
-        <label>
-          <input
-            type="radio"
-            value="yes"
-            checked={hasActivity === "yes"}
-            onChange={(e) => {
-              setHasActivity(e.target.value);
-            }}
-          />{" "}
-          Yes
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="no"
-            checked={hasActivity === "no"}
-            onChange={(e) => {
-              setHasActivity(e.target.value);
-            }}
-          />{" "}
-          No
-        </label>
-        {hasActivity === "yes" && (
-          <>
-            <p>
-              What activity you have planned? <br />
-              <input
-                type="text"
-                value={activityDetails}
-                onChange={(e) => {
-                  setActivityDetails(e.target.value);
-                }}
-                placeholder="Activity"
-                required
-              />
-            </p>
-            <p>
-              Where will it take place? <br />
-              <input
-                type="text"
-                value={activityLocation}
-                onChange={(e) => {
-                  setActivityLocation(e.target.value);
-                }}
-                placeholder="Location"
-                required
-              />
-            </p>
-          </>
-        )}
-        <p>Alright, all set. Let’s get something just for you.</p>
-        <br />
-        <button type="submit" className={styles.submitButton}>
-          GO
-        </button>
-      </form>
+          <button type="submit" className={styles.submitButton}>
+            GO
+          </button>
+        </form>
+      </main>
     </div>
   );
 };
