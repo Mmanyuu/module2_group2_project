@@ -16,8 +16,8 @@ const WeatherIcon = ({ forecastText,width=20,height=30}) => {
   const lowerCaseText = forecastText.trim().toLowerCase();
 
   const weatherIconStyles = {
-    width: `${width}vw`,
-    height: `${height}vh`,
+    width: `${width}px`,
+    height: `${height}px`,
   }
 
   // Detect the forecast text and return the correct icon

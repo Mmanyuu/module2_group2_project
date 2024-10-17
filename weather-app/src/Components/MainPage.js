@@ -12,7 +12,7 @@ import FourDayForecastNew from "./FourDayForecastNew";
 const MainPage = () => {
   const [coords, setCoords] = useState({ lon: null, lat: null });
   const [location, setLocation] = useState("");
-  const [showFourDayForecast, setShowFourDayForecast] = useState(false);
+  // const [showFourDayForecast, setShowFourDayForecast] = useState(false);
 
   // This asynchronous function is called when a user submits a location from the Header component.
 
@@ -35,42 +35,20 @@ const MainPage = () => {
     }
   };
 
-  const handleForecastToggle = () => {
-    setShowFourDayForecast((prev) => !prev);
-  };
+  // const handleForecastToggle = () => {
+  //   setShowFourDayForecast((prev) => !prev);
+  // };
 
   return (
-    <div>
+    <>
       <Header onSearch={handleSearch} />
       {coords.lon && coords.lat && (
         <WeatherData lon={coords.lon} lat={coords.lat} location={location} />
       )}
       <div className={styles.dashboardContainer}>
-        <div>
-          <PersonalisedInfo />
-        </div>
-
-        <div className={styles.header}>
-          {/* Using react link and outlet to displayfour day forecast */}
-          <Link
-            to="#"
-            onClick={handleForecastToggle}
-            className={styles.forecastLink}
-          >
-            {showFourDayForecast
-              ? "- Hide 4-Day Forecast"
-              : "+ View 4-Day Forecast"}
-          </Link>
-
-          {/* Conditionally Render Four-Day Forecast */}
-          {showFourDayForecast && (
-            <div className={styles.forecastOutlet}>
-              <FourDayForecastNew />
-            </div>
-          )}
-        </div>
+        <PersonalisedInfo />
       </div>
-    </div>
+    </>
   );
 };
 
