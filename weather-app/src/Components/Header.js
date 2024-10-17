@@ -1,11 +1,13 @@
 import { useState } from "react";
 import styles from "./Header.module.css"; // Import CSS module
 import logo from "./images/nimbusLogo.png"
+import { useNavigate } from "react-router-dom";
 
 // Header consits of app title, an input form and a real time clock.
 
 function Header({ onSearch }) {
   const [location, setLocation] = useState("");
+  const navigate = useNavigate();
 
   // This function is triggered whenever the input field changes. It updates the location state with the current value from the input field (event.target.value).
   const handlerInputChange = (event) => {

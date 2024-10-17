@@ -5,6 +5,7 @@ import Introduction from "./Components/Introduction";
 import MainPage from "./Components/MainPage";
 import RedirectOnRefresh from "./Components/RedirectOnRefresh";
 import FourDayForecastNew from "./Components/FourDayForecastNew";
+import SearchResultPage from "./Components/SearchResultPage";
 
 function App() {
   return (
@@ -14,12 +15,8 @@ function App() {
           <RedirectOnRefresh>
             <Routes>
               <Route path="/" element={<Introduction />} />{" "}
-              <Route path="/MainPage" element={<MainPage />}>
-                <Route
-                  path="/MainPage/FourDayForecastNew"
-                  element={<FourDayForecastNew />}
-                />{" "}
-              </Route>
+              <Route path="/MainPage" element={<MainPage />}/>
+              <Route path="/searchResult" element={<SearchResultPage />} />
             </Routes>
           </RedirectOnRefresh>
         </Router>
