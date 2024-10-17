@@ -5,13 +5,20 @@ import { ReactComponent as Rainy } from "./images/rain.svg";
 import { ReactComponent as ThunderStormDay } from "./images/thunderstorms-rain.svg";
 import { ReactComponent as Thunder } from "./images/thunderstorms.svg";
 
-const weatherIconStyles = {
-  width: 150,
-  height: 150,
-};
+// const weatherIconStyles = {
+//   width: "20vw", // 20% of viewport width
+//   height: "30vh", // 30% of viewport height
+//   maxWidth: "150px", // Cap the size at 150px
+//   maxHeight: "150px",
+// };
 
-const WeatherIcon = ({ forecastText }) => {
+const WeatherIcon = ({ forecastText,width=20,height=30}) => {
   const lowerCaseText = forecastText.trim().toLowerCase();
+
+  const weatherIconStyles = {
+    width: `${width}vw`,
+    height: `${height}vh`,
+  }
 
   // Detect the forecast text and return the correct icon
   if (lowerCaseText.includes("fair") || lowerCaseText.includes("clear")) {

@@ -157,7 +157,7 @@ function PersonalisedInfo() {
                               forecastText={
                                 personaliseData.homeWeather.weather[0]
                                   .description
-                              }
+                              } width={15} height={30} 
                             />
                           </p>
                           {"   "}
@@ -196,13 +196,15 @@ function PersonalisedInfo() {
                             <span
                               className={styles.spanColorPink}
                             >{`{WORK} `}</span>
-                            <span>{`${personaliseData.workWeather.weather[0].description} `}</span>
 
-                            <span className={styles.smallWeatherIcon}></span>
+                            <span>
+                            <WeatherIcon
+                              forecastText={personaliseData.workWeather.weather[0].description} width={5} height={10} 
+                            /></span>
 
                             <span
                               className={`${styles.spanColorPink} ${styles.spanFontBig}`}
-                            >
+                            > {`${personaliseData.workWeather.weather[0].description} `}
                               {Math.round(
                                 personaliseData.workWeather.main.temp
                               )}

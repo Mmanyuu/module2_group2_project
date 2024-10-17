@@ -8,15 +8,32 @@
 }
 
 .forecastLink {
-  position: relative;
-  top: 62%;
-  left: 5.5%;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  color: #373d44;
   font-size: 16px;
+  transition: color 0.3s ease;
+  margin-top: 500px;
+  margin-left: 45px;
+  width: fit-content;
+  
 }
 
+.forecastLink:hover{
+  color: white;
+}
+
+.forecastLink:active {
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+
 .forecastOutlet {
-  position: relative;
-  top: 58%;
-  right: 5%;
+  display: flex;
+  justify-content: left; /* Aligns content to the right */
+  align-items: left; /* Vertically centers the content */
   font-size: 18px;
 }

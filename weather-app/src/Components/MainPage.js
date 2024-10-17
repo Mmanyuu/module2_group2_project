@@ -52,13 +52,15 @@ const MainPage = () => {
 
         <div className={styles.header}>
           {/* Using react link and outlet to displayfour day forecast */}
-          <div className={styles.forecastLink}>
-            <Link to="#" onClick={handleForecastToggle}>
-              {showFourDayForecast
-                ? "- Hide 4-Day Forecast"
-                : "+ View 4-Day Forecast"}
-            </Link>
-          </div>
+          <Link
+            to="#"
+            onClick={handleForecastToggle}
+            className={styles.forecastLink}
+          >
+            {showFourDayForecast
+              ? "- Hide 4-Day Forecast"
+              : "+ View 4-Day Forecast"}
+          </Link>
 
           {/* Conditionally Render Four-Day Forecast */}
           {showFourDayForecast && (
