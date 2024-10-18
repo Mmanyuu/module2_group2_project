@@ -10,7 +10,7 @@ function NameForm() {
   const [location, setLocation] = useState("");
   const [data, setData] = useState(true);
   const [editData, setEditData] = useState(true);
-  console.log(editData);
+  // console.log(editData);
 
   function handleSubmission() {
     localStorage.clear();
@@ -21,7 +21,7 @@ function NameForm() {
     localStorage.setItem("userInfo", JSON.stringify(userData));
     document.getElementsByClassName("span").style = "block";
     alert("Data recorded!");
-    window.location.reload();
+    // window.location.reload();
   }
 
   let userInfo = "";
