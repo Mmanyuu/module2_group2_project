@@ -168,8 +168,9 @@ function PersonalisedInfo() {
                     <h4>No planned activity today.</h4>
                   )}
                 </div>
-                {/* <FormThree /> */}
-                {/* <FormFour /> */}
+
+                <FormFour />
+
                 {/* Logout Button */}
                 <button className={styles.logoutButton} onClick={handleLogout}>
                   Logout
@@ -192,12 +193,19 @@ function PersonalisedInfo() {
                           <br />
                           <br />
                           <span className={styles.homeLocation}>
-                            {capitalizeFirstLetter(latestUser.homeLocation)}
+                          
+                            {capitalizeFirstLetter(latestUser.homeLocation)},
+                            Singapore
+
                           </span>
                           <br />
                           <br />
                           <span className={styles.otherInfoPosition}>
-                            {`{ ${personaliseData.homeWeather.weather[0].description}`}{" "}
+                          
+                            {`{ ${capitalizeFirstLetter(
+                              personaliseData.homeWeather.weather[0].description
+                            )}`}{" "}
+
                             <br />
                             {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
                             <br />

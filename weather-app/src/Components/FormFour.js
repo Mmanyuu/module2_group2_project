@@ -9,7 +9,7 @@ function NameForm() {
   const [activity, setActivity] = useState("");
   const [location, setLocation] = useState("");
   const [data, setData] = useState(true);
-  const [editData, setEditData] = useState(true);
+  const [editData, setEditData] = useState(false);
   // console.log(editData);
 
   function handleSubmission() {
@@ -20,7 +20,8 @@ function NameForm() {
     };
     localStorage.setItem("userInfo", JSON.stringify(userData));
     document.getElementsByClassName("span").style = "block";
-    alert("Data recorded!");
+    setEditData(false);
+    // alert("Data recorded!");
     // window.location.reload();
   }
 
@@ -37,6 +38,7 @@ function NameForm() {
     setEditData(true);
     console.log(editData);
   }
+
   return (
     <div className="background">
       <div className="box">
