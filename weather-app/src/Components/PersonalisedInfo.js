@@ -12,6 +12,7 @@ import FormThree from "./FormThree";
 import Clock from "./Clock";
 import WeatherIcon from "./WeatherIcon";
 import NextDayForecastNew from "./NextDayForecastNew";
+import FormFour from "./FormFour";
 import FourDayForecastNew from "./FourDayForecastNew";
 
 // import Form from "./Form";
@@ -33,7 +34,6 @@ function PersonalisedInfo() {
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
   const [showFourDayForecast, setShowFourDayForecast] = useState(false);
-
   const navigate = useNavigate();
 
   //putting the quote at personalised data and come out when the person sign in
@@ -43,6 +43,33 @@ function PersonalisedInfo() {
   // const navigate = useNavigate();
   // Create a use State for Show / Hide FormButton
   // const [isEditing, setIsEditing] = useState(false);
+  
+  // Settings Form Input State
+  const [data, setData] = useState(false);
+  const [editData, setEditData] = useState(false);
+  const [activity, setActivity] = useState("");
+  const [location, setLocation] = useState("");
+
+  let userInfo = "";
+  function toggleGetData() {
+    setData(true);
+    userInfo = JSON.parse(localStorage.getItem("userInfo"));
+   console.log(userInfo);
+
+    setActivity(latestUser.activityDetails);
+    setLocation(latestUser.activityLocation);
+  }
+
+  // // Save handler
+  // const saveRow = (row) => {
+  //   const updatedRows = rows.map((r) => {
+  //     if (r === row) {
+  //       return { ...r, editing: false };
+  //     }
+  //     return r;
+  //   });
+  //   setRows(updatedRows);
+  // };
 
   useEffect(() => {
     if (usersData.length > 0) {
@@ -75,10 +102,7 @@ function PersonalisedInfo() {
             [key]: response.data,
           }));
         } catch (err) {
-          console.error(
-            `Error fetching weather data for ${location}`,
-            err
-          );
+          console.error(`Error fetching weather data for ${location}`, err);
           setPersonaliseData((prevData) => ({
             ...prevData,
             [key]: null,
@@ -117,59 +141,53 @@ function PersonalisedInfo() {
         {latestUser ? (
           <>
             <div className={styles.gridContainer}>
-
-              {/* Left Grid */}
-              <div className={styles.leftGrid}>
-                <div className={styles.clock}>
-                  <Clock />
-                </div>
+              {/* First Grid */}
+              <div className={styles.clock}>
+                <Clock />
                 <h2 className={styles.userName}>
-                  Hello {capitalizeFirstLetter(latestUser.name)};
+                  Hello {capitalizeFirstLetter(latestUser.name)},
                 </h2>
-                <p
-                  className={styles.quotes}
-                >{`{ ${randomQuote} }`}</p>
-
+                <p className={styles.quotes}>{`{ ${randomQuote} }`}</p>
                 {/* Display of activity if any */}
                 <div className={styles.activities}>
                   {latestUser.plannedActivity === "yes" ? (
                     <>
                       <h4>Planned Activity:</h4>
                       <p>{`${latestUser.activityDetails} at ${latestUser.activityLocation} today.`}</p>
-                      
-                      <div className={styles.editContainer}>
-                        <span className={styles.editButton}>
-                          edit
-                        </span>
-                        <span className={styles.addButton}>+</span>
-                        <span className={styles.deleteButton}>-</span>
-                      </div>
                     </>
                   ) : (
-                    <div>
-                      <h4>No planned activity today.</h4>
-                      <span className={styles.addButton}>+</span>
-                    </div>
+                    <h4>No planned activity today.</h4>
                   )}
                 </div>
-                {/* Form to edit activity */}
-                {/* <FormThree /> */}
+                <button onClick={toggleGetData}>Edit Data</button>
+                {data && (
+                  <>
+                  <div>
+                  <input
+                    type="text"
+                    value={latestUser.activityDetails}
+                  />
+                  <input
+                    type="text"
+                    value={latestUser.activityLocation}
+                  />
+                  
+                    {/* <div> Activity - {latestUser.activityDetails}</div>
+                    <div> Location - {latestUser.activityLocation}</div> */}
+                  </div>
+                </>
+                )}
+                <FormThree />
                 {/* Logout Button */}
-                <button
-                  className={styles.logoutButton}
-                  onClick={handleLogout}
-                >
-                  LOGOUT
+                <button className={styles.logoutButton} onClick={handleLogout}>
+                  Logout
                 </button>
               </div>
 
-              {/* Right Grid */}
+              {/* Second Grid */}
               <div className={styles.flexContainer}>
                 {loading ? (
-                  <p className={styles.loading}>
-                    Loading weather data...
-                  </p>
-
+                  <p>Loading weather data...</p>
                 ) : (
                   <>
                     {/* Display home weather data */}
@@ -178,27 +196,16 @@ function PersonalisedInfo() {
                         <div>
                           <span
                             className={styles.spanColorPink}
-                            
-                          >{`{ HOME }`}</span>
+                          >{`{HOME}`}</span>
                           <br />
                           <br />
-
                           <span className={styles.homeLocation}>
-                            {capitalizeFirstLetter(
-                              latestUser.homeLocation
-                            )}
-                            , Singapore
-
+                            {capitalizeFirstLetter(latestUser.homeLocation)}
                           </span>
                           <br />
                           <br />
                           <span className={styles.otherInfoPosition}>
-                          
-                            {`{ ${capitalizeFirstLetter(
-                              personaliseData.homeWeather.weather[0]
-                                .description
-                            )}`}{" "}
-
+                            {`{ ${personaliseData.homeWeather.weather[0].description}`}{" "}
                             <br />
                             {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
                             <br />
@@ -207,11 +214,7 @@ function PersonalisedInfo() {
                         </div>
 
                         <div className={styles.temperatureContainer}>
-                        
-                          <span
-                            className={styles.weatherIconPosition}
-                          >
-
+                          <span className={styles.weatherIconPosition}>
                             <WeatherIcon
                               forecastText={
                                 personaliseData.homeWeather.weather[0]
@@ -231,8 +234,7 @@ function PersonalisedInfo() {
                             <span className={styles.feelsPosition}>
                               ...Feels like{" "}
                               {Math.round(
-                                personaliseData.homeWeather.main
-                                  .feels_like
+                                personaliseData.homeWeather.main.feels_like
                               )}
                               °C
                             </span>
@@ -252,16 +254,7 @@ function PersonalisedInfo() {
                         <p className={styles.workWeatherPosition}>
                           <span
                             className={styles.spanColorPink}
-
-                          >{`{ WORK } `}</span>
-
-                          <span
-                            className={`${styles.spanColorwhite} ${styles.spanBold}`}
-                          >
-                            {capitalizeFirstLetter(
-                              latestUser.workLocation
-                            )}
-                          </span>
+                          >{`{WORK} `}</span>
 
                           <span>
                             <WeatherIcon
@@ -279,13 +272,14 @@ function PersonalisedInfo() {
                           >
                             {" "}
                             {`${personaliseData.workWeather.weather[0].description} `}
-
-                            {Math.round(
-                              personaliseData.workWeather.main.temp
-                            )}
+                            {Math.round(personaliseData.workWeather.main.temp)}
                             °C{" "}
                           </span>
-
+                          <span
+                            className={`${styles.spanColorwhite} ${styles.spanFontBig}`}
+                          >
+                            {capitalizeFirstLetter(latestUser.workLocation)}
+                          </span>
                         </p>
                         <div>
                           <NextDayForecastNew />
