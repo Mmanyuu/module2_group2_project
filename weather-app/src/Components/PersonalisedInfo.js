@@ -8,7 +8,7 @@ import { fetchRandomQuoteForWeather } from "./RandomQuotes";
 
 import axios from "axios";
 import GeoCoordinates from "./GeoCoordinates"; // Import the GeoCoordinates function
-import FormThree from "./FormThree";
+// import FormThree from "./FormThree";
 import Clock from "./Clock";
 import WeatherIcon from "./WeatherIcon";
 import NextDayForecastNew from "./NextDayForecastNew";
@@ -44,21 +44,21 @@ function PersonalisedInfo() {
   // Create a use State for Show / Hide FormButton
   // const [isEditing, setIsEditing] = useState(false);
   
-  // Settings Form Input State
-  const [data, setData] = useState(false);
-  const [editData, setEditData] = useState(false);
-  const [activity, setActivity] = useState("");
-  const [location, setLocation] = useState("");
+  // // Settings Form Input State
+  // const [data, setData] = useState(false);
+  // const [editData, setEditData] = useState(false);
+  // const [activity, setActivity] = useState("");
+  // const [location, setLocation] = useState("");
 
-  let userInfo = "";
-  function toggleGetData() {
-    setData(true);
-    userInfo = JSON.parse(localStorage.getItem("userInfo"));
-   console.log(userInfo);
+  // let userInfo = "";
+  // function toggleGetData() {
+  //   setData(true);
+  //   userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  //  console.log(userInfo);
 
-    setActivity(latestUser.activityDetails);
-    setLocation(latestUser.activityLocation);
-  }
+  //   setActivity(latestUser.activityDetails);
+  //   setLocation(latestUser.activityLocation);
+  // }
 
   // // Save handler
   // const saveRow = (row) => {
@@ -159,25 +159,8 @@ function PersonalisedInfo() {
                     <h4>No planned activity today.</h4>
                   )}
                 </div>
-                <button onClick={toggleGetData}>Edit Data</button>
-                {data && (
-                  <>
-                  <div>
-                  <input
-                    type="text"
-                    value={latestUser.activityDetails}
-                  />
-                  <input
-                    type="text"
-                    value={latestUser.activityLocation}
-                  />
-                  
-                    {/* <div> Activity - {latestUser.activityDetails}</div>
-                    <div> Location - {latestUser.activityLocation}</div> */}
-                  </div>
-                </>
-                )}
-                <FormThree />
+                {/* <FormThree /> */}
+                <FormFour />
                 {/* Logout Button */}
                 <button className={styles.logoutButton} onClick={handleLogout}>
                   Logout
