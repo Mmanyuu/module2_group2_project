@@ -69,8 +69,8 @@ const WeatherData = ({ lon, lat, location }) => {
       <p>Visibility: {weatherData.visibility / 1000}km</p>
       <p>Wind Speed: {weatherData.wind.speed} m/s</p>
       <p>
-        Rainfall in last hour:{" "}
-        {weatherData.rain ? weatherData.rain["1h"] : 0} mm
+        Rainfall in last hour: {weatherData.rain ? weatherData.rain["1h"] : 0}{" "}
+        mm
       </p>
       <p>Cloudiness: {weatherData.clouds.all}%</p>
       <p>Pressure: {weatherData.main.pressure} hPa</p>

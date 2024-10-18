@@ -23,3 +23,14 @@
 .loading {
   color: white;
 }
+
+.spanColorPink {
+  color: #d29a9a;
+  font-weight: 550;
+}
+
+.spanColorWhite {
+  color: white;
+  font-weight: 500;
+}
+

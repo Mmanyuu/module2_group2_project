@@ -1,3 +1,4 @@
+
 // import React, { useState } from "react";
 // import Header from "./Header";
 // import WeatherData from "./WeatherData";
@@ -10,6 +11,7 @@
 //   const [coords, setCoords] = useState({ lon: null, lat: null });
 //   const [location, setLocation] = useState("");
 //   const navigate = useNavigate();
+
 
 //   // This asynchronous function is called when a user submits a location from the Header component.
 
@@ -67,10 +69,11 @@ const MainPage = () => {
   return (
     <div>
       <Header />
+
       <div className={styles.dashboardContainer}>
         <PersonalisedInfo />
       </div>
-    </div>
+    </>
   );
 };
 

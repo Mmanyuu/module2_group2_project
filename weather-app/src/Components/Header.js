@@ -2,7 +2,10 @@ import { useState } from "react";
 import styles from "./Header.module.css"; // Import CSS module
 import GeoCoordinates from "./GeoCoordinates"; // Import GeoCoordinates
 
+
+
 // Header consists of app title, an input form, and a real-time clock.
+
 
 function Header() {
   const [location, setLocation] = useState(""); // Stores user input location
@@ -122,9 +125,7 @@ function Header() {
             <div>Wind Speed: {weatherData.wind.speed} m/s</div>
           </div>
         </div>
-      ) : null}
-
-      {/* Render nothing if there's no data or error */}
+      ) : null} {/* Render nothing if there's no data or error */}
     </div>
   );
 }

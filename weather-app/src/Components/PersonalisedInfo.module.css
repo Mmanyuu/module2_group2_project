@@ -6,6 +6,7 @@
   grid-template-columns: 525px auto;
   min-height: 750px;
   text-align: right;
+
 }
 
 .clock,
@@ -100,6 +101,7 @@
   font-style: italic;
 }
 
+
 .otherInfoPosition {
   font-size: 1.5rem;
   font-weight: 500;
@@ -123,6 +125,7 @@
   font-family: "Impact", sans-serif;
   font-weight: 600;
   font-size: 6rem;
+
 }
 
 .feelsPosition {
@@ -148,6 +151,7 @@
   margin: 0 0 20px; /* Adjust margins as needed */
 }
 
+
 .spanColorwhite {
   color: white;
 }
@@ -156,6 +160,7 @@
   font-size: 1.75rem;
   font-weight: 500;
 }
+
 .spanBold {
   font-size: 2.5rem;
   font-weight: 700;
@@ -217,3 +222,4 @@
     margin-left: 2em;
   }
 }
+

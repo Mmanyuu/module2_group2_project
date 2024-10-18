@@ -9,7 +9,6 @@
   transform: scale(0.8); /* Scale down to 80% */
   transform-origin: top left; /* Scale from the top-left corner */
 }
-
 /* Flex container for row layout */
 .forecastRow {
   display: flex;
