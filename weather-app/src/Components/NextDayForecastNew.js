@@ -25,7 +25,9 @@ const NextDayForecastNew = () => {
         setForecastData(response.data.data.records[0].general);
       } catch (err) {
         console.error("Error fetching hourly forecast:", err);
-        setError("Could not fetch hourly forecast. Please try again.");
+        setError(
+          "Could not fetch hourly forecast. Please try again."
+        );
       } finally {
         setLoading(false);
       }
@@ -35,7 +37,7 @@ const NextDayForecastNew = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className={styles.loading}>Loading...</p>;
   }
 
   if (error) {
@@ -46,12 +48,23 @@ const NextDayForecastNew = () => {
   return (
     <>
       <div className={styles.forecastItem}>
-          <p><span className={styles.spanColorPink}> {`{24hr Forecast} `}</span>
-          <span className={styles.spanColorWhite}>{forecastData.forecast.text}</span>
-          <span className={styles.spanColorPink}>{` {high} `}</span>
-          <span className={styles.spanColorWhite}>{forecastData.temperature.high}°C</span>
-          <span className={styles.spanColorPink}>{` {low} `}</span>
-          <span className={styles.spanColorWhite}>{forecastData.temperature.low}°C</span></p>
+        <p>
+          <span className={styles.spanColorPink}>
+            {" "}
+            {`{ 24hr Forecast } `}
+          </span>
+          <span className={styles.spanColorWhite}>
+            {forecastData.forecast.text}
+          </span>
+          <span className={styles.spanColorPink}>{` { high } `}</span>
+          <span className={styles.spanColorWhite}>
+            {forecastData.temperature.high}°C
+          </span>
+          <span className={styles.spanColorPink}>{` { low } `}</span>
+          <span className={styles.spanColorWhite}>
+            {forecastData.temperature.low}°C
+          </span>
+        </p>
       </div>
     </>
   );

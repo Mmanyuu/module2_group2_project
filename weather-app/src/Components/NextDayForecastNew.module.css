@@ -1,4 +1,3 @@
-
 .weatherIcon {
   width: 200px;
   height: 200px;
@@ -9,6 +8,20 @@
   font-family: "Poppins", sans-serif;
   text-align: left;
   padding: 0px;
+}
+
+.spanColorPink {
+  color: #d29a9a;
+  font-weight: 550;
+}
+
+.spanColorWhite {
+  color: white;
+  font-weight: 500;
+}
+
+.loading {
+  color: white;
 }
 
 .spanColorPink {

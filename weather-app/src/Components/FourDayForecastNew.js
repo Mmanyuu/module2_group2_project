@@ -23,7 +23,9 @@ const FourDayForecastNew = () => {
         setForecastData(response.data.data.records[0].forecasts);
       } catch (err) {
         console.error("Error fetching four-day forecast:", err);
-        setError("Could not fetch four-day forecast. Please try again.");
+        setError(
+          "Could not fetch four-day forecast. Please try again."
+        );
       } finally {
         setLoading(false);
       }
@@ -33,7 +35,7 @@ const FourDayForecastNew = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className={styles.loading}>Loading...</p>;
   }
 
   if (error) {
@@ -41,7 +43,7 @@ const FourDayForecastNew = () => {
   }
 
   return (
-    <div>
+    <div className={styles.forecastContainer}>
       <div className={styles.forecastRow}>
         {forecastData.map((forecast, index) => (
           <div key={index} className={styles.forecastItem}>
@@ -52,7 +54,9 @@ const FourDayForecastNew = () => {
                 height={160}
               />
             </p>
-            <strong className={styles.spanColorPink}>{forecast.day} </strong>
+            <strong className={styles.spanColorPink}>
+              {forecast.day}{" "}
+            </strong>
             {/* <strong>{forecast.forecast.text}</strong> <br /> */}
             <p className={styles.temperaturePosition}>
               {forecast.temperature.high}°C
