@@ -32,7 +32,8 @@ function PersonalisedInfo() {
   const { usersData } = useContext(ResponsesContext); // Get usersData from context
   const [personaliseData, setPersonaliseData] = useState({});
   const [latestUser, setLatestUser] = useState(null); // Initial state as null
-  const [showFourDayForecast, setShowFourDayForecast] = useState(false);
+  const [showFourDayForecast, setShowFourDayForecast] =
+    useState(false);
 
   const navigate = useNavigate();
 
@@ -113,11 +114,10 @@ function PersonalisedInfo() {
 
   return (
     <div>
-      <div>
+      <div className={styles.centeredContainer}>
         {latestUser ? (
           <>
             <div className={styles.gridContainer}>
-
               {/* Left Grid */}
               <div className={styles.leftGrid}>
                 <div className={styles.clock}>
@@ -136,7 +136,7 @@ function PersonalisedInfo() {
                     <>
                       <h4>Planned Activity:</h4>
                       <p>{`${latestUser.activityDetails} at ${latestUser.activityLocation} today.`}</p>
-                      
+
                       <div className={styles.editContainer}>
                         <span className={styles.editButton}>
                           edit
@@ -169,7 +169,6 @@ function PersonalisedInfo() {
                   <p className={styles.loading}>
                     Loading weather data...
                   </p>
-
                 ) : (
                   <>
                     {/* Display home weather data */}
@@ -178,7 +177,6 @@ function PersonalisedInfo() {
                         <div>
                           <span
                             className={styles.spanColorPink}
-                            
                           >{`{ HOME }`}</span>
                           <br />
                           <br />
@@ -188,17 +186,14 @@ function PersonalisedInfo() {
                               latestUser.homeLocation
                             )}
                             , Singapore
-
                           </span>
                           <br />
                           <br />
                           <span className={styles.otherInfoPosition}>
-                          
                             {`{ ${capitalizeFirstLetter(
                               personaliseData.homeWeather.weather[0]
                                 .description
                             )}`}{" "}
-
                             <br />
                             {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
                             <br />
@@ -207,11 +202,9 @@ function PersonalisedInfo() {
                         </div>
 
                         <div className={styles.temperatureContainer}>
-                        
                           <span
                             className={styles.weatherIconPosition}
                           >
-
                             <WeatherIcon
                               forecastText={
                                 personaliseData.homeWeather.weather[0]
@@ -252,7 +245,6 @@ function PersonalisedInfo() {
                         <p className={styles.workWeatherPosition}>
                           <span
                             className={styles.spanColorPink}
-
                           >{`{ WORK } `}</span>
 
                           <span
@@ -279,13 +271,11 @@ function PersonalisedInfo() {
                           >
                             {" "}
                             {`${personaliseData.workWeather.weather[0].description} `}
-
                             {Math.round(
                               personaliseData.workWeather.main.temp
                             )}
                             °C{" "}
                           </span>
-
                         </p>
                         <div>
                           <NextDayForecastNew />
