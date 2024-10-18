@@ -2,6 +2,8 @@
   display: flex;
   padding: 0.15em;
   height: 90px;
+  max-width: 1350px;
+  margin: 0 auto;
 }
 
 .nimbusLogo {
@@ -15,8 +17,8 @@
 .searchBox {
   flex-direction: row;
   align-items: center;
-  margin-left: 30px;
-  gap: 55px;
+  margin-left: 20px;
+  gap: 45px;
 }
 
 .searchInput {

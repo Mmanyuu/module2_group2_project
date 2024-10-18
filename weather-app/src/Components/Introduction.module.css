@@ -1,5 +1,5 @@
 .container {
-  margin: 25px; /* Keep or adjust the outer margin as needed */
+  margin: 0 auto; /* Keep or adjust the outer margin as needed */
   color: white; /* Text color */
   text-align: center; /* Center the text */
   font-size: 0.9rem; /* Font size */
@@ -7,6 +7,7 @@
   font-family: "Poppins", sans-serif;
   font-style: normal;
   align-content: center;
+  max-width: 1350px;
 }
 
 form {

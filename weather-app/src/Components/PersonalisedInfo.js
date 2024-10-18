@@ -137,13 +137,17 @@ function PersonalisedInfo() {
 
   return (
     <div>
-      <div>
+      <div className={styles.centeredContainer}>
         {latestUser ? (
           <>
             <div className={styles.gridContainer}>
-              {/* First Grid */}
-              <div className={styles.clock}>
-                <Clock />
+
+              {/* Left Grid */}
+              <div className={styles.leftGrid}>
+                <div className={styles.clock}>
+                  <Clock />
+                </div>
+
                 <h2 className={styles.userName}>
                   Hello {capitalizeFirstLetter(latestUser.name)},
                 </h2>
@@ -154,6 +158,14 @@ function PersonalisedInfo() {
                     <>
                       <h4>Planned Activity:</h4>
                       <p>{`${latestUser.activityDetails} at ${latestUser.activityLocation} today.`}</p>
+
+                      <div className={styles.editContainer}>
+                        <span className={styles.editButton}>
+                          edit
+                        </span>
+                        <span className={styles.addButton}>+</span>
+                        <span className={styles.deleteButton}>-</span>
+                      </div>
                     </>
                   ) : (
                     <h4>No planned activity today.</h4>
@@ -170,7 +182,12 @@ function PersonalisedInfo() {
               {/* Second Grid */}
               <div className={styles.flexContainer}>
                 {loading ? (
+
                   <p>Loading weather data...</p>
+                  <p className={styles.loading}>
+                    Loading weather data...
+                  </p>
+
                 ) : (
                   <>
                     {/* Display home weather data */}
@@ -183,12 +200,18 @@ function PersonalisedInfo() {
                           <br />
                           <br />
                           <span className={styles.homeLocation}>
-                            {capitalizeFirstLetter(latestUser.homeLocation)}
+                            {capitalizeFirstLetter(
+                              latestUser.homeLocation
+                            )}
+                            , Singapore
                           </span>
                           <br />
                           <br />
                           <span className={styles.otherInfoPosition}>
-                            {`{ ${personaliseData.homeWeather.weather[0].description}`}{" "}
+                            {`{ ${capitalizeFirstLetter(
+                              personaliseData.homeWeather.weather[0]
+                                .description
+                            )}`}{" "}
                             <br />
                             {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
                             <br />
@@ -197,7 +220,9 @@ function PersonalisedInfo() {
                         </div>
 
                         <div className={styles.temperatureContainer}>
-                          <span className={styles.weatherIconPosition}>
+                          <span
+                            className={styles.weatherIconPosition}
+                          >
                             <WeatherIcon
                               forecastText={
                                 personaliseData.homeWeather.weather[0]
@@ -237,7 +262,15 @@ function PersonalisedInfo() {
                         <p className={styles.workWeatherPosition}>
                           <span
                             className={styles.spanColorPink}
-                          >{`{WORK} `}</span>
+                          >{`{ WORK } `}</span>
+
+                          <span
+                            className={`${styles.spanColorwhite} ${styles.spanBold}`}
+                          >
+                            {capitalizeFirstLetter(
+                              latestUser.workLocation
+                            )}
+                          </span>
 
                           <span>
                             <WeatherIcon
@@ -255,13 +288,10 @@ function PersonalisedInfo() {
                           >
                             {" "}
                             {`${personaliseData.workWeather.weather[0].description} `}
-                            {Math.round(personaliseData.workWeather.main.temp)}
+                            {Math.round(
+                              personaliseData.workWeather.main.temp
+                            )}
                             °C{" "}
-                          </span>
-                          <span
-                            className={`${styles.spanColorwhite} ${styles.spanFontBig}`}
-                          >
-                            {capitalizeFirstLetter(latestUser.workLocation)}
                           </span>
                         </p>
                         <div>
