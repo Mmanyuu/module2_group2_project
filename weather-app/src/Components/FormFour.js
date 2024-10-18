@@ -1,3 +1,7 @@
+// https://codepen.io/Hafoux/pen/ZEOwzdQ
+// https://dev.to/aryclenio/unidirectional-and-bidirectional-data-flow-the-ultimate-front-end-interview-questions-guide-pt-1-5cnc
+// React Unidirectional Data Flow
+
 import { useState } from "react";
 
 const NameForm = () => {

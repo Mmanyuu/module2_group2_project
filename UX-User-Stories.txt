@@ -1,0 +1,61 @@
+https://www.smartsheet.com/content/user-story-examples#user-interface-ui-user-story-examples
+
+For this Web Weather Appplication UX user stories,
+When enhancing the user interface (UI), user stories are instrumental in defining features that improve usability and user satisfaction.
+
+1. As a user, I want to be able to customize the layout of my dashboard, so that I can arrange the information in a way that suits me.
+2. As a user, I want to user friendly, so that I can input detail easily.
+3. As a user, I want to have form validation to happen in real time, so that I can correct any errors as I fill out the form.
+4. As a user, I want to be able to navigate the site using keyboard shortcuts, so that I can perform actions more quickly.
+5. As a web app designer, I want to customize the toolbar layout in my design software, so that I can optimize my workflow.
+6. As a user, I want tips to appear when I hover over complex controls, so that I can learn how to use the application.
+7. As a user, I want the interface to adapt based on my device’s orientation, so that I can have a seamless experience in both landscape and portrait modes.
+8. As a frequent user, I want the system to remember my preferences, so that I do not have to repeat selections each time I log in.
+9. As a user with limited technical skills, I want any error messages to be easy to understand, so that I can resolve issues without external help.
+10. As a user, I want the app to load quickly, so that I can use it effectively during short periods of free time.
+11. As a user, I want offline access to this page, so that I can use the app without internet connectivity.
+12. As a first-time user, I want to easily navigate the website’s menu, so that I can find the information I need without confusion.
+13. As a frequent user, I want to personalize my dashboard view, so that I can quickly access the features I access the most.
+
+
+Technical Presentation Guideline:
+
+Create short slide deck;
+ - Problem Statement
+ - Technologies used - React, component, passing props, destructuring, State Hook, event handler, Unidirectional data flow (one-way data flow, which means the data has one, and only one way to be transferred to other parts of the application.)
+   Context, Reducers, Conditional Rendering and Lists, Router, Axios, Asynchronous, useEffect and Deployment
+ - Screenshots of the working application
+ - Learnings of each member
+ - Challenges encoountered during the project making
+
+Lesson learn > on the Form with CRUD
+to work with Array then > Dummy data
+
+👉 git reflog
+to find the the hash-number of that branch, then restore the deleted branch using
+
+👉🏼 git checkout -b branch-name hash-number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
