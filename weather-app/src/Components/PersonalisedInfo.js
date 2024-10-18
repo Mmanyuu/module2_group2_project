@@ -169,7 +169,7 @@ function PersonalisedInfo() {
                   )}
                 </div>
                 {/* <FormThree /> */}
-                <FormFour />
+                {/* <FormFour /> */}
                 {/* Logout Button */}
                 <button className={styles.logoutButton} onClick={handleLogout}>
                   Logout
@@ -198,66 +198,6 @@ function PersonalisedInfo() {
                           <br />
                           <span className={styles.otherInfoPosition}>
                             {`{ ${personaliseData.homeWeather.weather[0].description}`}{" "}
-                            <br />
-                            {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
-                            <br />
-                            {`Wind Speed ${personaliseData.homeWeather.wind.speed} m/s }`}
-                          </span>
-                        </div>
-
-                        <div className={styles.temperatureContainer}>
-                          <span className={styles.weatherIconPosition}>
-                            <WeatherIcon
-                              forecastText={
-                                personaliseData.homeWeather.weather[0]
-                                  .description
-                              }
-                              width={160}
-                              height={160}
-                            />
-                          </span>
-                          <p>
-                            <span className={styles.highTempPosition}>
-                              {Math.round(
-                                personaliseData.homeWeather.main.temp
-                              )}
-                              °C
-                            </span>
-                            <span className={styles.feelsPosition}>
-                              ...Feels like{" "}
-                              {Math.round(
-                                personaliseData.homeWeather.main.feels_like
-                              )}
-                              °C
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      <p>
-                        Could not fetch weather data for{" "}
-                        {latestUser.homeLocation}.
-                      </p>
-                    )}
-                    {/* Display home weather data */}
-                    {personaliseData.homeWeather ? (
-                      <div className={styles.homeContainer}>
-                        <div>
-                          <span
-                            className={styles.spanColorPink}
-                          >{`{HOME}`}</span>
-                          <br />
-                          <br />
-                          <span className={styles.homeLocation}>
-                            {capitalizeFirstLetter(latestUser.homeLocation)},
-                            Singapore
-                          </span>
-                          <br />
-                          <br />
-                          <span className={styles.otherInfoPosition}>
-                            {`{ ${capitalizeFirstLetter(
-                              personaliseData.homeWeather.weather[0].description
-                            )}`}{" "}
                             <br />
                             {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
                             <br />
