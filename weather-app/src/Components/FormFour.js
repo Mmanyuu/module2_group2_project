@@ -5,12 +5,12 @@
 
 import { useState } from "react";
 
-function NameForm() {
-  const [activity, setActivity] = useState("");
-  const [location, setLocation] = useState("");
+function NameForm({user, userlocation}) {
+  const [activity, setActivity] = useState(user);
+  const [location, setLocation] = useState(userlocation);
   const [data, setData] = useState(true);
   const [editData, setEditData] = useState(false);
-  // console.log(editData);
+  // console.log(userlocation);
 
   function handleSubmission() {
     localStorage.clear();

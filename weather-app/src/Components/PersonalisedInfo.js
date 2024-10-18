@@ -76,6 +76,7 @@ function PersonalisedInfo() {
       // Set latest user whenever usersData is updated
       const user = usersData[usersData.length - 1];
       setLatestUser(user);
+      console.log(user);
 
       // we can do refractor on tge following to use data from WeatherData.js for nowi only know how to use the exact same info from andrew. :(
       // encodeURIComponent to ensure location by the user input are passed safely and correctly fomated
@@ -169,7 +170,7 @@ function PersonalisedInfo() {
                   )}
                 </div>
 
-                {/* <FormFour /> */}
+                <FormFour user={latestUser.activityDetails} userlocation={latestUser.activityLocation} />
 
                 {/* Logout Button */}
                 <button className={styles.logoutButton} onClick={handleLogout}>
