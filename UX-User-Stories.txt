@@ -1,3 +1,113 @@
+https://www.smartsheet.com/content/user-story-examples#user-interface-ui-user-story-examples
+
+For this Web Weather Appplication UX user stories,
+When enhancing the user interface (UI), user stories are instrumental in defining features that improve usability and user satisfaction.
+
+1. As a user, I want to be able to customize the layout of my dashboard, so that I can arrange the information in a way that suits me.
+2. As a user, I want to user friendly, so that I can input detail easily.
+3. As a user, I want to have form validation to happen in real time, so that I can correct any errors as I fill out the form.
+4. As a user, I want to be able to navigate the site using keyboard shortcuts, so that I can perform actions more quickly.
+5. As a web app designer, I want to customize the toolbar layout in my design software, so that I can optimize my workflow.
+6. As a user, I want tips to appear when I hover over complex controls, so that I can learn how to use the application.
+7. As a user, I want the interface to adapt based on my device’s orientation, so that I can have a seamless experience in both landscape and portrait modes.
+8. As a frequent user, I want the system to remember my preferences, so that I do not have to repeat selections each time I log in.
+9. As a user with limited technical skills, I want any error messages to be easy to understand, so that I can resolve issues without external help.
+10. As a user, I want the app to load quickly, so that I can use it effectively during short periods of free time.
+11. As a user, I want offline access to this page, so that I can use the app without internet connectivity.
+12. As a first-time user, I want to easily navigate the website’s menu, so that I can find the information I need without confusion.
+13. As a frequent user, I want to personalize my dashboard view, so that I can quickly access the features I access the most.
+
+
+Technical Presentation Guideline:
+
+Create short slide deck;
+ - Problem Statement
+ - Technologies used - React, component, passing props, destructuring, State Hook, event handler, Unidirectional data flow (one-way data flow, which means the data has one, and only one way to be transferred to other parts of the application.)
+   Context, Reducers, Conditional Rendering and Lists, Router, Axios, Asynchronous, useEffect and Deployment
+ - Screenshots of the working application
+ - Learnings of each member
+ - Challenges encoountered during the project making
+
+Lesson learn > on the Form with CRUD
+to work with Array then > Dummy data
+
+👉 git reflog
+to find the the hash-number of that branch, then restore the deleted branch using
+
+👉🏼 git checkout -b branch-name hash-number
+
+
+
+// import { useState } from "react";
+
+// const NameForm = () => {
+//   // Activity Default State
+//   const [inputactivity, setInputActivity] = useState("");
+//   const [activity, setActivity] = useState("Badminton");
+
+//   // Location Default State
+//   const [inputlocation, setInputLocation] = useState("");
+//   const [location, setLocation] = useState("Badminton");
+
+//   const handleActivity = (event) => {
+//     setInputActivity(event.target.value);
+//   };
+
+//   const handleLocation = (event) => {
+//     setInputLocation(event.target.value);
+//   };
+
+//   const updateActivity = (event) => {
+//     event.preventDefault();
+//     setActivity(inputactivity);
+//     setLocation(inputlocation);
+//     setInputActivity("");
+//     setInputLocation("");
+//   };
+
+//   return (
+//     <div className="box">
+//       <h1>
+//         Your Activity: <span> {activity} at {location} </span>
+//       </h1>
+
+//       <form className="form">
+//         <div class="field">
+//           <label for="activity">Update Activity</label>
+//           <div class="control">
+//             <input
+//               type="text"
+//               value={inputactivity}
+//               name="activity"
+//               onChange={handleActivity}
+//               class="input"
+//             />
+//             </div>
+//             <div>
+//             <label for="location">Update Location</label>
+//             <input
+//               type="text"
+//               value={inputlocation}
+//               name="location"
+//               onChange={handleLocation}
+//               class="input"
+//             />
+//           </div>
+//         </div>
+//         <div class="field">
+//           <div class="control">
+//             <button onClick={updateActivity} class="button is-dark">
+//               Save
+//             </button>
+//           </div>
+//         </div>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default NameForm;
+
 // PersonalisedInfo.js - component to show personalised weather info using initial user inputs
 import styles from "./PersonalisedInfo.module.css";
 import { useContext, useEffect, useState } from "react";
@@ -43,7 +153,7 @@ function PersonalisedInfo() {
   // const navigate = useNavigate();
   // Create a use State for Show / Hide FormButton
   // const [isEditing, setIsEditing] = useState(false);
-
+  
   // // Settings Form Input State
   // const [data, setData] = useState(false);
   // const [editData, setEditData] = useState(false);
@@ -137,16 +247,13 @@ function PersonalisedInfo() {
 
   return (
     <div>
-      <div className={styles.centeredContainer}>
+      <div>
         {latestUser ? (
           <>
             <div className={styles.gridContainer}>
-              {/* Left Grid */}
-              <div className={styles.leftGrid}>
-                <div className={styles.clock}>
-                  <Clock />
-                </div>
-
+              {/* First Grid */}
+              <div className={styles.clock}>
+                <Clock />
                 <h2 className={styles.userName}>
                   Hello {capitalizeFirstLetter(latestUser.name)},
                 </h2>
@@ -157,12 +264,6 @@ function PersonalisedInfo() {
                     <>
                       <h4>Planned Activity:</h4>
                       <p>{`${latestUser.activityDetails} at ${latestUser.activityLocation} today.`}</p>
-
-                      <div className={styles.editContainer}>
-                        <span className={styles.editButton}>edit</span>
-                        <span className={styles.addButton}>+</span>
-                        <span className={styles.deleteButton}>-</span>
-                      </div>
                     </>
                   ) : (
                     <h4>No planned activity today.</h4>
@@ -239,66 +340,6 @@ function PersonalisedInfo() {
                         {latestUser.homeLocation}.
                       </p>
                     )}
-                    {/* Display home weather data */}
-                    {personaliseData.homeWeather ? (
-                      <div className={styles.homeContainer}>
-                        <div>
-                          <span
-                            className={styles.spanColorPink}
-                          >{`{HOME}`}</span>
-                          <br />
-                          <br />
-                          <span className={styles.homeLocation}>
-                            {capitalizeFirstLetter(latestUser.homeLocation)},
-                            Singapore
-                          </span>
-                          <br />
-                          <br />
-                          <span className={styles.otherInfoPosition}>
-                            {`{ ${capitalizeFirstLetter(
-                              personaliseData.homeWeather.weather[0].description
-                            )}`}{" "}
-                            <br />
-                            {`Humidity ${personaliseData.homeWeather.main.humidity}`}{" "}
-                            <br />
-                            {`Wind Speed ${personaliseData.homeWeather.wind.speed} m/s }`}
-                          </span>
-                        </div>
-
-                        <div className={styles.temperatureContainer}>
-                          <span className={styles.weatherIconPosition}>
-                            <WeatherIcon
-                              forecastText={
-                                personaliseData.homeWeather.weather[0]
-                                  .description
-                              }
-                              width={160}
-                              height={160}
-                            />
-                          </span>
-                          <p>
-                            <span className={styles.highTempPosition}>
-                              {Math.round(
-                                personaliseData.homeWeather.main.temp
-                              )}
-                              °C
-                            </span>
-                            <span className={styles.feelsPosition}>
-                              ...Feels like{" "}
-                              {Math.round(
-                                personaliseData.homeWeather.main.feels_like
-                              )}
-                              °C
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      <p>
-                        Could not fetch weather data for{" "}
-                        {latestUser.homeLocation}.
-                      </p>
-                    )}
 
                     {/* Display work weather data */}
                     {personaliseData.workWeather ? (
@@ -306,13 +347,7 @@ function PersonalisedInfo() {
                         <p className={styles.workWeatherPosition}>
                           <span
                             className={styles.spanColorPink}
-                          >{`{ WORK } `}</span>
-
-                          <span
-                            className={`${styles.spanColorwhite} ${styles.spanBold}`}
-                          >
-                            {capitalizeFirstLetter(latestUser.workLocation)}
-                          </span>
+                          >{`{WORK} `}</span>
 
                           <span>
                             <WeatherIcon
@@ -332,6 +367,11 @@ function PersonalisedInfo() {
                             {`${personaliseData.workWeather.weather[0].description} `}
                             {Math.round(personaliseData.workWeather.main.temp)}
                             °C{" "}
+                          </span>
+                          <span
+                            className={`${styles.spanColorwhite} ${styles.spanFontBig}`}
+                          >
+                            {capitalizeFirstLetter(latestUser.workLocation)}
                           </span>
                         </p>
                         <div>
@@ -377,3 +417,28 @@ function PersonalisedInfo() {
 }
 
 export default PersonalisedInfo;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

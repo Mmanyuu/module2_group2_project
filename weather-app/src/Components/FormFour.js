@@ -1,69 +1,86 @@
+// https://codepen.io/Hafoux/pen/ZEOwzdQ
+// https://dev.to/aryclenio/unidirectional-and-bidirectional-data-flow-the-ultimate-front-end-interview-questions-guide-pt-1-5cnc
+// React Unidirectional Data Flow
+// https://medium.com/@raoradhika/store-and-retrieve-data-in-localstorage-in-react-1fb0ccfe3a35
+
 import { useState } from "react";
 
-const NameForm = () => {
-  // Activity Default State
-  const [inputactivity, setInputActivity] = useState("");
-  const [activity, setActivity] = useState("Badminton");
+function NameForm() {
+  const [activity, setActivity] = useState("");
+  const [location, setLocation] = useState("");
+  const [data, setData] = useState(true);
+  const [editData, setEditData] = useState(true);
+  // console.log(editData);
 
-  // Location Default State
-  const [inputlocation, setInputLocation] = useState("");
-  const [location, setLocation] = useState("Badminton");
+  function handleSubmission() {
+    localStorage.clear();
+    let userData = {
+      Activity: activity,
+      Location: location,
+    };
+    localStorage.setItem("userInfo", JSON.stringify(userData));
+    document.getElementsByClassName("span").style = "block";
+    alert("Data recorded!");
+    // window.location.reload();
+  }
 
-  const handleActivity = (event) => {
-    setInputActivity(event.target.value);
-  };
+  let userInfo = "";
+  function toggleGetData() {
+    setData(true);
+    userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    console.log(userInfo.Activity);
+    setActivity(userInfo.Activity);
+    setLocation(userInfo.Location);
+  }
 
-  const handleLocation = (event) => {
-    setInputLocation(event.target.value);
-  };
-
-  const updateActivity = (event) => {
-    event.preventDefault();
-    setActivity(inputactivity);
-    setLocation(inputlocation);
-    setInputActivity("");
-    setInputLocation("");
-  };
-
+  function toggleEditData() {
+    setEditData(true);
+    console.log(editData);
+  }
   return (
-    <div className="box">
-      <h1>
-        Your Activity: <span> {activity} at {location} </span>
-      </h1>
-
-      <form className="form">
-        <div class="field">
-          <label for="activity">Update Activity</label>
-          <div class="control">
+    <div className="background">
+      <div className="box">
+        <div className="left-box">
+          <h3>Your Activity:</h3>
+          <div>
+            <label htmlFor="activity"> Activity </label>
             <input
               type="text"
-              value={inputactivity}
               name="activity"
-              onChange={handleActivity}
-              class="input"
+              placeholder="Type your Activity"
+              onChange={(e) => setActivity(e.target.value)}
+              value={editData ? activity : ""}
             />
-            </div>
-            <div>
-            <label for="location">Update Location</label>
+          </div>
+          <div>
+            <label htmlFor="location"> Location </label>
             <input
               type="text"
-              value={inputlocation}
               name="location"
-              onChange={handleLocation}
-              class="input"
+              placeholder="Type your location"
+              onChange={(e) => setLocation(e.target.value)}
+              value={editData ? location : ""}
             />
           </div>
+          <button onClick={handleSubmission}>Save my Activity</button>
         </div>
-        <div class="field">
-          <div class="control">
-            <button onClick={updateActivity} class="button is-dark">
-              Save
-            </button>
-          </div>
+        <div className="right-box" style={{ textAlign: "center" }}>
+          <button style={{ marginRight: "5px" }} onClick={toggleGetData}>
+            Get Activity
+          </button>
+          <button onClick={toggleEditData}>Edit Activity</button>
+          {data && (
+            <>
+              <div className="data">
+                <div> Activity - {activity}</div>
+                <div> Location - {location}</div>
+              </div>
+            </>
+          )}
         </div>
-      </form>
+      </div>
     </div>
   );
-};
+}
 
 export default NameForm;
